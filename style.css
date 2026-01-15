@@ -35,8 +35,8 @@ html, body {
 }
 
 .icon img {
-  width: 64px;  /* All icons are now 64x64 */
-  height: 64px;
+  width: 128px;  /* All icons are now 64x64 */
+  height: 128px;
   image-rendering: pixelated;
   margin-bottom: 8px;
 }
