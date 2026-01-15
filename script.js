@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // CLOCK LOGIC
+  // CLOCK
   function updateClock() {
     const clock = document.getElementById("win95-clock");
     const now = new Date();
@@ -23,12 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!startMenu.contains(e.target)) startMenu.style.display = "none";
   });
 
-  // DRAGGING INITIALIZATION
+  // INITIALIZE DRAGGING
   makeDraggable("about-window");
   makeDraggable("music-window");
 });
 
-// WINDOW MANAGEMENT
 function openApp(id, name) {
   const win = document.getElementById(id);
   win.style.display = 'flex';
@@ -57,15 +56,9 @@ function toggleMinimize(id) {
 function maximizeWindow(id) {
   const win = document.getElementById(id);
   if (win.style.width === '100vw') {
-    win.style.width = '400px';
-    win.style.height = 'auto';
-    win.style.top = '100px';
-    win.style.left = '150px';
+    win.style.width = '400px'; win.style.height = 'auto'; win.style.top = '100px'; win.style.left = '150px';
   } else {
-    win.style.width = '100vw';
-    win.style.height = 'calc(100vh - 40px)';
-    win.style.top = '0';
-    win.style.left = '0';
+    win.style.width = '100vw'; win.style.height = 'calc(100vh - 40px)'; win.style.top = '0'; win.style.left = '0';
   }
 }
 
@@ -73,30 +66,18 @@ function makeDraggable(windowId) {
   const win = document.getElementById(windowId);
   const titleBar = win.querySelector(".window-titlebar");
   let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  titleBar.onmousedown = dragMouseDown;
-
-  function dragMouseDown(e) {
+  titleBar.onmousedown = (e) => {
     e.preventDefault();
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    document.onmousemove = elementDrag;
+    pos3 = e.clientX; pos4 = e.clientY;
+    document.onmouseup = () => { document.onmouseup = null; document.onmousemove = null; };
+    document.onmousemove = (e) => {
+      e.preventDefault();
+      pos1 = pos3 - e.clientX; pos2 = pos4 - e.clientY;
+      pos3 = e.clientX; pos4 = e.clientY;
+      win.style.top = (win.offsetTop - pos2) + "px";
+      win.style.left = (win.offsetLeft - pos1) + "px";
+    };
     document.querySelectorAll('.window').forEach(w => w.style.zIndex = 100);
-    win.style.zIndex = 1001; 
-  }
-
-  function elementDrag(e) {
-    e.preventDefault();
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    win.style.top = (win.offsetTop - pos2) + "px";
-    win.style.left = (win.offsetLeft - pos1) + "px";
-  }
-
-  function closeDragElement() {
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
+    win.style.zIndex = 1001;
+  };
 }
