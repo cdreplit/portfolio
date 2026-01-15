@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Windows 95 Desktop</title>
-
 <style>
 /* ===== RESET & DESKTOP ===== */ 
 html, body {
@@ -13,7 +12,6 @@ html, body {
   height: 100%;
   overflow: hidden; /* Keeps it feeling like a desktop */
 }
-
 body {
   background: #008080; /* Win95 Teal */
   font-family: "MS Sans Serif", Tahoma, sans-serif; 
@@ -21,7 +19,6 @@ body {
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: grayscale;
 }
-
 /* ===== START MENU ===== */
 .start-menu {
   display: none; /* Controlled by JS */
@@ -38,7 +35,6 @@ body {
   z-index: 999;
   flex-direction: row;
 }
-
 .sidebar {
   background: linear-gradient(to top, #000080, #1084d0);
   width: 28px;
@@ -46,7 +42,6 @@ body {
   align-items: flex-end;
   padding: 5px;
 }
-
 .sidebar span {
   writing-mode: vertical-lr;
   transform: rotate(180deg);
@@ -55,14 +50,12 @@ body {
   font-size: 16px;
   letter-spacing: 1px;
 }
-
 .menu-items {
   list-style: none;
   margin: 0;
   padding: 2px;
   width: 100%;
 }
-
 .menu-items li {
   padding: 6px 10px;
   display: flex;
@@ -70,20 +63,17 @@ body {
   gap: 10px;
   font-size: 13px;
 }
-
 .menu-items li:hover {
   background: #000080;
   color: white;
   cursor: pointer;
 }
-
 .menu-items hr {
   border: 0;
   border-top: 1px solid #808080;
   border-bottom: 1px solid #ffffff;
   margin: 4px 0;
 }
-
 /* ===== TASKBAR ===== */
 .taskbar {
   position: fixed;
@@ -100,7 +90,6 @@ body {
   gap: 8px;
   z-index: 1000;
 }
-
 .start-button {
   display: flex;
   align-items: center;
@@ -114,7 +103,6 @@ body {
   border-bottom: 2px solid #404040;
   cursor: pointer;
 }
-
 .start-button:active {
   border-top: 2px solid #404040;
   border-left: 2px solid #404040;
@@ -122,17 +110,14 @@ body {
   border-bottom: 2px solid #ffffff;
   padding: 1px 9px 0px 11px; /* "Pushed" effect */
 }
-
 .start-button img {
   width: 18px;
   height: 18px;
 }
-
 .start-button span {
   font-weight: bold;
   font-size: 14px;
 }
-
 /* ===== CLOCK ===== */
 .clock {
   margin-left: auto;
@@ -150,9 +135,7 @@ body {
 }
 </style>
 </head>
-
 <body>
-
   <div class="start-menu" id="startMenu">
     <div class="sidebar">
       <span>Windows<b>95</b></span>
@@ -161,24 +144,18 @@ body {
       <li>About Me</li>
       <li>Music</li>
       <li>Videos</li>
-      <li>About Me</li>
-      <li>Music</li>
-      <li>Videos</li>
       <hr>
       <li>Contact</li>
     </ul>
   </div>
-
   <div class="taskbar">
     <div class="start-button" id="startButton">
       <img src="https://i.imgur.com/XeSet7C.png" alt="Start">
       <span>Start</span>
     </div>
-
     <div class="clock" id="win95-clock">12:00 PM</div>
   </div>
 
- 
-
+  <script src="script.js"></script>
 </body>
 </html>
