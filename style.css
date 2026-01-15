@@ -126,3 +126,60 @@ body {
   border-right: 2px solid #ffffff;
   border-bottom: 2px solid #ffffff;
 }
+/* Position the icon top right */
+.desktop-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Window Styling */
+.window {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 400px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  padding: 2px;
+  z-index: 10;
+}
+
+.window-titlebar {
+  background: #000080; /* Classic dark blue */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 5px;
+  font-weight: bold;
+}
+
+.window-controls button {
+  width: 16px;
+  height: 14px;
+  font-size: 9px;
+  background: #c0c0c0;
+  border: 1px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  cursor: pointer;
+  margin-left: 2px;
+}
+
+/* Taskbar Button for Active App */
+.taskbar-apps {
+  display: flex;
+  gap: 5px;
+  margin-left: 10px;
+}
+
+.task-button {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  padding: 2px 8px;
+  font-size: 11px;
+  min-width: 100px;
+  cursor: pointer;
+}
