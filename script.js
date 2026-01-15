@@ -12,20 +12,18 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(updateClock, 1000);
   updateClock();
 
-  // START MENU LOGIC
+  // START MENU
   const startButton = document.getElementById("startButton");
   const startMenu = document.getElementById("startMenu");
-
   startButton.addEventListener("click", (e) => {
     e.stopPropagation();
     startMenu.style.display = startMenu.style.display === "flex" ? "none" : "flex";
   });
-
   document.addEventListener("click", (e) => {
     if (!startMenu.contains(e.target)) startMenu.style.display = "none";
   });
 
-  // INITIALIZE DRAGGING FOR BOTH WINDOWS
+  // DRAGGING INITIALIZATION
   makeDraggable("about-window");
   makeDraggable("music-window");
 });
@@ -34,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
 function openApp(id, name) {
   const win = document.getElementById(id);
   win.style.display = 'flex';
-
   const taskbar = document.getElementById('taskbar-apps');
   if (!document.getElementById('task-' + id)) {
     const btn = document.createElement('div');
@@ -63,7 +60,7 @@ function maximizeWindow(id) {
     win.style.width = '400px';
     win.style.height = 'auto';
     win.style.top = '100px';
-    win.style.left = '100px';
+    win.style.left = '150px';
   } else {
     win.style.width = '100vw';
     win.style.height = 'calc(100vh - 40px)';
@@ -72,11 +69,9 @@ function maximizeWindow(id) {
   }
 }
 
-// DRAGGABLE LOGIC
 function makeDraggable(windowId) {
   const win = document.getElementById(windowId);
   const titleBar = win.querySelector(".window-titlebar");
-
   let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   titleBar.onmousedown = dragMouseDown;
 
@@ -86,8 +81,6 @@ function makeDraggable(windowId) {
     pos4 = e.clientY;
     document.onmouseup = closeDragElement;
     document.onmousemove = elementDrag;
-    
-    // Bring clicked window to front
     document.querySelectorAll('.window').forEach(w => w.style.zIndex = 100);
     win.style.zIndex = 1001; 
   }
