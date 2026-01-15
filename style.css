@@ -19,24 +19,14 @@ html, body {
 }
 
 /* ===== ICONS ===== */
-/* Position the icon at the top-left */
 .about-icon {
   position: absolute;
   top: 20px;
-  left: 20px;
+  left: 20px; /* FIXED: Moved back to Top Left */
 }
 
-/* Upscale the icon to 64x64 */
-.icon img {
-  width: 64px;
-  height: 64px;
-  image-rendering: pixelated; /* Keeps it from getting blurry */
-  margin-bottom: 8px;
-}
-
-/* Adjust the icon container width for the larger image */
 .icon {
-  width: 100px; /* Wider to accommodate 64px image + text padding */
+  width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,10 +36,10 @@ html, body {
 }
 
 .icon img {
-  width: 32px;
-  height: 32px;
+  width: 64px; /* UPSCALED to 64x64 */
+  height: 64px;
   image-rendering: pixelated;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .icon span {
@@ -63,54 +53,66 @@ html, body {
   outline: 1px dotted white;
 }
 
-/* ===== START MENU ===== */
-.start-menu {
-  display: none;
-  position: fixed;
-  bottom: 40px;
-  left: 2px;
-  width: 180px;
+/* ===== WINDOWS ===== */
+.window {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 400px;
   background: #c0c0c0;
   border: 2px solid;
   border-color: #ffffff #404040 #404040 #ffffff;
-  z-index: 999;
-  flex-direction: row;
-}
-
-.sidebar {
-  background: linear-gradient(to top, #000080, #1084d0);
-  width: 28px;
+  z-index: 100;
   display: flex;
-  align-items: flex-end;
-  padding: 5px;
+  flex-direction: column;
 }
 
-.sidebar span {
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
-  color: #c0c0c0;
+.window-titlebar {
+  background: #000080;
+  color: white;
+  padding: 3px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-weight: bold;
 }
 
-.menu-items {
-  list-style: none;
-  margin: 0;
-  padding: 2px;
-  width: 100%;
+.window-controls {
+  display: flex;
+  gap: 2px; /* Even spacing between buttons */
 }
 
-.menu-items li {
-  padding: 6px 10px;
-  font-size: 12px;
-}
-
-.menu-items li:hover {
-  background: #000080;
-  color: white;
+.window-controls button {
+  width: 16px;
+  height: 14px;
+  background: #c0c0c0;
+  border: 1px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   cursor: pointer;
+  line-height: 1;
 }
 
-/* ===== TASKBAR ===== */
+.window-controls button:active {
+  border-color: #404040 #ffffff #ffffff #404040;
+  padding: 1px 0 0 1px; /* Visual "push" effect */
+}
+
+.window-body {
+  padding: 10px;
+  background: white;
+  margin: 2px;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  min-height: 200px;
+  color: black;
+}
+
+/* ===== TASKBAR & MENU ===== */
 .taskbar {
   position: fixed;
   bottom: 0;
@@ -135,14 +137,11 @@ html, body {
   background: #c0c0c0;
   border: 2px solid;
   border-color: #ffffff #404040 #404040 #ffffff;
-  cursor: pointer;
   font-weight: bold;
+  cursor: pointer;
 }
 
-.taskbar-apps {
-  display: flex;
-  gap: 4px;
-}
+.taskbar-apps { display: flex; gap: 4px; }
 
 .task-button {
   background: #c0c0c0;
@@ -167,41 +166,33 @@ html, body {
   border-color: #808080 #ffffff #ffffff #808080;
 }
 
-/* ===== WINDOWS ===== */
-.window {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  width: 400px;
+.start-menu {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  left: 2px;
+  width: 180px;
   background: #c0c0c0;
   border: 2px solid;
   border-color: #ffffff #404040 #404040 #ffffff;
-  z-index: 100;
+  z-index: 999;
 }
 
-.window-titlebar {
-  background: #000080;
-  color: white;
-  padding: 3px 5px;
+.sidebar {
+  background: linear-gradient(to top, #000080, #1084d0);
+  width: 28px;
   display: flex;
-  justify-content: space-between;
+  align-items: flex-end;
+  padding: 5px;
+}
+
+.sidebar span {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  color: #c0c0c0;
   font-weight: bold;
 }
 
-.window-controls button {
-  width: 16px;
-  height: 14px;
-  font-size: 9px;
-  background: #c0c0c0;
-  border: 1px solid;
-  border-color: #ffffff #404040 #404040 #ffffff;
-}
-
-.window-body {
-  padding: 10px;
-  background: white;
-  margin: 2px;
-  border: 2px solid;
-  border-color: #808080 #ffffff #ffffff #808080;
-  min-height: 200px;
-}
+.menu-items { list-style: none; margin: 0; padding: 2px; width: 100%; }
+.menu-items li { padding: 6px 10px; font-size: 12px; cursor: pointer; }
+.menu-items li:hover { background: #000080; color: white; }
