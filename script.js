@@ -24,12 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (e) => {
     if (!startMenu.contains(e.target)) startMenu.style.display = "none";
   });
+
+  // INITIALIZE DRAGGING FOR THE ABOUT WINDOW
+  makeDraggable("about-window");
 });
 
 // WINDOW MANAGEMENT
 function openApp(id, name) {
   const win = document.getElementById(id);
-  win.style.display = 'block';
+  win.style.display = 'flex';
 
   const taskbar = document.getElementById('taskbar-apps');
   if (!document.getElementById('task-' + id)) {
@@ -50,7 +53,7 @@ function closeWindow(id) {
 
 function toggleMinimize(id) {
   const win = document.getElementById(id);
-  win.style.display = (win.style.display === 'none') ? 'block' : 'none';
+  win.style.display = (win.style.display === 'none') ? 'flex' : 'none';
 }
 
 function maximizeWindow(id) {
@@ -58,8 +61,8 @@ function maximizeWindow(id) {
   if (win.style.width === '100vw') {
     win.style.width = '400px';
     win.style.height = 'auto';
-    win.style.top = '50px';
-    win.style.left = '50px';
+    win.style.top = '100px';
+    win.style.left = '100px';
   } else {
     win.style.width = '100vw';
     win.style.height = 'calc(100vh - 40px)';
@@ -68,39 +71,31 @@ function maximizeWindow(id) {
   }
 }
 
-// DRAGGABLE WINDOW LOGIC
+// DRAGGABLE LOGIC
 function makeDraggable(windowId) {
   const win = document.getElementById(windowId);
   const titleBar = win.querySelector(".window-titlebar");
 
   let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
   titleBar.onmousedown = dragMouseDown;
 
   function dragMouseDown(e) {
-    e = e || window.event;
     e.preventDefault();
-    // Get mouse position at startup
     pos3 = e.clientX;
     pos4 = e.clientY;
     document.onmouseup = closeDragElement;
     document.onmousemove = elementDrag;
-    
-    // Bring window to front when clicked
-    win.style.zIndex = 1000;
+    win.style.zIndex = 1001; 
   }
 
   function elementDrag(e) {
-    e = e || window.event;
     e.preventDefault();
-    // Calculate new position
     pos1 = pos3 - e.clientX;
     pos2 = pos4 - e.clientY;
     pos3 = e.clientX;
     pos4 = e.clientY;
-    // Set the element's new position
     win.style.top = (win.offsetTop - pos2) + "px";
-    win.style.left = (win.offsetLeft - pos1) + "px"; 
+    win.style.left = (win.offsetLeft - pos1) + "px";
   }
 
   function closeDragElement() {
@@ -108,8 +103,3 @@ function makeDraggable(windowId) {
     document.onmousemove = null;
   }
 }
-
-// Initialize dragging for the About window
-document.addEventListener("DOMContentLoaded", () => {
-  makeDraggable("about-window");
-});
