@@ -34,11 +34,18 @@ html, body {
   user-select: none;
 }
 
+/* General styling for all icons (keep this) */
 .icon img {
-  width: 64px;  /* All icons are now 64x64 */
+  width: 64px;
   height: 64px;
   image-rendering: pixelated;
   margin-bottom: 8px;
+}
+
+/* Specific override for the Music icon ONLY */
+.music-img {
+  width: 80px !important;  /* Adjust this number specifically to match the other icon */
+  height: auto !important; /* Let the height scale proportionally so it doesn't stretch */
 }
 
 .icon span {
