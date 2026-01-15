@@ -25,8 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!startMenu.contains(e.target)) startMenu.style.display = "none";
   });
 
-  // INITIALIZE DRAGGING FOR THE ABOUT WINDOW
+  // INITIALIZE DRAGGING FOR BOTH WINDOWS
   makeDraggable("about-window");
+  makeDraggable("music-window");
 });
 
 // WINDOW MANAGEMENT
@@ -85,6 +86,9 @@ function makeDraggable(windowId) {
     pos4 = e.clientY;
     document.onmouseup = closeDragElement;
     document.onmousemove = elementDrag;
+    
+    // Bring clicked window to front
+    document.querySelectorAll('.window').forEach(w => w.style.zIndex = 100);
     win.style.zIndex = 1001; 
   }
 
