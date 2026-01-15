@@ -27,3 +27,21 @@
       startMenu.style.display = 'none';
     });
 
+// Toggle Start Menu
+const startButton = document.getElementById('startButton');
+const startMenu = document.getElementById('startMenu');
+
+startButton.addEventListener('click', () => {
+  if (startMenu.style.display === 'flex') {
+    startMenu.style.display = 'none';
+  } else {
+    startMenu.style.display = 'flex';
+  }
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!startButton.contains(e.target) && !startMenu.contains(e.target)) {
+    startMenu.style.display = 'none';
+  }
+});
