@@ -1,53 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Windows 95 Desktop</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows 95 Desktop</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <div class="desktop">
+    <div class="icon about-icon" ondblclick="openApp('about-window', 'About Me')">
+      <img src="assets/IconNews.png" alt="About Me">
+      <span>About Me</span>
+    </div>
+  </div>
+
   <div class="start-menu" id="startMenu">
     <div class="sidebar">
       <span>Windows<b>95</b></span>
     </div>
     <ul class="menu-items">
-      <li>About Me</li>
+      <li onclick="openApp('about-window', 'About Me')">About Me</li>
       <li>Music</li>
       <li>Videos</li>
       <hr>
       <li>Contact</li>
     </ul>
   </div>
+
+  <div id="about-window" class="window" style="display: none;">
+    <div class="window-titlebar">
+      <div class="title">About Me</div>
+      <div class="window-controls">
+        <button onclick="toggleMinimize('about-window')">_</button>
+        <button onclick="maximizeWindow('about-window')">▢</button>
+        <button onclick="closeWindow('about-window')">X</button>
+      </div>
+    </div>
+    <div class="window-body">
+      <div class="content-padding">
+        <h3>Welcome to my Portfolio</h3>
+        <p>Biography coming soon...</p>
+      </div>
+    </div>
+  </div>
+
   <div class="taskbar">
     <div class="start-button" id="startButton">
       <img src="assets/win95-icon.png" alt="Start">
       <span>Start</span>
-  <div class="desktop-right">
-  <div class="icon" ondblclick="openApp('about-window', 'About Me')">
-    <img src="assets/IconNews.png" alt="About Me">
-    <span>About Me</span>
-  </div>
-</div>
-
-<div id="about-window" class="window" style="display: none;">
-  <div class="window-titlebar">
-    <div class="title">About Me</div>
-    <div class="window-controls">
-      <button onclick="minimizeWindow('about-window')">_</button>
-      <button onclick="maximizeWindow('about-window')">▢</button>
-      <button onclick="closeWindow('about-window')">X</button>
     </div>
-  </div>
-  <div class="window-body">
-    <p>Biography coming soon...</p>
-  </div>
-</div>
 
-<div id="taskbar-apps" class="taskbar-apps"></div>
-    </div>
+    <div id="taskbar-apps" class="taskbar-apps"></div>
+
     <div class="clock" id="win95-clock">12:00 PM</div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
