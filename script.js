@@ -100,7 +100,7 @@ function makeDraggable(windowId) {
     pos4 = e.clientY;
     // Set the element's new position
     win.style.top = (win.offsetTop - pos2) + "px";
-    win.style.left = (win.offsetLeft - pos1) + "px";
+    win.style.left = (win.offsetLeft - pos1) + "px"; 
   }
 
   function closeDragElement() {
