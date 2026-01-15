@@ -9,9 +9,14 @@
 <body>
 
   <div class="desktop">
-    <div class="icon about-icon" ondblclick="openApp('about-window', 'About Me')">
+    <div class="icon" ondblclick="openApp('about-window', 'About Me')">
       <img src="assets/IconNews.png" alt="About Me">
       <span>About Me</span>
+    </div>
+
+    <div class="icon" ondblclick="openApp('music-window', 'Music')">
+      <img src="assets/MusicIcon.png" alt="Music">
+      <span>Music</span>
     </div>
   </div>
 
@@ -21,7 +26,7 @@
     </div>
     <ul class="menu-items">
       <li onclick="openApp('about-window', 'About Me')">About Me</li>
-      <li>Music</li>
+      <li onclick="openApp('music-window', 'Music')">Music</li>
       <li>Videos</li>
       <hr>
       <li>Contact</li>
@@ -45,14 +50,29 @@
     </div>
   </div>
 
+  <div id="music-window" class="window" style="display: none;">
+    <div class="window-titlebar">
+      <div class="title">Music</div>
+      <div class="window-controls">
+        <button onclick="toggleMinimize('music-window')">_</button>
+        <button onclick="maximizeWindow('music-window')">▢</button>
+        <button onclick="closeWindow('music-window')">X</button>
+      </div>
+    </div>
+    <div class="window-body">
+      <div class="content-padding">
+        <h3>My Playlist</h3>
+        <p>Music player loading...</p>
+      </div>
+    </div>
+  </div>
+
   <div class="taskbar">
     <div class="start-button" id="startButton">
       <img src="assets/win95-icon.png" alt="Start">
       <span>Start</span>
     </div>
-
     <div id="taskbar-apps" class="taskbar-apps"></div>
-
     <div class="clock" id="win95-clock">12:00 PM</div>
   </div>
 
