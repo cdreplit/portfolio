@@ -4,7 +4,7 @@ html, body {
   padding: 0;
   height: 100%;
   overflow: hidden;
-  background: #008080; /* Win95 Teal */
+  background: #008080; 
   font-family: "MS Sans Serif", Tahoma, sans-serif; 
   -webkit-font-smoothing: none;
 }
@@ -16,15 +16,14 @@ html, body {
   width: 100%;
   height: calc(100% - 40px);
   z-index: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Stacks icons vertically */
+  gap: 20px; /* Space between icons */
+  align-items: flex-start;
 }
 
 /* ===== ICONS ===== */
-.about-icon {
-  position: absolute;
-  top: 20px;
-  left: 20px; /* FIXED: Moved back to Top Left */
-}
-
 .icon {
   width: 100px;
   display: flex;
@@ -36,7 +35,7 @@ html, body {
 }
 
 .icon img {
-  width: 64px; /* UPSCALED to 64x64 */
+  width: 64px; 
   height: 64px;
   image-rendering: pixelated;
   margin-bottom: 8px;
@@ -57,7 +56,7 @@ html, body {
 .window {
   position: absolute;
   top: 100px;
-  left: 100px;
+  left: 150px; /* Slightly offset so they don't overlap perfectly */
   width: 400px;
   background: #c0c0c0;
   border: 2px solid;
@@ -79,7 +78,7 @@ html, body {
 
 .window-controls {
   display: flex;
-  gap: 2px; /* Even spacing between buttons */
+  gap: 2px;
 }
 
 .window-controls button {
@@ -94,12 +93,6 @@ html, body {
   justify-content: center;
   padding: 0;
   cursor: pointer;
-  line-height: 1;
-}
-
-.window-controls button:active {
-  border-color: #404040 #ffffff #ffffff #404040;
-  padding: 1px 0 0 1px; /* Visual "push" effect */
 }
 
 .window-body {
@@ -138,7 +131,6 @@ html, body {
   border: 2px solid;
   border-color: #ffffff #404040 #404040 #ffffff;
   font-weight: bold;
-  cursor: pointer;
 }
 
 .taskbar-apps { display: flex; gap: 4px; }
