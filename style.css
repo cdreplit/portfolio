@@ -1,5 +1,9 @@
 html, body {
-  margin: 0; padding: 0; height: 100%; overflow: hidden;
+  margin: 0 !important; 
+  padding: 0 !important; 
+  height: 100%;
+  width: 100%;  
+  overflow: hidden;
   background: #008080; font-family: "MS Sans Serif", Tahoma, sans-serif;
   -webkit-font-smoothing: none;
 }
