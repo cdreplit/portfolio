@@ -22,8 +22,10 @@ html, body {
 
 /* SPECIFIC MUSIC ICON OVERSIZE FIX */
 .music-img {
-  width: 95px !important; /* Increased from 82px to 95px */
-  height: auto !important;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  image-rendering: pixelated;
 }
 
 .icon span { color: white; font-size: 11px; padding: 2px; }
