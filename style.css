@@ -6,20 +6,18 @@ html, body {
 
 .desktop {
   position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 40px);
-  z-index: 1; padding: 20px; display: flex; flex-direction: row; flex-wrap: wrap; align-content: flex-start;
-  gap: 18px 24px; align-items: flex-start;
+  z-index: 1; padding: 20px; display: flex; flex-direction: column; gap: 30px; align-items: flex-start;
 }
 
 .icon {
-  width: 100px; /* Fixed slot width for consistent alignment */
+  min-width: 100px; /* Allows container to fit larger icons */
   display: flex; flex-direction: column; align-items: center;
   text-align: center; cursor: pointer; user-select: none;
 }
 
-/* General size for desktop icons */
+/* General size for News Icon */
 .icon img {
-  width: 66px; height: 66px; image-rendering: pixelated; margin-bottom: 8px;
-  object-fit: contain;
+  width: 64px; height: 64px; image-rendering: pixelated; margin-bottom: 8px;
 }
 
 /* SPECIFIC MUSIC ICON OVERSIZE FIX */
