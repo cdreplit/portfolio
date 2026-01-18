@@ -15,10 +15,6 @@ html, body {
   text-align: center; cursor: pointer; user-select: none;
 }
 
-/* General size for News Icon */
-.icon img {
-  width: 64px; height: 64px; image-rendering: pixelated; margin-bottom: 8px;
-}
 
 /* SPECIFIC MUSIC ICON OVERSIZE FIX */
 .music-img {
