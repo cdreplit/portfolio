@@ -1,105 +1,134 @@
-html, body {
-  margin: 0; padding: 0; height: 100%; overflow: hidden;
-  background: #008080; font-family: "MS Sans Serif", Tahoma, sans-serif;
-  -webkit-font-smoothing: none;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows 95 Desktop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-.desktop {
-  position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 40px);
-  z-index: 1; padding: 20px; display: flex; flex-direction: row; flex-wrap: wrap; align-content: flex-start;
-  gap: 18px 24px; align-items: flex-start;
-}
+  <div class="desktop">
+    <div class="icon" ondblclick="openApp('about-window', 'About Me')">
+      <img src="assets/IconNews.png" alt="About Me">
+      <span>About Me</span>
+    </div>
 
-.icon {
-  width: 100px; /* Fixed slot width for consistent alignment */
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center; cursor: pointer; user-select: none;
-}
+    <div class="icon" ondblclick="openApp('music-window', 'Music')">
+      <img src="assets/MusicDisc.png" alt="Music" class="music-img">
+      <span>Music</span>
+    </div>
 
-/* General size for desktop icons */
-.icon img {
-  width: 66px; height: 66px; image-rendering: pixelated; margin-bottom: 8px;
-  object-fit: contain;
-}
+    <div class="icon" ondblclick="openApp('videos-window', 'Videos')">
+      <img src="assets/camera.png" alt="Videos">
+      <span>Videos</span>
+    </div>
+    
+    <div class="icon" ondblclick="openApp('art-window', 'Art')">
+      <img src="assets/IconPaint.png" alt="Art">
+      <span>Art</span>
+    </div>
+    
+    <div class="icon" ondblclick="openApp('programms-window', 'Programms')">
+      <img src="assets/IconComputer.png" alt="Programms">
+      <span>Programms</span>
+    </div>
+  </div>
 
-/* SPECIFIC MUSIC ICON OVERSIZE FIX */
-.music-img {
-  width: 66px;
-  height: 66px;
-  object-fit: contain;
-  image-rendering: pixelated;
-}
+  <div class="start-menu" id="startMenu">
+    <div class="sidebar"><span>Windows<b>95</b></span></div>
+    <ul class="menu-items">
+      <li onclick="openApp('about-window', 'About Me')">About Me</li>
+      <li onclick="openApp('music-window', 'Music')">Music</li>
+      <li onclick="openApp('videos-window', 'Videos')">Videos</li>
+      <li onclick="openApp('art-window', 'Art')">Art</li>
+      <li onclick="openApp('programms-window', 'Programms')">Programms</li>
+      <hr>
+      <li>Contact</li>
+    </ul>
+  </div>
 
-.icon span { color: white; font-size: 11px; padding: 2px; }
-.icon:active span { background-color: #000080; outline: 1px dotted white; }
+  <div id="about-window" class="window" style="display: none;">
+    <div class="window-titlebar">
+      <div class="title">About Me</div>
+      <div class="window-controls">
+        <button onclick="toggleMinimize('about-window')">_</button>
+        <button onclick="maximizeWindow('about-window')">▢</button>
+        <button onclick="closeWindow('about-window')">X</button>
+      </div>
+    </div>
+    <div class="window-body"><div class="content-padding"><h3>User Profile</h3><p>Biography coming soon...</p></div></div>
+  </div>
 
-.window {
-  position: absolute; top: 100px; left: 150px; width: 400px;
-  background: #c0c0c0; border: 2px solid;
-  border-color: #ffffff #404040 #404040 #ffffff;
-  z-index: 100; display: flex; flex-direction: column;
-}
+  <div id="music-window" class="window" style="display: none;">
+    <div class="window-titlebar">
+      <div class="title">Music</div>
+      <div class="window-controls">
+        <button onclick="toggleMinimize('music-window')">_</button>
+        <button onclick="maximizeWindow('music-window')">▢</button>
+        <button onclick="closeWindow('music-window')">X</button>
+      </div>
+    </div>
+    <div class="window-body" style="padding:0;">
+      <iframe width="100%" height="250" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+      <div class="content-padding"><p>Now Playing: 90s Hits</p></div>
+    </div>
+  </div>
 
-.window-titlebar {
-  background: #000080; color: white; padding: 3px 4px;
-  display: flex; justify-content: space-between; align-items: center; font-weight: bold;
-}
+  <div id="videos-window" class="window" style="display: none;">
+    <div class="window-titlebar">
+      <div class="title">Videos</div>
+      <div class="window-controls">
+        <button onclick="toggleMinimize('videos-window')">_</button>
+        <button onclick="maximizeWindow('videos-window')">▢</button>
+        <button onclick="closeWindow('videos-window')">X</button>
+      </div>
+    </div>
+    <div class="window-body" style="padding:0;">
+      <iframe width="100%" height="250" src="https://www.youtube.com/embed/aqz-KE-bpKQ" frameborder="0" allowfullscreen></iframe>
+      <div class="content-padding"><p>Now Playing: Videos</p></div>
+    </div>
+  </div>
 
-.window-controls { display: flex; gap: 2px; padding-right: 2px; }
+  <div id="art-window" class="window" style="display: none;">
+    <div class="window-titlebar">
+      <div class="title">Art</div>
+      <div class="window-controls">
+        <button onclick="toggleMinimize('art-window')">_</button>
+        <button onclick="maximizeWindow('art-window')">▢</button>
+        <button onclick="closeWindow('art-window')">X</button>
+      </div>
+    </div>
+    <div class="window-body" style="padding:0;">
+      <iframe width="100%" height="250" src="https://www.youtube.com/embed/YE7VzlLtp-4" frameborder="0" allowfullscreen></iframe>
+      <div class="content-padding"><p>Now Showing: Art</p></div>
+    </div>
+  </div>
 
-.window-controls button {
-  width: 16px; height: 14px; background: #c0c0c0; border: 1px solid;
-  border-color: #ffffff #404040 #404040 #ffffff;
-  font-size: 10px; display: flex; align-items: center; justify-content: center;
-  padding: 0; cursor: pointer;
-}
+  <div id="programms-window" class="window" style="display: none;">
+    <div class="window-titlebar">
+      <div class="title">Programms</div>
+      <div class="window-controls">
+        <button onclick="toggleMinimize('programms-window')">_</button>
+        <button onclick="maximizeWindow('programms-window')">▢</button>
+        <button onclick="closeWindow('programms-window')">X</button>
+      </div>
+    </div>
+    <div class="window-body" style="padding:0;">
+      <iframe width="100%" height="250" src="https://www.youtube.com/embed/2vjPBrBU-TM" frameborder="0" allowfullscreen></iframe>
+      <div class="content-padding"><p>Now Showing: Programms</p></div>
+    </div>
+  </div>
 
-.window-controls button:active {
-  border-color: #404040 #ffffff #ffffff #404040;
-  padding: 1px 0 0 1px;
-}
+  <div class="taskbar">
+    <div class="start-button" id="startButton">
+      <img src="assets/win95-icon.png" alt="Start">
+      <span>Start</span>
+    </div>
+    <div id="taskbar-apps" class="taskbar-apps"></div>
+    <div class="clock" id="win95-clock">12:00 PM</div>
+  </div>
 
-.window-body {
-  padding: 10px; background: white; margin: 2px; border: 2px solid;
-  border-color: #808080 #ffffff #ffffff #808080;
-  min-height: 200px; color: black; overflow-y: auto;
-}
-
-.taskbar {
-  position: fixed; bottom: 0; left: 0; right: 0; height: 40px;
-  background: #c0c0c0; border-top: 2px solid #ffffff;
-  display: flex; align-items: center; padding: 4px; gap: 8px; z-index: 1000;
-}
-
-.start-button {
-  display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 8px;
-  background: #c0c0c0; border: 2px solid; border-color: #ffffff #404040 #404040 #ffffff;
-  font-weight: bold; cursor: pointer;
-}
-
-.taskbar-apps { display: flex; gap: 4px; }
-
-.task-button {
-  background: #c0c0c0; border: 2px solid; border-color: #ffffff #404040 #404040 #ffffff;
-  padding: 2px 8px; font-size: 11px; min-width: 80px; height: 28px; display: flex; align-items: center;
-}
-
-.clock {
-  margin-left: auto; padding: 0 10px; height: 28px; display: flex; align-items: center;
-  background: #c0c0c0; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080;
-}
-
-.start-menu {
-  display: none; position: fixed; bottom: 40px; left: 2px; width: 180px;
-  background: #c0c0c0; border: 2px solid; border-color: #ffffff #404040 #404040 #ffffff; z-index: 999;
-}
-
-.sidebar {
-  background: linear-gradient(to top, #000080, #1084d0); width: 28px;
-  display: flex; align-items: flex-end; padding: 5px;
-}
-
-.sidebar span { writing-mode: vertical-lr; transform: rotate(180deg); color: #c0c0c0; font-weight: bold; }
-.menu-items { list-style: none; margin: 0; padding: 2px; width: 100%; }
-.menu-items li { padding: 6px 10px; font-size: 12px; cursor: pointer; }
-.menu-items li:hover { background: #000080; color: white; }
+  <script src="script.js"></script>
+</body>
+</html>
