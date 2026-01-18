@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   makeDraggable("about-window");
   makeDraggable("music-window");
   makeDraggable("videos-window");
+  makeDraggable("art-window");
 });
 
 function openApp(id, name) {
