@@ -4,7 +4,7 @@ const windowOpenOrder = [];
 document.addEventListener("DOMContentLoaded", () => {
   // CLOCK
   function updateClock() {
-    const clock = document.getElementById("win95-clock");
+    const clock = document.getElementById("win95-clock"); 
     const now = new Date();
     let hours = now.getHours();
     const minutes = now.getMinutes().toString().padStart(2, "0");
