@@ -44,7 +44,7 @@ function openApp(id, name) {
   const BASE_LEFT = 150;
   const BASE_TOP = 100;
   const STEP = 20; // pixels to offset per open window
-  const MAX_OFFSET_INDEX = 4; // for up to 5 windows diagonal
+  const MAX_OFFSET_INDEX = 5; // for up to 6 windows diagonal
 
   if (wasHidden) {
     // treat this as newly opened: remove existing occurrence then push to end
