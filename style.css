@@ -115,7 +115,7 @@ html, body {
   color: #c0c0c0; 
   font-weight: bold;
   font-size: 14px;
-  margin-bottom: 5px; /* Adjust this to fine-tune the bottom spacing */
+  margin-bottom: 15px; /* Adjust this to fine-tune the bottom spacing */
 }
 
 .menu-items { 
