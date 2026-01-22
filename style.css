@@ -8,7 +8,7 @@
   border: 2px solid; 
   border-color: #ffffff #404040 #404040 #ffffff; 
   z-index: 999;
-  box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.5); 
 }
 
 .sidebar {
