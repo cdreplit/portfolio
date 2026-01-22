@@ -1,37 +1,125 @@
+html, body {
+  margin: 0 !important; 
+  padding: 0 !important; 
+  height: 100%;
+  width: 100%;  
+  overflow: hidden;
+  background: #008080; 
+  font-family: "MS Sans Serif", Tahoma, sans-serif;
+  -webkit-font-smoothing: none;
+}
+
+/* DESKTOP & ICONS */
+.desktop {
+  position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 40px);
+  z-index: 1; padding: 20px; display: flex; flex-direction: column; gap: 30px; align-items: flex-start;
+}
+
+.icon {
+  min-width: 100px; 
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; cursor: pointer; user-select: none;
+}
+
+.icon img {
+  width: 64px; height: 64px; image-rendering: pixelated; margin-bottom: 8px;
+}
+
+.music-img {
+  width: 66px; height: 66px; object-fit: contain; image-rendering: pixelated;
+}
+
+.icon span { color: white; font-size: 11px; padding: 2px; }
+.icon:active span { background-color: #000080; outline: 1px dotted white; }
+
+/* WINDOWS */
+.window {
+  position: absolute; top: 100px; left: 150px; width: 400px;
+  background: #c0c0c0; border: 2px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  z-index: 100; display: flex; flex-direction: column;
+}
+
+.window-titlebar {
+  background: #000080; color: white; padding: 3px 4px;
+  display: flex; justify-content: space-between; align-items: center; font-weight: bold;
+}
+
+.window-controls button {
+  width: 16px; height: 14px; background: #c0c0c0; border: 1px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  font-size: 10px; cursor: pointer;
+}
+
+.window-body {
+  padding: 10px; background: white; margin: 2px; border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  min-height: 200px; color: black; overflow-y: auto;
+}
+
+/* TASKBAR */
+.taskbar {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 40px;
+  background: #c0c0c0; border-top: 2px solid #ffffff;
+  display: flex; align-items: center; padding: 4px; gap: 8px; z-index: 1000;
+}
+
+.start-button {
+  display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 8px;
+  background: #c0c0c0; border: 2px solid; border-color: #ffffff #404040 #404040 #ffffff;
+  font-weight: bold; cursor: pointer;
+}
+
+.start-button:active {
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+.taskbar-apps { display: flex; gap: 4px; }
+
+.task-button {
+  background: #c0c0c0; border: 2px solid; border-color: #ffffff #404040 #404040 #ffffff;
+  padding: 2px 8px; font-size: 11px; min-width: 80px; height: 28px; display: flex; align-items: center;
+}
+
+.clock {
+  margin-left: auto; padding: 0 10px; height: 28px; display: flex; align-items: center;
+  background: #c0c0c0; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080;
+}
+
+/* UPDATED START MENU CSS */
 .start-menu {
   display: none; 
   position: fixed; 
   bottom: 40px; 
   left: 2px; 
-  width: 200px; /* Slightly wider for better spacing */
+  width: 220px; /* Wider to accommodate icons and text */
   background: #c0c0c0; 
   border: 2px solid; 
   border-color: #ffffff #404040 #404040 #ffffff; 
   z-index: 999;
-  box-shadow: 2px 2px 0px rgba(0,0,0,0.5); 
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
 }
 
 .sidebar {
   background: linear-gradient(to top, #000080, #1084d0); 
-  width: 30px;
+  width: 32px;
   display: flex; 
-  align-items: flex-end; 
-  justify-content: center;
-  padding-bottom: 10px; /* Moves the "Windows 95" text up */
+  align-items: flex-end; /* Keeps text at the "top" when rotated */
+  padding: 10px 4px 60px 4px; /* Bottom padding pushes the text UP */
 }
 
 .sidebar span { 
   writing-mode: vertical-lr; 
   transform: rotate(180deg); 
   color: #c0c0c0; 
-  font-weight: bold; 
+  font-weight: bold;
   font-size: 14px;
 }
 
 .menu-items { 
   list-style: none; 
   margin: 0; 
-  padding: 3px; 
+  padding: 2px; 
   width: 100%; 
   display: flex;
   flex-direction: column;
@@ -40,15 +128,15 @@
 .menu-items li { 
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 10px; /* Even padding for buttons */
-  font-size: 12px; 
+  gap: 12px;
+  padding: 12px 10px; /* Larger hit area for social buttons */
+  font-size: 13px; 
   cursor: pointer; 
 }
 
 .menu-items li img {
-  width: 24px;   /* Classic icon size */
-  height: 24px;
+  width: 32px; /* Authentic icon sizing */
+  height: 32px;
   image-rendering: pixelated;
 }
 
