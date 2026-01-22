@@ -1,38 +1,26 @@
 html, body {
-  margin: 0 !important; 
-  padding: 0 !important; 
-  height: 100%;
-  width: 100%;  
-  overflow: hidden;
-  background: #008080; 
-  font-family: "MS Sans Serif", Tahoma, sans-serif;
+  margin: 0 !important; padding: 0 !important; height: 100%; width: 100%;  
+  overflow: hidden; background: #008080; font-family: "MS Sans Serif", Tahoma, sans-serif;
   -webkit-font-smoothing: none;
 }
 
-/* DESKTOP & ICONS */
 .desktop {
   position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - 40px);
   z-index: 1; padding: 20px; display: flex; flex-direction: column; gap: 30px; align-items: flex-start;
 }
 
 .icon {
-  min-width: 100px; 
-  display: flex; flex-direction: column; align-items: center;
+  min-width: 100px; display: flex; flex-direction: column; align-items: center;
   text-align: center; cursor: pointer; user-select: none;
 }
 
-.icon img {
-  width: 64px; height: 64px; image-rendering: pixelated; margin-bottom: 8px;
-}
+.icon img { width: 64px; height: 64px; image-rendering: pixelated; margin-bottom: 8px; }
 
-.music-img {
-  width: 66px; height: 66px; object-fit: contain; image-rendering: pixelated;
-}
+.music-img { width: 66px; height: 66px; object-fit: contain; image-rendering: pixelated; }
 
 .icon span { color: white; font-size: 11px; padding: 2px; }
 .icon:active span { background-color: #000080; outline: 1px dotted white; }
 
-/* WINDOWS */
 .window {
   position: absolute; top: 100px; left: 150px; width: 400px;
   background: #c0c0c0; border: 2px solid;
@@ -47,17 +35,14 @@ html, body {
 
 .window-controls button {
   width: 16px; height: 14px; background: #c0c0c0; border: 1px solid;
-  border-color: #ffffff #404040 #404040 #ffffff;
-  font-size: 10px; cursor: pointer;
+  border-color: #ffffff #404040 #404040 #ffffff; font-size: 10px; cursor: pointer;
 }
 
 .window-body {
   padding: 10px; background: white; margin: 2px; border: 2px solid;
-  border-color: #808080 #ffffff #ffffff #808080;
-  min-height: 200px; color: black; overflow-y: auto;
+  border-color: #808080 #ffffff #ffffff #808080; min-height: 200px; color: black; overflow-y: auto;
 }
 
-/* TASKBAR */
 .taskbar {
   position: fixed; bottom: 0; left: 0; right: 0; height: 40px;
   background: #c0c0c0; border-top: 2px solid #ffffff;
@@ -70,81 +55,47 @@ html, body {
   font-weight: bold; cursor: pointer;
 }
 
-.start-button:active {
-  border-color: #404040 #ffffff #ffffff #404040;
-}
-
-.taskbar-apps { display: flex; gap: 4px; }
-
-.task-button {
-  background: #c0c0c0; border: 2px solid; border-color: #ffffff #404040 #404040 #ffffff;
-  padding: 2px 8px; font-size: 11px; min-width: 80px; height: 28px; display: flex; align-items: center;
-}
-
 .clock {
   margin-left: auto; padding: 0 10px; height: 28px; display: flex; align-items: center;
   background: #c0c0c0; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080;
 }
 
-/* START MENU */
+/* --- UPDATED START MENU --- */
 .start-menu {
-  display: none; 
-  position: fixed; 
-  bottom: 40px; 
-  left: 2px; 
-  width: 220px; 
-  background: #c0c0c0; 
-  border: 2px solid; 
-  border-color: #ffffff #404040 #404040 #ffffff; 
-  z-index: 999;
-  box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+  display: none; position: fixed; bottom: 40px; left: 2px; width: 220px;
+  background: #c0c0c0; border: 2px solid; border-color: #ffffff #404040 #404040 #ffffff; 
+  z-index: 999; box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
 }
 
 .sidebar {
   background: linear-gradient(to top, #000080, #1084d0); 
-  width: 32px;
-  display: flex; 
-  align-items: flex-end; 
-  justify-content: flex-start; /* Combined with rotation, this pins text to bottom */
+  width: 32px; display: flex; align-items: flex-end; justify-content: flex-start; 
   padding: 5px;
 }
 
 .sidebar span { 
-  writing-mode: vertical-lr; 
-  transform: rotate(180deg); 
-  color: #c0c0c0; 
-  font-weight: bold;
-  font-size: 14px;
-  margin-bottom: 25px; /* Adjust this to fine-tune the bottom spacing */
+  writing-mode: vertical-lr; transform: rotate(180deg); color: #c0c0c0; 
+  font-weight: bold; font-size: 14px;
+  /* Adjust this to move the text up or down */
+  margin-bottom: 25px; 
 }
 
-.menu-items { 
-  list-style: none; 
-  margin: 0; 
-  padding: 2px; 
-  width: 100%; 
-  display: flex;
-  flex-direction: column;
-}
+.menu-items { list-style: none; margin: 0; padding: 2px; width: 100%; display: flex; flex-direction: column; }
 
 .menu-items li { 
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 10px;
-  font-size: 13px; 
-  cursor: pointer; 
+  display: flex; align-items: center; gap: 15px; padding: 10px; 
+  font-size: 13px; cursor: pointer; 
 }
 
-/* FORCING ALL ICONS TO BE THE SAME SIZE */
+.menu-items li:hover { background: #000080; color: white; }
+
+/* Icon sizes */
 .menu-items li img.menu-icon {
-  width: 32px; 
-  height: 32px;
-  object-fit: contain; /* Prevents stretching */
-  image-rendering: pixelated;
+  width: 35px; height: 35px; object-fit: contain; image-rendering: pixelated; flex-shrink: 0;
 }
 
-.menu-items li:hover { 
-  background: #000080; 
-  color: white; 
+/* BIGGER YOUTUBE ICON */
+.menu-items li img.youtube-logo {
+  width: 48px; height: 48px;
+  margin-left: -6px; /* Offsets the larger size to keep the text aligned */
 }
