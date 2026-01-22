@@ -1,3 +1,6 @@
+// track open order to cascade windows predictably
+const windowOpenOrder = [];
+
 document.addEventListener("DOMContentLoaded", () => {
   // CLOCK
   function updateClock() {
@@ -34,27 +37,86 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function openApp(id, name) {
   const win = document.getElementById(id);
+  // determine if window was hidden so we only reposition on newly opening
+  const wasHidden = (win.style.display === 'none' || getComputedStyle(win).display === 'none');
+
+  // base position and cascade settings
+  const BASE_LEFT = 150;
+  const BASE_TOP = 100;
+  const STEP = 20; // pixels to offset per open window
+  const MAX_OFFSET_INDEX = 4; // for up to 5 windows diagonal
+
+  if (wasHidden) {
+    // treat this as newly opened: remove existing occurrence then push to end
+    const existing = windowOpenOrder.indexOf(id);
+    if (existing !== -1) windowOpenOrder.splice(existing, 1);
+    windowOpenOrder.push(id);
+
+    const offsetIndex = Math.min(windowOpenOrder.indexOf(id), MAX_OFFSET_INDEX);
+    win.style.left = (BASE_LEFT + offsetIndex * STEP) + 'px';
+    win.style.top = (BASE_TOP + offsetIndex * STEP) + 'px';
+  }
+
   win.style.display = 'flex';
   const taskbar = document.getElementById('taskbar-apps');
   if (!document.getElementById('task-' + id)) {
+    // helper: find desktop icon src by matching the visible label
+    const findIconSrc = (appName) => {
+      const icons = document.querySelectorAll('.desktop .icon');
+      for (const ic of icons) {
+        const label = ic.querySelector('span');
+        const img = ic.querySelector('img');
+        if (label && img && label.textContent.trim() === appName) return img.src;
+      }
+      return null;
+    };
+
     const btn = document.createElement('div');
     btn.id = 'task-' + id;
     btn.className = 'task-button';
-    btn.innerText = name;
+
+    const src = findIconSrc(name);
+    if (src) {
+      const i = document.createElement('img');
+      i.src = src;
+      i.alt = name;
+      i.className = 'task-button-icon';
+      btn.appendChild(i);
+    }
+
+    const text = document.createElement('span');
+    text.textContent = name;
+    btn.appendChild(text);
+
     btn.onclick = () => toggleMinimize(id);
     taskbar.appendChild(btn);
   }
+  // bring the window to front
+  document.querySelectorAll('.window').forEach(w => w.style.zIndex = 100);
+  win.style.zIndex = 1001;
 }
 
 function closeWindow(id) {
   document.getElementById(id).style.display = 'none';
   const taskBtn = document.getElementById('task-' + id);
   if (taskBtn) taskBtn.remove();
+  // remove from open order when closed
+  const idx = windowOpenOrder.indexOf('' + id);
+  if (idx !== -1) windowOpenOrder.splice(idx, 1);
 }
 
 function toggleMinimize(id) {
   const win = document.getElementById(id);
-  win.style.display = (win.style.display === 'none') ? 'flex' : 'none';
+  const nowHidden = (win.style.display === 'none' || getComputedStyle(win).display === 'none');
+  if (nowHidden) {
+    // showing window
+    openApp(id, (document.getElementById('task-' + id) || {}).innerText || id.replace('-window',''));
+  } else {
+    // hiding window
+    win.style.display = 'none';
+    const idx = windowOpenOrder.indexOf('' + id);
+    if (idx !== -1) windowOpenOrder.splice(idx, 1);
+  }
 }
 
 function maximizeWindow(id) {
