@@ -96,7 +96,7 @@ html, body {
   align-items: flex-end; 
   justify-content: center;
   /* This padding-bottom pushes the text further up from the bottom */
-  padding-bottom: 50px; 
+  padding-bottom: 30px; 
 }
 
 .sidebar span { 
