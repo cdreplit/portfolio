@@ -1,7 +1,7 @@
 // track open order to cascade windows predictably
 const windowOpenOrder = [];
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => { 
   // CLOCK
   function updateClock() {
     const clock = document.getElementById("win95-clock"); 
