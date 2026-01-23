@@ -75,18 +75,17 @@ html, body {
   background: #c0c0c0; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080;
 }
 
-/* START MENU */
+/* --- START MENU UPDATES --- */
 .start-menu {
   display: none; 
   position: fixed; 
   bottom: 40px; 
   left: 2px; 
-  width: 220px; 
+  width: 230px; 
   background: #c0c0c0; 
   border: 2px solid; 
   border-color: #ffffff #404040 #404040 #ffffff; 
   z-index: 999;
-  box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
 }
 
 .sidebar {
@@ -95,7 +94,7 @@ html, body {
   display: flex; 
   align-items: flex-end; 
   justify-content: center;
-  /* This padding-bottom pushes the text further up from the bottom */
+  /* INCREASED padding-bottom to move text even HIGHER */
   padding-bottom: 25px; 
 }
 
@@ -104,37 +103,34 @@ html, body {
   transform: rotate(180deg); 
   color: #c0c0c0; 
   font-weight: bold;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .menu-items { 
-  list-style: none; 
-  margin: 0; 
-  padding: 2px; 
-  width: 100%; 
-  display: flex;
-  flex-direction: column;
+  list-style: none; margin: 0; padding: 4px; width: 100%; 
+  display: flex; flex-direction: column;
 }
 
 .menu-items li { 
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 10px;
-  font-size: 13px; 
-  cursor: pointer; 
+  display: flex; align-items: center; gap: 15px;
+  padding: 12px 10px; font-size: 13px; cursor: pointer; 
 }
 
-/* FIX: Forces ALL icons (including YouTube) to be 32px by 32px exactly */
-.menu-items li img {
-  width: 32px !important; 
-  height: 32px !important;
+.menu-items li:hover { background: #000080; color: white; }
+
+/* Base size for LinkedIn and Instagram */
+.menu-items li img.menu-icon {
+  width: 32px; 
+  height: 32px;
   object-fit: contain;
   image-rendering: pixelated;
-  flex-shrink: 0;
 }
 
-.menu-items li:hover { 
-  background: #000080; 
-  color: white; 
+/* FIX: FORCING YOUTUBE TO BE BIGGER VIA SCALE */
+.menu-items li img.youtube-logo {
+  width: 32px;
+  height: 32px;
+  transform: scale(1.5); /* This makes it 50% larger than the others */
+  transform-origin: center;
+  margin-right: 5px; /* Adds space so it doesn't overlap text */
 }
