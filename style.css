@@ -127,8 +127,8 @@ html, body {
 
 /* FIX: Forces ALL icons (including YouTube) to be 32px by 32px exactly */
 .menu-items li img {
-  width: 32px !important; 
-  height: 32px !important;
+  width: 64px !important; 
+  height: 64px !important;
   object-fit: contain;
   image-rendering: pixelated;
   flex-shrink: 0;
