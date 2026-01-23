@@ -96,7 +96,7 @@ html, body {
   align-items: flex-end; 
   justify-content: center;
   /* This padding-bottom pushes the text further up from the bottom */
-  padding-bottom: 30px; 
+  padding-bottom: 50px; 
 }
 
 .sidebar span { 
@@ -127,8 +127,8 @@ html, body {
 
 /* FIX: Forces ALL icons (including YouTube) to be 32px by 32px exactly */
 .menu-items li img {
-  width: 64px !important; 
-  height: 64px !important;
+  width: 32px !important; 
+  height: 32px !important;
   object-fit: contain;
   image-rendering: pixelated;
   flex-shrink: 0;
