@@ -25,39 +25,84 @@ html, body {
   width: 64px; height: 64px; image-rendering: pixelated; margin-bottom: 8px;
 }
 
-.music-img {
-  width: 66px; height: 66px; object-fit: contain; image-rendering: pixelated;
-}
-
 .icon span { color: white; font-size: 11px; padding: 2px; }
 .icon:active span { background-color: #000080; outline: 1px dotted white; }
 
-/* WINDOWS */
-.window {
-  position: absolute; top: 100px; left: 150px; width: 400px;
-  background: #c0c0c0; border: 2px solid;
-  border-color: #ffffff #404040 #404040 #ffffff;
-  z-index: 100; display: flex; flex-direction: column;
+/* START MENU */
+.start-menu {
+  display: none; 
+  position: fixed; 
+  bottom: 40px; 
+  left: 2px; 
+  width: 200px; /* Adjusted width to look more natural */
+  background: #c0c0c0; 
+  border: 2px solid; 
+  border-color: #ffffff #404040 #404040 #ffffff; 
+  z-index: 999;
 }
 
-.window-titlebar {
-  background: #000080; color: white; padding: 3px 4px;
-  display: flex; justify-content: space-between; align-items: center; font-weight: bold;
+.sidebar {
+  background: linear-gradient(to top, #000080, #1084d0); 
+  width: 32px;
+  display: flex; 
+  align-items: flex-end; 
+  justify-content: center;
+  padding-bottom: 25px; /* LOCKED AT 25PX */
 }
 
-.window-controls button {
-  width: 16px; height: 14px; background: #c0c0c0; border: 1px solid;
-  border-color: #ffffff #404040 #404040 #ffffff;
-  font-size: 10px; cursor: pointer;
+.sidebar span { 
+  writing-mode: vertical-lr; 
+  transform: rotate(180deg); 
+  color: #c0c0c0; 
+  font-weight: bold;
+  font-size: 15px;
 }
 
-.window-body {
-  padding: 10px; background: white; margin: 2px; border: 2px solid;
-  border-color: #808080 #ffffff #ffffff #808080;
-  min-height: 200px; color: black; overflow-y: auto;
+.menu-items { 
+  list-style: none; margin: 0; padding: 2px; width: 100%; 
+  display: flex; flex-direction: column;
 }
 
-/* TASKBAR */
+.menu-items li { 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; /* Space between icon and text */
+  padding: 8px; 
+  font-size: 12px; 
+  cursor: pointer;
+}
+
+.menu-items li:hover {
+  background: #000080;
+  color: white;
+}
+
+/* --- THE ICON SIZE CONTROLS --- */
+
+/* Base settings for all icons */
+.menu-items li img.menu-icon {
+  object-fit: contain;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+/* ADJUST THESE PIXELS INDIVIDUALLY */
+.menu-items li img.linkedin-logo {
+  width: 32px; 
+  height: 32px;
+}
+
+.menu-items li img.youtube-logo {
+  width: 32px; 
+  height: 32px;
+}
+
+.menu-items li img.instahg-logo {
+  width: 24px; 
+  height: 24px;
+}
+
+/* --- TASKBAR & CLOCK --- */
 .taskbar {
   position: fixed; bottom: 0; left: 0; right: 0; height: 40px;
   background: #c0c0c0; border-top: 2px solid #ffffff;
@@ -73,70 +118,4 @@ html, body {
 .clock {
   margin-left: auto; padding: 0 10px; height: 28px; display: flex; align-items: center;
   background: #c0c0c0; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080;
-}
-
-/* --- START MENU UPDATES --- */
-.start-menu {
-  display: none; 
-  position: fixed; 
-  bottom: 40px; 
-  left: 2px; 
-  width: 230px; 
-  background: #c0c0c0; 
-  border: 2px solid; 
-  border-color: #ffffff #404040 #404040 #ffffff; 
-  z-index: 999;
-}
-
-.sidebar {
-  background: linear-gradient(to top, #000080, #1084d0); 
-  width: 32px;
-  display: flex; 
-  align-items: flex-end; 
-  justify-content: center;
-  /* INCREASED padding-bottom to move text even HIGHER */
-  padding-bottom: 25px; 
-}
-
-.sidebar span { 
-  writing-mode: vertical-lr; 
-  transform: rotate(180deg); 
-  color: #c0c0c0; 
-  font-weight: bold;
-  font-size: 15px;
-}
-
-.menu-items { 
-  list-style: none; margin: 0; padding: 4px; width: 100%; 
-  display: flex; flex-direction: column;
-}
-
-/* --- THE INDIVIDUAL ICON FIX --- */
-
-/* Base settings for all menu icons */
-.menu-items li img.menu-icon {
-  width: 32px; 
-  height: 32px;
-  object-fit: contain;
-  image-rendering: pixelated;
-  flex-shrink: 0; 
-  transform-origin: center;
-}
-
-/* INDIVIDUAL CONTROL: Adjust these numbers separately */
-
-.menu-items li img.linkedin-logo {
-  /* Increase or decrease this number until it looks right */
-  transform: scale(1.7) !important; 
-}
-
-.menu-items li img.youtube-logo {
-  /* Increase or decrease this number until it matches the LinkedIn size */
-  transform: scale(1.9) !important; 
-  margin-left: -2px; /* Optional: nudge it if the scaling makes it off-center */
-}
-
-/* Instagram (if you want to tweak it too) */
-.menu-items li img.instahg-logo {
-  transform: scale(1.4); */
 }
