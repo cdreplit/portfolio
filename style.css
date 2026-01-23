@@ -119,7 +119,7 @@ html, body {
   height: 32px;
   object-fit: contain;
   image-rendering: pixelated;
-  flex-shrink: 0;
+  flex-shrink: 0; 
   transform-origin: center;
 }
 
@@ -127,7 +127,7 @@ html, body {
 
 .menu-items li img.linkedin-logo {
   /* Increase or decrease this number until it looks right */
-  transform: scale(2.2) !important; 
+  transform: scale(2) !important; 
 }
 
 .menu-items li img.youtube-logo {
