@@ -127,7 +127,7 @@ html, body {
 
 .menu-items li img.linkedin-logo {
   /* Increase or decrease this number until it looks right */
-  transform: scale(2.3) !important; 
+  transform: scale(2.2) !important; 
 }
 
 .menu-items li img.youtube-logo {
@@ -138,5 +138,5 @@ html, body {
 
 /* Instagram (if you want to tweak it too) */
 .menu-items li img.instahg-logo {
-   /* transform: scale(1.4); */
+  transform: scale(1.4); */
 }
