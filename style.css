@@ -127,12 +127,12 @@ html, body {
 
 .menu-items li img.linkedin-logo {
   /* Increase or decrease this number until it looks right */
-  transform: scale(2) !important; 
+  transform: scale(2.3) !important; 
 }
 
 .menu-items li img.youtube-logo {
   /* Increase or decrease this number until it matches the LinkedIn size */
-  transform: scale(1.8) !important; 
+  transform: scale(1.9) !important; 
   margin-left: -2px; /* Optional: nudge it if the scaling makes it off-center */
 }
 
