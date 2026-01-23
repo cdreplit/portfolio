@@ -130,7 +130,7 @@ html, body {
 .menu-items li img.youtube-logo {
   width: 32px;
   height: 32px;
-  transform: scale(2.0); /* This makes it 50% larger than the others */
+  transform: scale(1.75); /* This makes it 50% larger than the others */
   transform-origin: center;
   margin-right: 5px; /* Adds space so it doesn't overlap text */
 }
