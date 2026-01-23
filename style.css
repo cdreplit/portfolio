@@ -111,26 +111,32 @@ html, body {
   display: flex; flex-direction: column;
 }
 
-.menu-items li { 
-  display: flex; align-items: center; gap: 15px;
-  padding: 12px 10px; font-size: 13px; cursor: pointer; 
-}
+/* --- THE INDIVIDUAL ICON FIX --- */
 
-.menu-items li:hover { background: #000080; color: white; }
-
-/* Base size for LinkedIn and Instagram */
+/* Base settings for all menu icons */
 .menu-items li img.menu-icon {
   width: 32px; 
   height: 32px;
   object-fit: contain;
   image-rendering: pixelated;
+  flex-shrink: 0;
+  transform-origin: center;
 }
 
-/* FIX: FORCING YOUTUBE TO BE BIGGER VIA SCALE */
+/* INDIVIDUAL CONTROL: Adjust these numbers separately */
+
+.menu-items li img.linkedin-logo {
+  /* Increase or decrease this number until it looks right */
+  transform: scale(2) !important; 
+}
+
 .menu-items li img.youtube-logo {
-  width: 32px;
-  height: 32px;
-  transform: scale(1.75); /* This makes it 50% larger than the others */
-  transform-origin: center;
-  margin-right: 5px; /* Adds space so it doesn't overlap text */
+  /* Increase or decrease this number until it matches the LinkedIn size */
+  transform: scale(1.8) !important; 
+  margin-left: -2px; /* Optional: nudge it if the scaling makes it off-center */
+}
+
+/* Instagram (if you want to tweak it too) */
+.menu-items li img.instahg-logo {
+   /* transform: scale(1.4); */
 }
