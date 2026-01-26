@@ -17,38 +17,38 @@
       <img src="assets/MusicDisc.png" alt="Music" class="music-img">
       <span>Music</span>
     </div>
+    <div class="icon" ondblclick="openApp('videos-window', 'Videos')">
+      <img src="assets/camera.png" alt="Videos">
+      <span>Videos</span>
     </div>
-
-  <div id="about-window" class="window" style="display:none;">
-    <div class="window-titlebar">
-      <span>About Me</span>
-      <div class="title-buttons">
-        <button onclick="closeWindow('about-window')">X</button>
-      </div>
+    <div class="icon" ondblclick="openApp('art-window', 'Art')">
+      <img src="assets/IconPaint.png" alt="Art">
+      <span>Art</span>
     </div>
-    <div class="window-content">Welcome to my site!</div>
-  </div>
-
-  <div id="music-window" class="window" style="display:none;">
-    <div class="window-titlebar">
-      <span>Music</span>
-      <div class="title-buttons">
-        <button onclick="closeWindow('music-window')">X</button>
-      </div>
+    <div class="icon" ondblclick="openApp('programms-window', 'Programms')">
+      <img src="assets/IconComputer.png" alt="Programms">
+      <span>Programms</span>
     </div>
-    <div class="window-content">Music player goes here.</div>
+    <div class="icon" ondblclick="openApp('contact-window', 'Contact')">
+      <img src="assets/interneticon.png" alt="Contact">
+      <span>Contact</span>
+    </div>
   </div>
 
   <div class="start-menu" id="startMenu">
     <div class="sidebar"><span>Windows<b>95</b></span></div>
     <ul class="menu-items">
-      <li onclick="window.open('https://linkedin.com', '_blank')">
-        <img src="assets/linkedinn.png" alt="LinkedIn" class="menu-icon linkedin-logo">
+      <li onclick="window.open('https://www.linkedin.com/in/chase-dunn-215451332', '_blank')">
+        <img src="assets/linkedinn.png" alt="LinkedIn" class="menu-icon">
         <span>LinkedIn</span>
       </li>
-      <li onclick="window.open('https://www.instagram.com/...', '_blank')">
-        <img src="assets/instahg.png" alt="Instagram" class="menu-icon instahg-logo">
+      <li onclick="window.open('https://www.instagram.com/cdunnfilms?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==', '_blank')">
+        <img src="assets/instahg.png" alt="Instagram" class="menu-icon">
         <span>Instagram</span>
+      </li>
+      <li onclick="window.open('https://www.youtube.com/@chasedunnfilm', '_blank')">
+        <img src="assets/youtube.png" alt="YouTube" class="menu-icon youtube-logo">
+        <span>Youtube</span>
       </li>
     </ul>
   </div>
