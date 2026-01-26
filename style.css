@@ -1,60 +1,241 @@
-/* Fix for the giant Instagram logo */
-.menu-items li img.instahg-logo {
-  width: 24px;  
-  height: 24px;
-  object-fit: contain;
+/* --- GLOBAL RESET & BASE --- */
+html, body {
+  margin: 0 !important; 
+  padding: 0 !important; 
+  height: 100%;
+  width: 100%;  
+  overflow: hidden;
+  background: #008080; /* Teal background */
+  font-family: "MS Sans Serif", Tahoma, sans-serif;
+  -webkit-font-smoothing: none;
 }
 
-/* Ensure the menu flexes correctly */
+/* --- DESKTOP & ICONS --- */
+.desktop {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: calc(100% - 40px);
+  z-index: 1; 
+  padding: 20px; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 30px; 
+  align-items: flex-start;
+}
+
+.icon {
+  min-width: 100px; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  text-align: center; 
+  cursor: pointer; 
+  user-select: none;
+}
+
+.icon img {
+  width: 64px; 
+  height: 64px; 
+  image-rendering: pixelated; 
+  margin-bottom: 8px;
+}
+
+.icon span { 
+  color: white; 
+  font-size: 11px; 
+  padding: 2px; 
+}
+
+.icon:active span { 
+  background-color: #000080; 
+  outline: 1px dotted white; 
+}
+
+/* --- START MENU --- */
 .start-menu {
-  display: none; 
-  flex-direction: row; /* Added this to keep sidebar left and items right */
+  display: none; /* Toggled via JS */
+  flex-direction: row; /* FIX: Keeps sidebar and list aligned horizontally */
   position: fixed; 
   bottom: 40px; 
   left: 2px; 
-  width: 200px; 
+  width: 220px; 
   background: #c0c0c0; 
   border: 2px solid; 
   border-color: #ffffff #404040 #404040 #ffffff; 
   z-index: 999;
 }
 
-/* Basic Window Styling (Required for the JS) */
+.sidebar {
+  background: linear-gradient(to top, #000080, #1084d0); 
+  width: 32px;
+  display: flex; 
+  align-items: flex-end; 
+  justify-content: center;
+  padding-bottom: 25px;
+}
+
+.sidebar span { 
+  writing-mode: vertical-lr; 
+  transform: rotate(180deg); 
+  color: #c0c0c0; 
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.menu-items { 
+  list-style: none; 
+  margin: 0; 
+  padding: 2px; 
+  flex-grow: 1; /* Occupies the rest of the menu width */
+  display: flex; 
+  flex-direction: column;
+}
+
+.menu-items li { 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  padding: 8px; 
+  font-size: 12px; 
+  cursor: pointer;
+  color: black;
+}
+
+.menu-items li:hover {
+  background: #000080;
+  color: white;
+}
+
+/* --- START MENU LOGO FIXES --- */
+.menu-items li img.menu-icon {
+  width: 32px; 
+  height: 32px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+/* Specific fix for the Instagram icon sizing */
+.menu-items li img.instahg-logo {
+  width: 24px;  
+  height: 24px;
+}
+
+/* --- WINDOWS (REQUIRED FOR openApp) --- */
 .window {
   position: absolute;
-  width: 300px;
+  display: none; /* Start hidden */
+  flex-direction: column;
   background: #c0c0c0;
   border: 2px solid;
   border-color: #ffffff #404040 #404040 #ffffff;
-  flex-direction: column;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+  min-width: 300px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  z-index: 100;
 }
 
 .window-titlebar {
   background: #000080;
   color: white;
-  padding: 3px;
+  padding: 4px 6px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: default;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: grab;
+}
+
+.window-titlebar:active {
+  cursor: grabbing;
+}
+
+.title-buttons button {
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  font-weight: bold;
+  background: #c0c0c0;
+  border: 1px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  cursor: pointer;
 }
 
 .window-content {
   padding: 10px;
-  background: white;
+  background: #ffffff;
   margin: 2px;
   border: 1px solid #808080;
-  min-height: 100px;
+  min-height: 150px;
+  overflow: auto;
+}
+
+/* --- TASKBAR & CLOCK --- */
+.taskbar {
+  position: fixed; 
+  bottom: 0; 
+  left: 0; 
+  right: 0; 
+  height: 40px;
+  background: #c0c0c0; 
+  border-top: 2px solid #ffffff;
+  display: flex; 
+  align-items: center; 
+  padding: 4px; 
+  gap: 8px; 
+  z-index: 1000;
+}
+
+.start-button {
+  display: flex; 
+  align-items: center; 
+  gap: 6px; 
+  height: 30px; 
+  padding: 0 8px;
+  background: #c0c0c0; 
+  border: 2px solid; 
+  border-color: #ffffff #404040 #404040 #ffffff;
+  font-weight: bold; 
+  cursor: pointer;
+}
+
+.start-button:active {
+  border-color: #404040 #ffffff #ffffff #404040;
+}
+
+.taskbar-apps {
+  display: flex;
+  gap: 4px;
 }
 
 .task-button {
-  border: 2px solid;
-  border-color: #ffffff #404040 #404040 #ffffff;
-  padding: 2px 6px;
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 12px;
   background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #404040 #404040 #ffffff;
+  height: 30px;
+  padding: 0 10px;
+  font-size: 11px;
+  min-width: 100px;
+}
+
+.task-button img {
+  width: 16px;
+  height: 16px;
+}
+
+.clock {
+  margin-left: auto; 
+  padding: 0 10px; 
+  height: 28px; 
+  display: flex; 
+  align-items: center;
+  background: #c0c0c0; 
+  border: 2px solid; 
+  border-color: #808080 #ffffff #ffffff #808080;
+  font-size: 12px;
 }
