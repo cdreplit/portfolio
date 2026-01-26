@@ -152,10 +152,6 @@ html, body {
   image-rendering: pixelated;
   flex-shrink: 0;
 }
-.menu-items li img.instahg {
-  width: 24px;
-  height: 24px;
-}
 
 /* Windows */
 .window {
@@ -199,7 +195,7 @@ html, body {
   width: 22px;
   height: 18px;
   padding: 0;
-  line-height: 1;
+  line-height: 18px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -211,6 +207,13 @@ html, body {
   font-weight: bold;
   font-size: 11px;
   flex-shrink: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+/* Better centering for maximize button square */
+.title-buttons button:nth-child(2) {
+  line-height: 1.1;
+  padding-top: 0.5px;
 }
 .title-buttons button:focus,
 .title-buttons button:focus-visible {
