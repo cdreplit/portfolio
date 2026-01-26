@@ -53,8 +53,8 @@ html, body {
   outline: 1px dotted white; 
 }
 
-/* --- START MENU --- */
-.start-menu {
+/* --- START  --- */
+.start- {
   display: none; /* Toggled via JS */
   flex-direction: row; /* FIX: Keeps sidebar and list aligned horizontally */
   position: fixed; 
@@ -84,7 +84,7 @@ html, body {
   font-size: 15px;
 }
 
-.menu-items { 
+.-items { 
   list-style: none; 
   margin: 0; 
   padding: 2px; 
@@ -118,9 +118,16 @@ html, body {
 }
 
 /* Specific fix for the Instagram icon sizing */
+/* This targets the specific class we added to the HTML above */
 .menu-items li img.instahg-logo {
-  width: 24px;  
-  height: 24px;
+  width: 24px !important; 
+  height: 24px !important;
+  object-fit: contain !important;
+}
+
+/* Also, ensure the menu-icon base class doesn't allow overflow */
+.menu-icon {
+  flex-shrink: 0;
 }
 
 /* --- WINDOWS (REQUIRED FOR openApp) --- */
