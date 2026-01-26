@@ -108,7 +108,7 @@ html, body {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 25px;
+  padding-bottom: 8px;
 }
 .sidebar span {
   writing-mode: vertical-lr;
@@ -131,10 +131,12 @@ html, body {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 8px;
+  padding: 6px 8px;
   font-size: 12px;
   cursor: pointer;
   color: black;
+  min-height: 32px;
+  line-height: 20px;
 }
 .menu-items li:hover,
 .menu-items li:focus,
@@ -144,13 +146,16 @@ html, body {
   outline: none;
 }
 
-/* Menu icons */
+/* Menu icons - make them visually the same size with consistent container */
 .menu-items li img.menu-icon {
   width: 32px;
   height: 32px;
   object-fit: contain;
+  object-position: center;
   image-rendering: pixelated;
   flex-shrink: 0;
+  display: block;
+  box-sizing: border-box;
 }
 
 /* Windows */
@@ -209,11 +214,20 @@ html, body {
   flex-shrink: 0;
   text-align: center;
   vertical-align: middle;
+  position: relative;
 }
-/* Better centering for maximize button square */
+/* Maximize button - use CSS border instead of character for perfect centering */
 .title-buttons button:nth-child(2) {
-  line-height: 1.1;
-  padding-top: 0.5px;
+  font-size: 0;
+  line-height: 0;
+}
+.title-buttons button:nth-child(2)::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--ui-dark);
+  box-sizing: border-box;
 }
 .title-buttons button:focus,
 .title-buttons button:focus-visible {
