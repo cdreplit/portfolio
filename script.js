@@ -3,7 +3,7 @@ const windowOpenOrder = [];
 
 document.addEventListener("DOMContentLoaded", () => { 
   // CLOCK
-  function updateClock() {
+  function updateClock() { 
     const clock = document.getElementById("win95-clock"); 
     const now = new Date();
     let hours = now.getHours();
