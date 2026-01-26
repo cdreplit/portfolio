@@ -191,13 +191,13 @@ html, body {
 /* Ensure title buttons are visible, clickable, and not clipped */
 .title-buttons {
   display: flex;
-  gap: 6px;
+  gap: 4px;
   align-items: center;
   margin-left: 8px;
 }
 .title-buttons button {
-  min-width: 22px;
-  min-height: 18px;
+  width: 22px;
+  height: 18px;
   padding: 0;
   line-height: 1;
   display: inline-flex;
@@ -210,6 +210,7 @@ html, body {
   box-shadow: none;
   font-weight: bold;
   font-size: 11px;
+  flex-shrink: 0;
 }
 .title-buttons button:focus,
 .title-buttons button:focus-visible {
