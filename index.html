@@ -8,38 +8,47 @@
 </head>
 <body>
 
+  <!-- Desktop icons: keep ondblclick so your existing openApp calls still work.
+       Also add data-app and accessibility attributes for keyboard support. -->
   <main class="desktop" role="main" aria-label="Desktop icons">
-    <div class="icon" role="button" tabindex="0" data-app="about-window" aria-label="Open About Me">
+    <div class="icon" role="button" tabindex="0" data-app="about-window" aria-label="Open About Me"
+         ondblclick="openApp('about-window','About Me')">
       <img src="assets/IconNews.png" alt="About Me">
       <span>About Me</span>
     </div>
 
-    <div class="icon" role="button" tabindex="0" data-app="music-window" aria-label="Open Music">
+    <div class="icon" role="button" tabindex="0" data-app="music-window" aria-label="Open Music"
+         ondblclick="openApp('music-window','Music')">
       <img src="assets/MusicDisc.png" alt="Music" class="music-img">
       <span>Music</span>
     </div>
 
-    <div class="icon" role="button" tabindex="0" data-app="videos-window" aria-label="Open Videos">
+    <div class="icon" role="button" tabindex="0" data-app="videos-window" aria-label="Open Videos"
+         ondblclick="openApp('videos-window','Videos')">
       <img src="assets/camera.png" alt="Videos">
       <span>Videos</span>
     </div>
 
-    <div class="icon" role="button" tabindex="0" data-app="art-window" aria-label="Open Art">
+    <div class="icon" role="button" tabindex="0" data-app="art-window" aria-label="Open Art"
+         ondblclick="openApp('art-window','Art')">
       <img src="assets/IconPaint.png" alt="Art">
       <span>Art</span>
     </div>
 
-    <div class="icon" role="button" tabindex="0" data-app="programms-window" aria-label="Open Programs">
-      <img src="assets/IconComputer.png" alt="Programs">
+    <div class="icon" role="button" tabindex="0" data-app="programms-window" aria-label="Open Programs"
+         ondblclick="openApp('programms-window','Programms')">
+      <img src="assets/IconComputer.png" alt="Programms">
       <span>Programms</span>
     </div>
 
-    <div class="icon" role="button" tabindex="0" data-app="contact-window" aria-label="Open Contact">
+    <div class="icon" role="button" tabindex="0" data-app="contact-window" aria-label="Open Contact"
+         ondblclick="openApp('contact-window','Contact')">
       <img src="assets/interneticon.png" alt="Contact">
       <span>Contact</span>
     </div>
   </main>
 
+  <!-- Start menu (bottom-left). Keep id startMenu and startButton for your JS. -->
   <nav id="startMenu" class="start-menu" aria-hidden="true" aria-label="Start menu">
     <div class="sidebar"><span>Windows<b>95</b></span></div>
     <ul class="menu-items">
@@ -58,6 +67,7 @@
     </ul>
   </nav>
 
+  <!-- Taskbar: start button must have id startButton; taskbar-apps is where JS will append task buttons -->
   <header class="taskbar" role="banner">
     <button id="startButton" class="start-button" aria-haspopup="true" aria-expanded="false" aria-controls="startMenu">
       <img src="assets/win95-icon.png" alt="Start">
@@ -69,67 +79,81 @@
     <div class="clock" id="win95-clock" aria-live="polite">12:00 PM</div>
   </header>
 
-  <!-- Example windows (kept minimal) -->
-  <section id="about-window" class="window" role="dialog" aria-label="About Me">
+  <!-- Windows: each window has id matching the openApp calls.
+       Titlebar buttons call your JS functions directly. -->
+  <section id="about-window" class="window" role="dialog" aria-label="About Me" style="display:none;">
     <div class="window-titlebar">
       <span>About Me</span>
       <div class="title-buttons">
-        <button onclick="closeWindow('about-window')" aria-label="Close">X</button>
+        <button type="button" aria-label="Minimize" onclick="toggleMinimize('about-window')">_</button>
+        <button type="button" aria-label="Maximize" onclick="maximizeWindow('about-window')">▢</button>
+        <button type="button" aria-label="Close" onclick="closeWindow('about-window')">X</button>
       </div>
     </div>
     <div class="window-content">About content goes here.</div>
   </section>
 
-  <section id="music-window" class="window" role="dialog" aria-label="Music">
+  <section id="music-window" class="window" role="dialog" aria-label="Music" style="display:none;">
     <div class="window-titlebar">
       <span>Music</span>
       <div class="title-buttons">
-        <button onclick="closeWindow('music-window')" aria-label="Close">X</button>
+        <button type="button" aria-label="Minimize" onclick="toggleMinimize('music-window')">_</button>
+        <button type="button" aria-label="Maximize" onclick="maximizeWindow('music-window')">▢</button>
+        <button type="button" aria-label="Close" onclick="closeWindow('music-window')">X</button>
       </div>
     </div>
     <div class="window-content">Music content goes here.</div>
   </section>
 
-  <section id="videos-window" class="window" role="dialog" aria-label="Videos">
+  <section id="videos-window" class="window" role="dialog" aria-label="Videos" style="display:none;">
     <div class="window-titlebar">
       <span>Videos</span>
       <div class="title-buttons">
-        <button onclick="closeWindow('videos-window')" aria-label="Close">X</button>
+        <button type="button" aria-label="Minimize" onclick="toggleMinimize('videos-window')">_</button>
+        <button type="button" aria-label="Maximize" onclick="maximizeWindow('videos-window')">▢</button>
+        <button type="button" aria-label="Close" onclick="closeWindow('videos-window')">X</button>
       </div>
     </div>
     <div class="window-content">Videos content goes here.</div>
   </section>
 
-  <section id="art-window" class="window" role="dialog" aria-label="Art">
+  <section id="art-window" class="window" role="dialog" aria-label="Art" style="display:none;">
     <div class="window-titlebar">
       <span>Art</span>
       <div class="title-buttons">
-        <button onclick="closeWindow('art-window')" aria-label="Close">X</button>
+        <button type="button" aria-label="Minimize" onclick="toggleMinimize('art-window')">_</button>
+        <button type="button" aria-label="Maximize" onclick="maximizeWindow('art-window')">▢</button>
+        <button type="button" aria-label="Close" onclick="closeWindow('art-window')">X</button>
       </div>
     </div>
     <div class="window-content">Art content goes here.</div>
   </section>
 
-  <section id="programms-window" class="window" role="dialog" aria-label="Programs">
+  <section id="programms-window" class="window" role="dialog" aria-label="Programms" style="display:none;">
     <div class="window-titlebar">
       <span>Programms</span>
       <div class="title-buttons">
-        <button onclick="closeWindow('programms-window')" aria-label="Close">X</button>
+        <button type="button" aria-label="Minimize" onclick="toggleMinimize('programms-window')">_</button>
+        <button type="button" aria-label="Maximize" onclick="maximizeWindow('programms-window')">▢</button>
+        <button type="button" aria-label="Close" onclick="closeWindow('programms-window')">X</button>
       </div>
     </div>
     <div class="window-content">Programs content goes here.</div>
   </section>
 
-  <section id="contact-window" class="window" role="dialog" aria-label="Contact">
+  <section id="contact-window" class="window" role="dialog" aria-label="Contact" style="display:none;">
     <div class="window-titlebar">
       <span>Contact</span>
       <div class="title-buttons">
-        <button onclick="closeWindow('contact-window')" aria-label="Close">X</button>
+        <button type="button" aria-label="Minimize" onclick="toggleMinimize('contact-window')">_</button>
+        <button type="button" aria-label="Maximize" onclick="maximizeWindow('contact-window')">▢</button>
+        <button type="button" aria-label="Close" onclick="closeWindow('contact-window')">X</button>
       </div>
     </div>
     <div class="window-content">Contact content goes here.</div>
   </section>
 
+  <!-- Keep your script path and load with defer so DOM is ready when it runs -->
   <script src="script.js" defer></script>
 </body>
 </html>
