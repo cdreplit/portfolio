@@ -52,6 +52,7 @@ html, body {
   user-select: none;
   padding: 6px;
   border-radius: 2px;
+  -webkit-tap-highlight-color: transparent;
 }
 .icon img {
   width: var(--icon-size);
@@ -91,11 +92,13 @@ html, body {
   transition: transform 120ms ease, opacity 120ms ease;
   opacity: 0;
   transform: scaleY(0.95) translateY(6px);
+  pointer-events: none;
 }
 .start-menu.open {
   display: flex;
   opacity: 1;
   transform: scaleY(1) translateY(0);
+  pointer-events: auto;
 }
 
 /* Sidebar */
@@ -166,7 +169,10 @@ html, body {
   max-width: calc(100vw - 40px);
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   z-index: var(--window-z);
+  overflow: visible;
 }
+
+/* Titlebar and title buttons */
 .window-titlebar {
   background: var(--accent);
   color: white;
@@ -177,18 +183,41 @@ html, body {
   font-weight: bold;
   font-size: 12px;
   cursor: grab;
+  position: relative;
+  z-index: 2;
 }
 .window-titlebar:active { cursor: grabbing; }
-.title-buttons button {
-  width: 18px;
-  height: 18px;
-  font-size: 10px;
-  font-weight: bold;
-  background: var(--ui-bg);
-  border: 1px solid;
-  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
-  cursor: pointer;
+
+/* Ensure title buttons are visible, clickable, and not clipped */
+.title-buttons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-left: 8px;
 }
+.title-buttons button {
+  min-width: 22px;
+  min-height: 18px;
+  padding: 0;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  background: var(--ui-bg);
+  border: 1px solid var(--ui-dark);
+  box-shadow: none;
+  font-weight: bold;
+  font-size: 11px;
+}
+.title-buttons button:focus,
+.title-buttons button:focus-visible {
+  outline: 2px solid var(--ui-light);
+  outline-offset: 2px;
+}
+
+/* Window content */
 .window-content {
   padding: 10px;
   background: #fff;
@@ -263,6 +292,9 @@ html, body {
   border-color: #808080 var(--ui-light) var(--ui-light) #808080;
   font-size: 12px;
 }
+
+/* Ensure windows and titlebars are above desktop icons */
+.desktop, .window { -webkit-user-select: none; -ms-user-select: none; user-select: none; }
 
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
