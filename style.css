@@ -66,19 +66,26 @@ html, body {
   font-size: 11px;
   padding: 2px;
 }
-/* Selected state: blue shade on whole icon, dotted outline only around text */
+/* Selected state: box + blue overlay on image; blue only on text */
 .icon:focus,
 .icon:focus-visible,
 .icon:active {
   outline: none;
-  background-color: var(--accent);
+  background-color: transparent;
+}
+.icon:focus img,
+.icon:focus-visible img,
+.icon:active img {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+  box-shadow: inset 0 0 0 999px rgba(0, 0, 128, 0.45);
 }
 .icon:focus span,
 .icon:focus-visible span,
 .icon:active span {
   outline: 1px dotted var(--ui-light);
   outline-offset: 1px;
-  background-color: transparent;
+  background-color: var(--accent);
 }
 
 /* Start menu corrected selector and bottom-left origin */
@@ -151,14 +158,10 @@ html, body {
   outline: none;
 }
 
-/* Menu icons - fixed visual size so all logos appear identical */
+/* Menu icons - make them visually the same size with consistent container */
 .menu-items li img.menu-icon {
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
-  min-height: 20px;
-  max-width: 20px;
-  max-height: 20px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
   object-position: center;
   image-rendering: pixelated;
