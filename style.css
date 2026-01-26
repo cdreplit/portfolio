@@ -1,150 +1,174 @@
-/* --- GLOBAL RESET & BASE --- */
+:root{
+  --bg-teal: #008080;
+  --ui-bg: #c0c0c0;
+  --ui-dark: #404040;
+  --ui-light: #ffffff;
+  --accent: #000080;
+  --taskbar-height: 40px;
+  --window-z: 100;
+  --taskbar-z: 1000;
+  --startmenu-z: 999;
+  --icon-size: 64px;
+  --font: "MS Sans Serif", Tahoma, sans-serif;
+}
+
+/* Global reset and box sizing */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
 html, body {
-  margin: 0 !important; 
-  padding: 0 !important; 
+  margin: 0;
+  padding: 0;
   height: 100%;
-  width: 100%;  
-  overflow: hidden;
-  background: #008080; /* Teal background */
-  font-family: "MS Sans Serif", Tahoma, sans-serif;
-  -webkit-font-smoothing: none;
+  width: 100%;
+  background: var(--bg-teal);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- DESKTOP & ICONS --- */
+/* Desktop container */
 .desktop {
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  width: 100%; 
-  height: calc(100% - 40px);
-  z-index: 1; 
-  padding: 20px; 
-  display: flex; 
-  flex-direction: column; 
-  gap: 30px; 
+  position: absolute;
+  inset: 0 0 var(--taskbar-height) 0;
+  z-index: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
   align-items: flex-start;
+  overflow: auto;
 }
 
+/* Icon styles */
 .icon {
-  min-width: 100px; 
-  display: flex; 
-  flex-direction: column; 
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  text-align: center; 
-  cursor: pointer; 
+  text-align: center;
+  cursor: pointer;
   user-select: none;
+  padding: 6px;
+  border-radius: 2px;
 }
-
 .icon img {
-  width: 64px; 
-  height: 64px; 
-  image-rendering: pixelated; 
+  width: var(--icon-size);
+  height: var(--icon-size);
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
   margin-bottom: 8px;
 }
-
-.icon span { 
-  color: white; 
-  font-size: 11px; 
-  padding: 2px; 
+.icon span {
+  color: white;
+  font-size: 11px;
+  padding: 2px;
+}
+.icon:active span {
+  background-color: #000080;
+  outline: 1px dotted white;
+}
+.icon:focus,
+.icon:focus-visible {
+  outline: 2px dashed var(--ui-light);
+  outline-offset: 2px;
 }
 
-.icon:active span { 
-  background-color: #000080; 
-  outline: 1px dotted white; 
+/* Start menu corrected selector and bottom-left origin */
+.start-menu {
+  display: none;
+  flex-direction: row;
+  position: fixed;
+  bottom: var(--taskbar-height);
+  left: 2px;
+  width: 220px;
+  background: var(--ui-bg);
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  z-index: var(--startmenu-z);
+  transform-origin: left bottom;
+  transition: transform 120ms ease, opacity 120ms ease;
+  opacity: 0;
+  transform: scaleY(0.95) translateY(6px);
+}
+.start-menu.open {
+  display: flex;
+  opacity: 1;
+  transform: scaleY(1) translateY(0);
 }
 
-/* --- START  --- */
-.start- {
-  display: none; /* Toggled via JS */
-  flex-direction: row; /* FIX: Keeps sidebar and list aligned horizontally */
-  position: fixed; 
-  bottom: 40px; 
-  left: 2px; 
-  width: 220px; 
-  background: #c0c0c0; 
-  border: 2px solid; 
-  border-color: #ffffff #404040 #404040 #ffffff; 
-  z-index: 999;
-}
-
+/* Sidebar */
 .sidebar {
-  background: linear-gradient(to top, #000080, #1084d0); 
+  background: linear-gradient(to top, var(--accent), #1084d0);
   width: 32px;
-  display: flex; 
-  align-items: flex-end; 
+  display: flex;
+  align-items: flex-end;
   justify-content: center;
   padding-bottom: 25px;
 }
-
-.sidebar span { 
-  writing-mode: vertical-lr; 
-  transform: rotate(180deg); 
-  color: #c0c0c0; 
+.sidebar span {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  color: var(--ui-bg);
   font-weight: bold;
   font-size: 15px;
 }
 
-.-items { 
-  list-style: none; 
-  margin: 0; 
-  padding: 2px; 
-  flex-grow: 1; /* Occupies the rest of the menu width */
-  display: flex; 
+/* Menu items */
+.menu-items {
+  list-style: none;
+  margin: 0;
+  padding: 2px;
+  flex-grow: 1;
+  display: flex;
   flex-direction: column;
 }
-
-.menu-items li { 
-  display: flex; 
-  align-items: center; 
-  gap: 10px; 
-  padding: 8px; 
-  font-size: 12px; 
+.menu-items li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  font-size: 12px;
   cursor: pointer;
   color: black;
 }
-
-.menu-items li:hover {
-  background: #000080;
+.menu-items li:hover,
+.menu-items li:focus,
+.menu-items li:focus-visible {
+  background: var(--accent);
   color: white;
+  outline: none;
 }
 
-/* --- START MENU LOGO FIXES --- */
+/* Menu icons */
 .menu-items li img.menu-icon {
-  width: 32px; 
+  width: 32px;
   height: 32px;
   object-fit: contain;
   image-rendering: pixelated;
   flex-shrink: 0;
 }
-
-/* Specific fix for the Instagram icon sizing */
-/* This targets the specific class we added to the HTML above */
-.menu-items li img.instahg-logo {
-  width: 24px !important; 
-  height: 24px !important;
-  object-fit: contain !important;
+.menu-items li img.instahg {
+  width: 24px;
+  height: 24px;
 }
 
-/* Also, ensure the menu-icon base class doesn't allow overflow */
-.menu-icon {
-  flex-shrink: 0;
-}
-
-/* --- WINDOWS (REQUIRED FOR openApp) --- */
+/* Windows */
 .window {
   position: absolute;
-  display: none; /* Start hidden */
+  display: none;
   flex-direction: column;
-  background: #c0c0c0;
+  background: var(--ui-bg);
   border: 2px solid;
-  border-color: #ffffff #404040 #404040 #ffffff;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
   min-width: 300px;
+  max-width: calc(100vw - 40px);
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-  z-index: 100;
+  z-index: var(--window-z);
 }
-
 .window-titlebar {
-  background: #000080;
+  background: var(--accent);
   color: white;
   padding: 4px 6px;
   display: flex;
@@ -154,95 +178,101 @@ html, body {
   font-size: 12px;
   cursor: grab;
 }
-
-.window-titlebar:active {
-  cursor: grabbing;
-}
-
+.window-titlebar:active { cursor: grabbing; }
 .title-buttons button {
   width: 18px;
   height: 18px;
   font-size: 10px;
   font-weight: bold;
-  background: #c0c0c0;
+  background: var(--ui-bg);
   border: 1px solid;
-  border-color: #ffffff #404040 #404040 #ffffff;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
   cursor: pointer;
 }
-
 .window-content {
   padding: 10px;
-  background: #ffffff;
+  background: #fff;
   margin: 2px;
   border: 1px solid #808080;
   min-height: 150px;
   overflow: auto;
 }
 
-/* --- TASKBAR & CLOCK --- */
+/* Taskbar */
 .taskbar {
-  position: fixed; 
-  bottom: 0; 
-  left: 0; 
-  right: 0; 
-  height: 40px;
-  background: #c0c0c0; 
-  border-top: 2px solid #ffffff;
-  display: flex; 
-  align-items: center; 
-  padding: 4px; 
-  gap: 8px; 
-  z-index: 1000;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--taskbar-height);
+  background: var(--ui-bg);
+  border-top: 2px solid var(--ui-light);
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  gap: 8px;
+  z-index: var(--taskbar-z);
 }
-
 .start-button {
-  display: flex; 
-  align-items: center; 
-  gap: 6px; 
-  height: 30px; 
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
   padding: 0 8px;
-  background: #c0c0c0; 
-  border: 2px solid; 
-  border-color: #ffffff #404040 #404040 #ffffff;
-  font-weight: bold; 
+  background: var(--ui-bg);
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  font-weight: bold;
   cursor: pointer;
 }
-
 .start-button:active {
-  border-color: #404040 #ffffff #ffffff #404040;
+  border-color: var(--ui-dark) var(--ui-light) var(--ui-light) var(--ui-dark);
+}
+.start-button:focus,
+.start-button:focus-visible {
+  outline: 2px dashed var(--accent);
+  outline-offset: 2px;
 }
 
-.taskbar-apps {
-  display: flex;
-  gap: 4px;
-}
-
+/* Taskbar app buttons */
+.taskbar-apps { display: flex; gap: 4px; overflow-x: auto; }
 .task-button {
   display: flex;
   align-items: center;
   gap: 5px;
-  background: #c0c0c0;
+  background: var(--ui-bg);
   border: 2px solid;
-  border-color: #ffffff #404040 #404040 #ffffff;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
   height: 30px;
   padding: 0 10px;
   font-size: 11px;
   min-width: 100px;
+  cursor: pointer;
 }
+.task-button img { width: 16px; height: 16px; }
 
-.task-button img {
-  width: 16px;
-  height: 16px;
-}
-
+/* Clock */
 .clock {
-  margin-left: auto; 
-  padding: 0 10px; 
-  height: 28px; 
-  display: flex; 
+  margin-left: auto;
+  padding: 0 10px;
+  height: 28px;
+  display: flex;
   align-items: center;
-  background: #c0c0c0; 
-  border: 2px solid; 
-  border-color: #808080 #ffffff #ffffff #808080;
+  background: var(--ui-bg);
+  border: 2px solid;
+  border-color: #808080 var(--ui-light) var(--ui-light) #808080;
   font-size: 12px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* Small viewport tweaks */
+@media (max-width: 480px) {
+  .desktop { padding: 8px; gap: 12px; }
+  .icon { min-width: 80px; }
+  .start-menu { width: 180px; left: 4px; }
+  .task-button { min-width: 80px; padding: 0 6px; }
 }
