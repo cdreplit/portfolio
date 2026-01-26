@@ -1,67 +1,135 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Windows 95 Desktop</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="desktop">
-    <div class="icon" ondblclick="openApp('about-window', 'About Me')">
+  <main class="desktop" role="main" aria-label="Desktop icons">
+    <div class="icon" role="button" tabindex="0" data-app="about-window" aria-label="Open About Me">
       <img src="assets/IconNews.png" alt="About Me">
       <span>About Me</span>
     </div>
-    <div class="icon" ondblclick="openApp('music-window', 'Music')">
+
+    <div class="icon" role="button" tabindex="0" data-app="music-window" aria-label="Open Music">
       <img src="assets/MusicDisc.png" alt="Music" class="music-img">
       <span>Music</span>
     </div>
-    <div class="icon" ondblclick="openApp('videos-window', 'Videos')">
+
+    <div class="icon" role="button" tabindex="0" data-app="videos-window" aria-label="Open Videos">
       <img src="assets/camera.png" alt="Videos">
       <span>Videos</span>
     </div>
-    <div class="icon" ondblclick="openApp('art-window', 'Art')">
+
+    <div class="icon" role="button" tabindex="0" data-app="art-window" aria-label="Open Art">
       <img src="assets/IconPaint.png" alt="Art">
       <span>Art</span>
     </div>
-    <div class="icon" ondblclick="openApp('programms-window', 'Programms')">
-      <img src="assets/IconComputer.png" alt="Programms">
+
+    <div class="icon" role="button" tabindex="0" data-app="programms-window" aria-label="Open Programs">
+      <img src="assets/IconComputer.png" alt="Programs">
       <span>Programms</span>
     </div>
-    <div class="icon" ondblclick="openApp('contact-window', 'Contact')">
+
+    <div class="icon" role="button" tabindex="0" data-app="contact-window" aria-label="Open Contact">
       <img src="assets/interneticon.png" alt="Contact">
       <span>Contact</span>
     </div>
-  </div>
+  </main>
 
-  <div class="start-menu" id="startMenu">
+  <nav id="startMenu" class="start-menu" aria-hidden="true" aria-label="Start menu">
     <div class="sidebar"><span>Windows<b>95</b></span></div>
     <ul class="menu-items">
-      <li onclick="window.open('https://www.linkedin.com/in/chase-dunn-215451332', '_blank')">
+      <li data-href="https://www.linkedin.com/in/chase-dunn-215451332" tabindex="0">
         <img src="assets/linkedinn.png" alt="LinkedIn" class="menu-icon">
         <span>LinkedIn</span>
       </li>
-      <li onclick="window.open('https://www.instagram.com/cdunnfilms?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==', '_blank')">
-        <img src="assets/instahg.png" alt="Instagram" class="menu-icon">
+      <li data-href="https://www.instagram.com/cdunnfilms" tabindex="0">
+        <img src="assets/instahg.png" alt="Instagram" class="menu-icon instahg">
         <span>Instagram</span>
       </li>
-      <li onclick="window.open('https://www.youtube.com/@chasedunnfilm', '_blank')">
+      <li data-href="https://www.youtube.com/@chasedunnfilm" tabindex="0">
         <img src="assets/youtube.png" alt="YouTube" class="menu-icon youtube-logo">
-        <span>Youtube</span>
+        <span>YouTube</span>
       </li>
     </ul>
-  </div>
+  </nav>
 
-  <div class="taskbar">
-    <div class="start-button" id="startButton">
+  <header class="taskbar" role="banner">
+    <button id="startButton" class="start-button" aria-haspopup="true" aria-expanded="false" aria-controls="startMenu">
       <img src="assets/win95-icon.png" alt="Start">
       <span>Start</span>
-    </div>
-    <div id="taskbar-apps" class="taskbar-apps"></div>
-    <div class="clock" id="win95-clock">12:00 PM</div>
-  </div>
+    </button>
 
-  <script src="script.js"></script>
+    <div id="taskbar-apps" class="taskbar-apps" aria-live="polite"></div>
+
+    <div class="clock" id="win95-clock" aria-live="polite">12:00 PM</div>
+  </header>
+
+  <!-- Example windows (kept minimal) -->
+  <section id="about-window" class="window" role="dialog" aria-label="About Me">
+    <div class="window-titlebar">
+      <span>About Me</span>
+      <div class="title-buttons">
+        <button onclick="closeWindow('about-window')" aria-label="Close">X</button>
+      </div>
+    </div>
+    <div class="window-content">About content goes here.</div>
+  </section>
+
+  <section id="music-window" class="window" role="dialog" aria-label="Music">
+    <div class="window-titlebar">
+      <span>Music</span>
+      <div class="title-buttons">
+        <button onclick="closeWindow('music-window')" aria-label="Close">X</button>
+      </div>
+    </div>
+    <div class="window-content">Music content goes here.</div>
+  </section>
+
+  <section id="videos-window" class="window" role="dialog" aria-label="Videos">
+    <div class="window-titlebar">
+      <span>Videos</span>
+      <div class="title-buttons">
+        <button onclick="closeWindow('videos-window')" aria-label="Close">X</button>
+      </div>
+    </div>
+    <div class="window-content">Videos content goes here.</div>
+  </section>
+
+  <section id="art-window" class="window" role="dialog" aria-label="Art">
+    <div class="window-titlebar">
+      <span>Art</span>
+      <div class="title-buttons">
+        <button onclick="closeWindow('art-window')" aria-label="Close">X</button>
+      </div>
+    </div>
+    <div class="window-content">Art content goes here.</div>
+  </section>
+
+  <section id="programms-window" class="window" role="dialog" aria-label="Programs">
+    <div class="window-titlebar">
+      <span>Programms</span>
+      <div class="title-buttons">
+        <button onclick="closeWindow('programms-window')" aria-label="Close">X</button>
+      </div>
+    </div>
+    <div class="window-content">Programs content goes here.</div>
+  </section>
+
+  <section id="contact-window" class="window" role="dialog" aria-label="Contact">
+    <div class="window-titlebar">
+      <span>Contact</span>
+      <div class="title-buttons">
+        <button onclick="closeWindow('contact-window')" aria-label="Close">X</button>
+      </div>
+    </div>
+    <div class="window-content">Contact content goes here.</div>
+  </section>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
