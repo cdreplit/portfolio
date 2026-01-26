@@ -20,10 +20,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const startMenu = document.getElementById("startMenu");
   startButton.addEventListener("click", (e) => {
     e.stopPropagation();
-    startMenu.style.display = startMenu.style.display === "flex" ? "none" : "flex";
+    const isOpen = startMenu.classList.contains("open");
+    if (isOpen) {
+      startMenu.classList.remove("open");
+      startButton.setAttribute("aria-expanded", "false");
+    } else {
+      startMenu.classList.add("open");
+      startButton.setAttribute("aria-expanded", "true");
+    }
   });
   document.addEventListener("click", (e) => {
-    if (!startMenu.contains(e.target)) startMenu.style.display = "none";
+    if (!startMenu.contains(e.target) && !startButton.contains(e.target)) {
+      startMenu.classList.remove("open");
+      startButton.setAttribute("aria-expanded", "false");
+    }
   });
 
   // INITIALIZE DRAGGING
