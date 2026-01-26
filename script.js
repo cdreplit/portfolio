@@ -127,7 +127,7 @@ function toggleMinimize(id) {
     const idx = windowOpenOrder.indexOf('' + id);
     if (idx !== -1) windowOpenOrder.splice(idx, 1);
   }
-} 
+}
 
 function maximizeWindow(id) {
   const win = document.getElementById(id);
