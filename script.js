@@ -36,6 +36,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // START MENU ITEMS - make them clickable and redirect
+  const menuItems = document.querySelectorAll(".menu-items li[data-href]");
+  menuItems.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      const href = item.getAttribute("data-href");
+      if (href) {
+        window.open(href, "_blank", "noopener,noreferrer");
+      }
+    });
+    // Also handle Enter key for accessibility
+    item.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        const href = item.getAttribute("data-href");
+        if (href) {
+          window.open(href, "_blank", "noopener,noreferrer");
+        }
+      }
+    });
+  });
+
   // INITIALIZE DRAGGING
   makeDraggable("about-window");
   makeDraggable("music-window");
