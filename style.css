@@ -11,7 +11,7 @@
   --icon-size: 64px;
   --font: "MS Sans Serif", Tahoma, sans-serif;
   --win-default-w: 400px;
-  --win-default-h: 600px;
+  --win-default-h: 500px;
 }
 
 /* Global reset and box sizing */
@@ -38,7 +38,7 @@ html, body {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  justify-content: space-evenly;
   align-items: flex-start;
   overflow: auto;
 }
@@ -172,7 +172,7 @@ html, body {
   box-sizing: border-box;
 }
 
-/* Windows - 2:3 aspect ratio default */
+/* Windows - 4:5 aspect ratio default */
 .window {
   position: absolute;
   display: none;
@@ -183,7 +183,7 @@ html, body {
   width: var(--win-default-w);
   height: var(--win-default-h);
   min-width: 280px;
-  min-height: 420px;
+  min-height: 350px;
   max-width: calc(100vw - 40px);
   max-height: calc(100vh - var(--taskbar-height) - 20px);
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
@@ -369,7 +369,7 @@ html, body {
 
 /* Small viewport tweaks */
 @media (max-width: 480px) {
-  .desktop { padding: 8px; gap: 12px; }
+  .desktop { padding: 8px; }
   .icon { min-width: 80px; }
   .start-menu { width: 180px; left: 4px; }
   .task-button { min-width: 80px; padding: 0 6px; }
