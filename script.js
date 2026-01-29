@@ -78,11 +78,12 @@ function openApp(id, name) {
   const MAX_OFFSET_INDEX = 5; // for up to 6 windows diagonal
 
   if (wasHidden) {
-    // treat this as newly opened: remove existing occurrence then push to end
     const existing = windowOpenOrder.indexOf(id);
     if (existing !== -1) windowOpenOrder.splice(existing, 1);
     windowOpenOrder.push(id);
 
+    win.classList.remove("maximized");
+    win.style.width = ''; win.style.height = '';
     const offsetIndex = Math.min(windowOpenOrder.indexOf(id), MAX_OFFSET_INDEX);
     win.style.left = (BASE_LEFT + offsetIndex * STEP) + 'px';
     win.style.top = (BASE_TOP + offsetIndex * STEP) + 'px';
@@ -128,10 +129,12 @@ function openApp(id, name) {
 }
 
 function closeWindow(id) {
-  document.getElementById(id).style.display = 'none';
+  const win = document.getElementById(id);
+  win.style.display = 'none';
+  win.classList.remove("maximized");
+  win.style.width = ''; win.style.height = '';
   const taskBtn = document.getElementById('task-' + id);
   if (taskBtn) taskBtn.remove();
-  // remove from open order when closed
   const idx = windowOpenOrder.indexOf('' + id);
   if (idx !== -1) windowOpenOrder.splice(idx, 1);
 }
@@ -152,10 +155,16 @@ function toggleMinimize(id) {
 
 function maximizeWindow(id) {
   const win = document.getElementById(id);
-  if (win.style.width === '100vw') {
-    win.style.width = '400px'; win.style.height = 'auto'; win.style.top = '100px'; win.style.left = '150px';
+  const isMax = win.classList.contains("maximized");
+  if (isMax) {
+    win.classList.remove("maximized");
+    win.style.width = ""; win.style.height = "";
+    win.style.left = win._restoreLeft != null ? win._restoreLeft : "150px";
+    win.style.top = win._restoreTop != null ? win._restoreTop : "100px";
   } else {
-    win.style.width = '100vw'; win.style.height = 'calc(100vh - 40px)'; win.style.top = '0'; win.style.left = '0';
+    win._restoreLeft = win.style.left || "150px";
+    win._restoreTop = win.style.top || "100px";
+    win.classList.add("maximized");
   }
 }
 
@@ -164,6 +173,7 @@ function makeDraggable(windowId) {
   const titleBar = win.querySelector(".window-titlebar");
   let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   titleBar.onmousedown = (e) => {
+    if (win.classList.contains("maximized")) return;
     e.preventDefault();
     pos3 = e.clientX; pos4 = e.clientY;
     document.onmouseup = () => { document.onmouseup = null; document.onmousemove = null; };
