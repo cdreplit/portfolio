@@ -290,6 +290,9 @@ html, body {
   margin-left: auto;
   margin-right: auto;
 }
+.window.maximized .video-wrap--centered {
+  max-width: 100%;
+}
 .video-wrap iframe {
   position: absolute;
   inset: 0;
