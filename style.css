@@ -285,6 +285,11 @@ html, body {
   flex-shrink: 0;
 }
 .video-wrap:last-child { margin-bottom: 0; }
+.video-wrap--centered {
+  max-width: min(560px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
 .video-wrap iframe {
   position: absolute;
   inset: 0;
