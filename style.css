@@ -285,13 +285,26 @@ html, body {
   flex-shrink: 0;
 }
 .video-wrap:last-child { margin-bottom: 0; }
+/* Video block: title + video (donchia.tech–style section) */
+.video-block {
+  margin-bottom: 24px;
+}
+.video-block:last-child { margin-bottom: 0; }
+.video-title {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  color: #000;
+}
+
 .video-wrap--centered {
   max-width: min(560px, 100%);
   margin-left: auto;
   margin-right: auto;
 }
 .window.maximized .video-wrap--centered {
-  max-width: 100%;
+  max-width: min(720px, 65vw);
 }
 .video-wrap iframe {
   position: absolute;
