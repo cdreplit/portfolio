@@ -298,13 +298,14 @@ html, body {
   color: #000;
 }
 
-.video-wrap--centered {
+/* Centered margins for all videos in windows */
+.window-content .video-wrap {
   max-width: min(560px, 100%);
   margin-left: auto;
   margin-right: auto;
 }
-.window.maximized .video-wrap--centered {
-  max-width: min(720px, 65vw);
+.window.maximized .window-content .video-wrap {
+  max-width: min(720px, 80vw);
 }
 .video-wrap iframe {
   position: absolute;
