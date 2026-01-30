@@ -305,7 +305,7 @@ html, body {
   margin-right: auto;
 }
 .window.maximized .window-content .video-wrap {
-  max-width: min(720px, 80vw);
+  max-width: min(720px, 90vw);
 }
 .video-wrap iframe {
   position: absolute;
