@@ -1,163 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
   <title>Windows 95 Desktop</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- DESKTOP ICONS -->
-<main class="desktop">
-
-  <div class="icon" ondblclick="openApp('about-window','About Me')">
-    <img src="assets/IconNews.png">
-    <span>About Me</span>
-  </div>
-
-  <div class="icon" ondblclick="openApp('music-window','Music')">
-    <img src="assets/MusicDisc.png">
+<div class="desktop">
+  <div class="icon" onclick="openWin('music')">
     <span>Music</span>
   </div>
-
-  <div class="icon" ondblclick="openApp('videos-window','Videos')">
-    <img src="assets/camera.png">
-    <span>Videos</span>
+  <div class="icon" onclick="openWin('about')">
+    <span>About Me</span>
   </div>
-
-  <div class="icon" ondblclick="openApp('art-window','Art')">
-    <img src="assets/IconPaint.png">
-    <span>Art</span>
-  </div>
-
-  <div class="icon" ondblclick="openApp('programms-window','Programms')">
-    <img src="assets/IconComputer.png">
-    <span>Programms</span>
-  </div>
-
-  <div class="icon" ondblclick="openApp('contact-window','Contact')">
-    <img src="assets/interneticon.png">
+  <div class="icon" onclick="openWin('contact')">
     <span>Contact</span>
   </div>
+</div>
 
-</main>
-
-<!-- TASKBAR -->
-<header class="taskbar">
-  <button id="startButton" class="start-button">
-    <img src="assets/win95-icon.png">
-    <span>Start</span>
-  </button>
-
-  <div id="taskbar-apps"></div>
-
-  <div class="clock" id="win95-clock">12:00 PM</div>
-</header>
-
-<!-- ABOUT ME -->
-<section id="about-window" class="window">
+<!-- MUSIC WINDOW -->
+<div class="window" id="music" style="top:60px; left:120px;">
   <div class="window-titlebar">
-    <span>About Me</span>
-    <div class="title-buttons">
-      <button onclick="toggleMinimize('about-window')">_</button>
-      <button onclick="maximizeWindow('about-window')"></button>
-      <button onclick="closeWindow('about-window')">X</button>
-    </div>
-  </div>
-  <div class="window-content">
-    <p>About content goes here.</p>
-  </div>
-</section>
-
-<!-- MUSIC -->
-<section id="music-window" class="window">
-  <div class="window-titlebar">
-    <span>Music</span>
-    <div class="title-buttons">
-      <button onclick="toggleMinimize('music-window')">_</button>
-      <button onclick="maximizeWindow('music-window')"></button>
-      <button onclick="closeWindow('music-window')">X</button>
-    </div>
+    Music
+    <button onclick="toggleMax(this)">▢</button>
   </div>
 
   <div class="window-content">
+
+    <!-- FIRST MUSIC VIDEO -->
     <div class="video-overlay-wrap">
-      <iframe src="https://www.youtube.com/embed/bDPY1yX6jxE?rel=0"></iframe>
+      <iframe src="https://www.youtube.com/embed/CvFH_6DNRCY"></iframe>
       <div class="video-overlay-title">Clair de Lune</div>
     </div>
 
-    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/jNQXAC9IVRw"></iframe></div>
-    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/9bZkp7q19f0"></iframe></div>
-  </div>
-</section>
+    <div class="video-placeholder">— — —</div>
 
-<!-- VIDEOS -->
-<section id="videos-window" class="window">
-  <div class="window-titlebar">
-    <span>Videos</span>
-    <div class="title-buttons">
-      <button onclick="toggleMinimize('videos-window')">_</button>
-      <button onclick="maximizeWindow('videos-window')"></button>
-      <button onclick="closeWindow('videos-window')">X</button>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/dummy1"></iframe>
     </div>
-  </div>
-  <div class="window-content">
-    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe></div>
-    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/jNQXAC9IVRw"></iframe></div>
-    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/9bZkp7q19f0"></iframe></div>
-  </div>
-</section>
 
-<!-- ART -->
-<section id="art-window" class="window">
-  <div class="window-titlebar">
-    <span>Art</span>
-    <div class="title-buttons">
-      <button onclick="toggleMinimize('art-window')">_</button>
-      <button onclick="maximizeWindow('art-window')"></button>
-      <button onclick="closeWindow('art-window')">X</button>
+    <div class="video-placeholder">— — —</div>
+
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/dummy2"></iframe>
     </div>
-  </div>
-  <div class="window-content">
-    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/ScMzIvxBSi4"></iframe></div>
-    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe></div>
-    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/l482T0yNkeo"></iframe></div>
-  </div>
-</section>
 
-<!-- PROGRAMMS -->
-<section id="programms-window" class="window">
-  <div class="window-titlebar">
-    <span>Programms</span>
-    <div class="title-buttons">
-      <button onclick="toggleMinimize('programms-window')">_</button>
-      <button onclick="maximizeWindow('programms-window')"></button>
-      <button onclick="closeWindow('programms-window')">X</button>
-    </div>
   </div>
-  <div class="window-content">
-    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe></div>
-    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/jNQXAC9IVRw"></iframe></div>
-    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/9bZkp7q19f0"></iframe></div>
-  </div>
-</section>
+</div>
 
-<!-- CONTACT -->
-<section id="contact-window" class="window">
-  <div class="window-titlebar">
-    <span>Contact</span>
-    <div class="title-buttons">
-      <button onclick="toggleMinimize('contact-window')">_</button>
-      <button onclick="maximizeWindow('contact-window')"></button>
-      <button onclick="closeWindow('contact-window')">X</button>
-    </div>
-  </div>
+<!-- ABOUT WINDOW -->
+<div class="window" id="about" style="top:100px; left:220px;">
+  <div class="window-titlebar">About Me</div>
   <div class="window-content">
-    <p>Contact content goes here.</p>
+    <p>This is the About Me app.</p>
   </div>
-</section>
+</div>
 
-<script src="script.js" defer></script>
+<!-- CONTACT WINDOW -->
+<div class="window" id="contact" style="top:140px; left:300px;">
+  <div class="window-titlebar">Contact</div>
+  <div class="window-content">
+    <p>Email: example@email.com</p>
+  </div>
+</div>
+
+<div class="taskbar"></div>
+
+<script>
+function openWin(id) {
+  document.getElementById(id).style.display = 'flex';
+}
+
+function toggleMax(btn) {
+  btn.closest('.window').classList.toggle('maximized');
+}
+</script>
+
 </body>
 </html>
