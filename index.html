@@ -1,82 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Windows 95 Desktop</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="desktop">
-  <div class="icon" onclick="openWin('music')">
-    <span>Music</span>
+<main class="desktop" role="main">
+  <div class="icon" ondblclick="openApp('music-window','Music')">
+    <img src="assets/MusicDisc.png"><span>Music</span>
   </div>
-  <div class="icon" onclick="openWin('about')">
-    <span>About Me</span>
+  <div class="icon" ondblclick="openApp('videos-window','Videos')">
+    <img src="assets/camera.png"><span>Videos</span>
   </div>
-  <div class="icon" onclick="openWin('contact')">
-    <span>Contact</span>
+  <div class="icon" ondblclick="openApp('art-window','Art')">
+    <img src="assets/IconPaint.png"><span>Art</span>
   </div>
-</div>
+  <div class="icon" ondblclick="openApp('programms-window','Programms')">
+    <img src="assets/IconComputer.png"><span>Programms</span>
+  </div>
+</main>
 
-<!-- MUSIC WINDOW -->
-<div class="window" id="music" style="top:60px; left:120px;">
+<header class="taskbar">
+  <button id="startButton" class="start-button">
+    <img src="assets/win95-icon.png"><span>Start</span>
+  </button>
+  <div id="taskbar-apps"></div>
+  <div class="clock" id="win95-clock">12:00 PM</div>
+</header>
+
+<!-- MUSIC -->
+<section id="music-window" class="window">
   <div class="window-titlebar">
-    Music
-    <button onclick="toggleMax(this)">▢</button>
+    <span>Music</span>
+    <div class="title-buttons">
+      <button onclick="toggleMinimize('music-window')">_</button>
+      <button onclick="maximizeWindow('music-window')"></button>
+      <button onclick="closeWindow('music-window')">X</button>
+    </div>
   </div>
 
   <div class="window-content">
 
-    <!-- FIRST MUSIC VIDEO -->
+    <!-- Clair de Lune (overlay stays on top even when maximized) -->
     <div class="video-overlay-wrap">
-      <iframe src="https://www.youtube.com/embed/CvFH_6DNRCY"></iframe>
+      <iframe src="https://www.youtube.com/embed/bDPY1yX6jxE?rel=0"></iframe>
       <div class="video-overlay-title">Clair de Lune</div>
     </div>
 
+    <!-- placeholder spacing between videos -->
     <div class="video-placeholder">— — —</div>
 
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/dummy1"></iframe>
+      <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw"></iframe>
     </div>
 
     <div class="video-placeholder">— — —</div>
 
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/dummy2"></iframe>
+      <iframe src="https://www.youtube.com/embed/9bZkp7q19f0"></iframe>
     </div>
-
   </div>
-</div>
+</section>
 
-<!-- ABOUT WINDOW -->
-<div class="window" id="about" style="top:100px; left:220px;">
-  <div class="window-titlebar">About Me</div>
+<!-- PROGRAMS -->
+<section id="programms-window" class="window">
+  <div class="window-titlebar">
+    <span>Programms</span>
+    <div class="title-buttons">
+      <button onclick="toggleMinimize('programms-window')">_</button>
+      <button onclick="maximizeWindow('programms-window')"></button>
+      <button onclick="closeWindow('programms-window')">X</button>
+    </div>
+  </div>
   <div class="window-content">
-    <p>This is the About Me app.</p>
+    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe></div>
+    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/jNQXAC9IVRw"></iframe></div>
+    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/9bZkp7q19f0"></iframe></div>
   </div>
-</div>
+</section>
 
-<!-- CONTACT WINDOW -->
-<div class="window" id="contact" style="top:140px; left:300px;">
-  <div class="window-titlebar">Contact</div>
+<!-- ART -->
+<section id="art-window" class="window">
+  <div class="window-titlebar">
+    <span>Art</span>
+    <div class="title-buttons">
+      <button onclick="toggleMinimize('art-window')">_</button>
+      <button onclick="maximizeWindow('art-window')"></button>
+      <button onclick="closeWindow('art-window')">X</button>
+    </div>
+  </div>
   <div class="window-content">
-    <p>Email: example@email.com</p>
+    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/ScMzIvxBSi4"></iframe></div>
+    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe></div>
+    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/l482T0yNkeo"></iframe></div>
   </div>
-</div>
+</section>
 
-<div class="taskbar"></div>
-
-<script>
-function openWin(id) {
-  document.getElementById(id).style.display = 'flex';
-}
-
-function toggleMax(btn) {
-  btn.closest('.window').classList.toggle('maximized');
-}
-</script>
-
+<script src="script.js" defer></script>
 </body>
 </html>
