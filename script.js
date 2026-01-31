@@ -1,26 +1,34 @@
-// track open order to cascade windows predictably
+// Track open order to cascade windows predictably
 const windowOpenOrder = [];
 
-document.addEventListener("DOMContentLoaded", () => { 
+document.addEventListener("DOMContentLoaded", () => {
   // CLOCK
   function updateClock() {
-    const clock = document.getElementById("win95-clock"); 
+    const clock = document.getElementById("win95-clock");
     const now = new Date();
+
     let hours = now.getHours();
     const minutes = now.getMinutes().toString().padStart(2, "0");
     const ampm = hours >= 12 ? "PM" : "AM";
+
     hours = hours % 12 || 12;
-    if (clock) clock.textContent = `${hours}:${minutes} ${ampm}`;
+
+    if (clock) {
+      clock.textContent = `${hours}:${minutes} ${ampm}`;
+    }
   }
+
   setInterval(updateClock, 1000);
   updateClock();
 
   // START MENU
   const startButton = document.getElementById("startButton");
   const startMenu = document.getElementById("startMenu");
+
   startButton.addEventListener("click", (e) => {
     e.stopPropagation();
     const isOpen = startMenu.classList.contains("open");
+
     if (isOpen) {
       startMenu.classList.remove("open");
       startButton.setAttribute("aria-expanded", "false");
@@ -29,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
       startButton.setAttribute("aria-expanded", "true");
     }
   });
+
   document.addEventListener("click", (e) => {
     if (!startMenu.contains(e.target) && !startButton.contains(e.target)) {
       startMenu.classList.remove("open");
@@ -36,16 +45,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // START MENU ITEMS - make them clickable and redirect
+  // START MENU ITEMS
   const menuItems = document.querySelectorAll(".menu-items li[data-href]");
+
   menuItems.forEach((item) => {
-    item.addEventListener("click", (e) => {
+    item.addEventListener("click", () => {
       const href = item.getAttribute("data-href");
       if (href) {
         window.open(href, "_blank", "noopener,noreferrer");
       }
     });
-    // Also handle Enter key for accessibility
+
+    // Keyboard accessibility
     item.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -68,87 +79,113 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function openApp(id, name) {
   const win = document.getElementById(id);
-  // determine if window was hidden so we only reposition on newly opening
-  const wasHidden = (win.style.display === 'none' || getComputedStyle(win).display === 'none');
 
-  // base position and cascade settings
+  // Determine if window was hidden
+  const wasHidden =
+    win.style.display === "none" ||
+    getComputedStyle(win).display === "none";
+
+  // Cascade settings
   const BASE_LEFT = 150;
   const BASE_TOP = 100;
-  const STEP = 20; // pixels to offset per open window
-  const MAX_OFFSET_INDEX = 5; // for up to 6 windows diagonal
+  const STEP = 20;
+  const MAX_OFFSET_INDEX = 5;
 
   if (wasHidden) {
     const existing = windowOpenOrder.indexOf(id);
     if (existing !== -1) windowOpenOrder.splice(existing, 1);
+
     windowOpenOrder.push(id);
 
     win.classList.remove("maximized");
-    win.style.width = ''; win.style.height = '';
-    const offsetIndex = Math.min(windowOpenOrder.indexOf(id), MAX_OFFSET_INDEX);
-    win.style.left = (BASE_LEFT + offsetIndex * STEP) + 'px';
-    win.style.top = (BASE_TOP + offsetIndex * STEP) + 'px';
+    win.style.width = "";
+    win.style.height = "";
+
+    const offsetIndex = Math.min(
+      windowOpenOrder.indexOf(id),
+      MAX_OFFSET_INDEX
+    );
+
+    win.style.left = `${BASE_LEFT + offsetIndex * STEP}px`;
+    win.style.top = `${BASE_TOP + offsetIndex * STEP}px`;
   }
 
-  win.style.display = 'flex';
-  const taskbar = document.getElementById('taskbar-apps');
-  if (!document.getElementById('task-' + id)) {
-    // helper: find desktop icon src by matching the visible label
+  win.style.display = "flex";
+
+  const taskbar = document.getElementById("taskbar-apps");
+
+  if (!document.getElementById("task-" + id)) {
+    // Find desktop icon src
     const findIconSrc = (appName) => {
-      const icons = document.querySelectorAll('.desktop .icon');
+      const icons = document.querySelectorAll(".desktop .icon");
       for (const ic of icons) {
-        const label = ic.querySelector('span');
-        const img = ic.querySelector('img');
-        if (label && img && label.textContent.trim() === appName) return img.src;
+        const label = ic.querySelector("span");
+        const img = ic.querySelector("img");
+        if (label && img && label.textContent.trim() === appName) {
+          return img.src;
+        }
       }
       return null;
     };
 
-    const btn = document.createElement('div');
-    btn.id = 'task-' + id;
-    btn.className = 'task-button';
+    const btn = document.createElement("div");
+    btn.id = "task-" + id;
+    btn.className = "task-button";
 
     const src = findIconSrc(name);
     if (src) {
-      const i = document.createElement('img');
+      const i = document.createElement("img");
       i.src = src;
       i.alt = name;
-      i.className = 'task-button-icon';
+      i.className = "task-button-icon";
       btn.appendChild(i);
     }
 
-    const text = document.createElement('span');
+    const text = document.createElement("span");
     text.textContent = name;
     btn.appendChild(text);
 
     btn.onclick = () => toggleMinimize(id);
     taskbar.appendChild(btn);
   }
-  // bring the window to front
-  document.querySelectorAll('.window').forEach(w => w.style.zIndex = 100);
+
+  // Bring window to front
+  document.querySelectorAll(".window").forEach(
+    (w) => (w.style.zIndex = 100)
+  );
   win.style.zIndex = 1001;
 }
 
 function closeWindow(id) {
   const win = document.getElementById(id);
-  win.style.display = 'none';
+
+  win.style.display = "none";
   win.classList.remove("maximized");
-  win.style.width = ''; win.style.height = '';
-  const taskBtn = document.getElementById('task-' + id);
+  win.style.width = "";
+  win.style.height = "";
+
+  const taskBtn = document.getElementById("task-" + id);
   if (taskBtn) taskBtn.remove();
-  const idx = windowOpenOrder.indexOf('' + id);
+
+  const idx = windowOpenOrder.indexOf(id);
   if (idx !== -1) windowOpenOrder.splice(idx, 1);
 }
 
 function toggleMinimize(id) {
   const win = document.getElementById(id);
-  const nowHidden = (win.style.display === 'none' || getComputedStyle(win).display === 'none');
+  const nowHidden =
+    win.style.display === "none" ||
+    getComputedStyle(win).display === "none";
+
   if (nowHidden) {
-    // showing window
-    openApp(id, (document.getElementById('task-' + id) || {}).innerText || id.replace('-window',''));
+    openApp(
+      id,
+      (document.getElementById("task-" + id) || {}).innerText ||
+        id.replace("-window", "")
+    );
   } else {
-    // hiding window
-    win.style.display = 'none';
-    const idx = windowOpenOrder.indexOf('' + id);
+    win.style.display = "none";
+    const idx = windowOpenOrder.indexOf(id);
     if (idx !== -1) windowOpenOrder.splice(idx, 1);
   }
 }
@@ -156,11 +193,13 @@ function toggleMinimize(id) {
 function maximizeWindow(id) {
   const win = document.getElementById(id);
   const isMax = win.classList.contains("maximized");
+
   if (isMax) {
     win.classList.remove("maximized");
-    win.style.width = ""; win.style.height = "";
-    win.style.left = win._restoreLeft != null ? win._restoreLeft : "150px";
-    win.style.top = win._restoreTop != null ? win._restoreTop : "100px";
+    win.style.width = "";
+    win.style.height = "";
+    win.style.left = win._restoreLeft ?? "150px";
+    win.style.top = win._restoreTop ?? "100px";
   } else {
     win._restoreLeft = win.style.left || "150px";
     win._restoreTop = win.style.top || "100px";
@@ -171,20 +210,39 @@ function maximizeWindow(id) {
 function makeDraggable(windowId) {
   const win = document.getElementById(windowId);
   const titleBar = win.querySelector(".window-titlebar");
-  let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+  let pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
+
   titleBar.onmousedown = (e) => {
     if (win.classList.contains("maximized")) return;
+
     e.preventDefault();
-    pos3 = e.clientX; pos4 = e.clientY;
-    document.onmouseup = () => { document.onmouseup = null; document.onmousemove = null; };
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+
+    document.onmouseup = () => {
+      document.onmouseup = null;
+      document.onmousemove = null;
+    };
+
     document.onmousemove = (e) => {
       e.preventDefault();
-      pos1 = pos3 - e.clientX; pos2 = pos4 - e.clientY;
-      pos3 = e.clientX; pos4 = e.clientY;
-      win.style.top = (win.offsetTop - pos2) + "px";
-      win.style.left = (win.offsetLeft - pos1) + "px";
+
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+
+      win.style.top = win.offsetTop - pos2 + "px";
+      win.style.left = win.offsetLeft - pos1 + "px";
     };
-    document.querySelectorAll('.window').forEach(w => w.style.zIndex = 100);
+
+    document.querySelectorAll(".window").forEach(
+      (w) => (w.style.zIndex = 100)
+    );
     win.style.zIndex = 1001;
   };
 }
