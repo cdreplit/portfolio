@@ -32,7 +32,7 @@ html, body {
 .desktop {
   position: absolute;
   inset: 0 0 var(--taskbar-height) 0;
-  padding: 20px; /* original margins */
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -48,6 +48,13 @@ html, body {
   cursor: pointer;
   user-select: none;
   padding: 6px;
+}
+
+.icon img {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  image-rendering: pixelated;
+  margin-bottom: 6px;
 }
 
 .icon span {
@@ -68,7 +75,56 @@ html, body {
   display: flex;
   align-items: center;
   padding: 4px;
+  gap: 8px;
   z-index: var(--taskbar-z);
+}
+
+.start-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  height: 30px;
+  font-weight: bold;
+  background: var(--ui-bg);
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  cursor: pointer;
+}
+
+#taskbar-apps {
+  display: flex;
+  gap: 4px;
+}
+
+.task-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  height: 30px;
+  background: var(--ui-bg);
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.task-button img {
+  width: 16px;
+  height: 16px;
+}
+
+.clock {
+  margin-left: auto;
+  padding: 0 10px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  background: var(--ui-bg);
+  border: 2px solid;
+  border-color: #808080 var(--ui-light) var(--ui-light) #808080;
+  font-size: 12px;
 }
 
 /* WINDOWS */
@@ -81,6 +137,7 @@ html, body {
   background: var(--ui-bg);
   border: 2px solid;
   border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   overflow: hidden;
   z-index: var(--window-z);
 }
@@ -102,20 +159,62 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: grab;
+}
+
+.title-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.title-buttons button {
+  width: 22px;
+  height: 18px;
+  background: var(--ui-bg);
+  border: 1px solid var(--ui-dark);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.title-buttons button:nth-child(2) {
+  font-size: 0;
+}
+
+.title-buttons button:nth-child(2)::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--ui-dark);
 }
 
 /* CONTENT */
 .window-content {
   flex: 1;
   background: white;
-  margin: 2px;              /* restored */
+  margin: 2px;
   padding: 10px;
   border: 1px solid #808080;
-  overflow-y: auto;         /* scrolling */
+  overflow-y: auto;
 }
 
-/* VIDEO */
-.video-wrap,
+/* VIDEO (STANDARD) */
+.video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 14px;
+}
+
+.video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* 🎵 VIDEO WITH OVERLAY TITLE (MUSIC) */
 .video-overlay-wrap {
   position: relative;
   width: 100%;
@@ -123,7 +222,6 @@ html, body {
   margin-bottom: 18px;
 }
 
-.video-wrap iframe,
 .video-overlay-wrap iframe {
   position: absolute;
   inset: 0;
@@ -132,26 +230,31 @@ html, body {
   border: 0;
 }
 
-/* MUSIC OVERLAY TEXT */
+/* Overlay text that scales with window size */
 .video-overlay-title {
   position: absolute;
   bottom: 12px;
-  left: 14px;
+  left: 12px;
   padding: 6px 10px;
   background: rgba(0,0,0,0.65);
   color: white;
   font-family: "MS Sans Serif", Tahoma, sans-serif;
   font-weight: bold;
-  font-size: clamp(16px, 3vw, 26px);
-  z-index: 9999; /* always on top */
+  font-size: clamp(16px, 2.5vw, 24px);
+  z-index: 9999; /* stays on top even when maximized */
   pointer-events: none;
 }
 
-/* PLACEHOLDER BETWEEN VIDEOS */
 .video-placeholder {
   text-align: center;
   font-size: 12px;
   color: #555;
   margin: 16px 0;
-  font-family: var(--font);
+  font-family: "MS Sans Serif", Tahoma, sans-serif;
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .desktop { padding: 10px; }
+  .icon { min-width: 80px; }
 }
