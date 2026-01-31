@@ -8,28 +8,67 @@
 </head>
 <body>
 
-<main class="desktop" role="main">
+<!-- DESKTOP ICONS -->
+<main class="desktop">
+
+  <div class="icon" ondblclick="openApp('about-window','About Me')">
+    <img src="assets/IconNews.png">
+    <span>About Me</span>
+  </div>
+
   <div class="icon" ondblclick="openApp('music-window','Music')">
-    <img src="assets/MusicDisc.png"><span>Music</span>
+    <img src="assets/MusicDisc.png">
+    <span>Music</span>
   </div>
+
   <div class="icon" ondblclick="openApp('videos-window','Videos')">
-    <img src="assets/camera.png"><span>Videos</span>
+    <img src="assets/camera.png">
+    <span>Videos</span>
   </div>
+
   <div class="icon" ondblclick="openApp('art-window','Art')">
-    <img src="assets/IconPaint.png"><span>Art</span>
+    <img src="assets/IconPaint.png">
+    <span>Art</span>
   </div>
+
   <div class="icon" ondblclick="openApp('programms-window','Programms')">
-    <img src="assets/IconComputer.png"><span>Programms</span>
+    <img src="assets/IconComputer.png">
+    <span>Programms</span>
   </div>
+
+  <div class="icon" ondblclick="openApp('contact-window','Contact')">
+    <img src="assets/interneticon.png">
+    <span>Contact</span>
+  </div>
+
 </main>
 
+<!-- TASKBAR -->
 <header class="taskbar">
   <button id="startButton" class="start-button">
-    <img src="assets/win95-icon.png"><span>Start</span>
+    <img src="assets/win95-icon.png">
+    <span>Start</span>
   </button>
+
   <div id="taskbar-apps"></div>
+
   <div class="clock" id="win95-clock">12:00 PM</div>
 </header>
+
+<!-- ABOUT ME -->
+<section id="about-window" class="window">
+  <div class="window-titlebar">
+    <span>About Me</span>
+    <div class="title-buttons">
+      <button onclick="toggleMinimize('about-window')">_</button>
+      <button onclick="maximizeWindow('about-window')"></button>
+      <button onclick="closeWindow('about-window')">X</button>
+    </div>
+  </div>
+  <div class="window-content">
+    <p>About content goes here.</p>
+  </div>
+</section>
 
 <!-- MUSIC -->
 <section id="music-window" class="window">
@@ -43,26 +82,24 @@
   </div>
 
   <div class="window-content">
-    <!-- Clair de Lune -->
     <div class="video-overlay-wrap">
       <iframe src="https://www.youtube.com/embed/bDPY1yX6jxE?rel=0"></iframe>
       <div class="video-overlay-title">Clair de Lune</div>
     </div>
 
-    <!-- placeholders -->
     <div class="video-wrap"><iframe src="https://www.youtube.com/embed/jNQXAC9IVRw"></iframe></div>
     <div class="video-wrap"><iframe src="https://www.youtube.com/embed/9bZkp7q19f0"></iframe></div>
   </div>
 </section>
 
-<!-- PROGRAMS -->
-<section id="programms-window" class="window">
+<!-- VIDEOS -->
+<section id="videos-window" class="window">
   <div class="window-titlebar">
-    <span>Programms</span>
+    <span>Videos</span>
     <div class="title-buttons">
-      <button onclick="toggleMinimize('programms-window')">_</button>
-      <button onclick="maximizeWindow('programms-window')"></button>
-      <button onclick="closeWindow('programms-window')">X</button>
+      <button onclick="toggleMinimize('videos-window')">_</button>
+      <button onclick="maximizeWindow('videos-window')"></button>
+      <button onclick="closeWindow('videos-window')">X</button>
     </div>
   </div>
   <div class="window-content">
@@ -86,6 +123,38 @@
     <div class="video-wrap"><iframe src="https://www.youtube.com/embed/ScMzIvxBSi4"></iframe></div>
     <div class="video-wrap"><iframe src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe></div>
     <div class="video-wrap"><iframe src="https://www.youtube.com/embed/l482T0yNkeo"></iframe></div>
+  </div>
+</section>
+
+<!-- PROGRAMMS -->
+<section id="programms-window" class="window">
+  <div class="window-titlebar">
+    <span>Programms</span>
+    <div class="title-buttons">
+      <button onclick="toggleMinimize('programms-window')">_</button>
+      <button onclick="maximizeWindow('programms-window')"></button>
+      <button onclick="closeWindow('programms-window')">X</button>
+    </div>
+  </div>
+  <div class="window-content">
+    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe></div>
+    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/jNQXAC9IVRw"></iframe></div>
+    <div class="video-wrap"><iframe src="https://www.youtube.com/embed/9bZkp7q19f0"></iframe></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact-window" class="window">
+  <div class="window-titlebar">
+    <span>Contact</span>
+    <div class="title-buttons">
+      <button onclick="toggleMinimize('contact-window')">_</button>
+      <button onclick="maximizeWindow('contact-window')"></button>
+      <button onclick="closeWindow('contact-window')">X</button>
+    </div>
+  </div>
+  <div class="window-content">
+    <p>Contact content goes here.</p>
   </div>
 </section>
 
