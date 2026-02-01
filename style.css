@@ -465,3 +465,11 @@ body {
     padding: 0 6px;
   }
 }
+
+.video-block {
+  width: 100%;
+  max-width: max(560px, 70vw);
+  margin-left: auto;
+  margin-right: auto;
+}
+
