@@ -74,7 +74,7 @@ body {
   padding: 2px;
 }
 
-/* Selected state: box + blue overlay on image; blue only on text */
+/* Selected state */
 .icon:focus,
 .icon:focus-visible,
 .icon:active {
@@ -98,7 +98,7 @@ body {
   background-color: var(--accent);
 }
 
-/* Start menu corrected selector and bottom-left origin */
+/* Start menu */
 .start-menu {
   display: none;
   flex-direction: row;
@@ -172,7 +172,6 @@ body {
   outline: none;
 }
 
-/* Menu icons - make them visually the same size with consistent container */
 .menu-items li img.menu-icon {
   width: 32px;
   height: 32px;
@@ -184,7 +183,7 @@ body {
   box-sizing: border-box;
 }
 
-/* Windows - 4:5 aspect ratio default */
+/* Windows */
 .window {
   position: absolute;
   display: none;
@@ -220,7 +219,7 @@ body {
   cursor: default;
 }
 
-/* Titlebar and title buttons */
+/* Titlebar */
 .window-titlebar {
   background: var(--accent);
   color: white;
@@ -239,7 +238,6 @@ body {
   cursor: grabbing;
 }
 
-/* Ensure title buttons are visible, clickable, and not clipped */
 .title-buttons {
   display: flex;
   gap: 4px;
@@ -268,7 +266,6 @@ body {
   position: relative;
 }
 
-/* Maximize button - use CSS border instead of character for perfect centering */
 .title-buttons button:nth-child(2) {
   font-size: 0;
   line-height: 0;
@@ -289,7 +286,7 @@ body {
   outline-offset: 2px;
 }
 
-/* Window content - scrollable */
+/* Window content */
 .window-content {
   flex: 1;
   min-height: 0;
@@ -302,7 +299,7 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Video container: 16:9, no distortion */
+/* Video container */
 .video-wrap {
   position: relative;
   width: 100%;
@@ -311,13 +308,26 @@ body {
   flex-shrink: 0;
 }
 
-.video-wrap:last-child {
-  margin-bottom: 0;
+/* FIX 1 — remove centering from video-wrap */
+.window-content .video-wrap {
+  width: 100%;
 }
 
-/* Video block: title + video (donchia.tech–style section) */
+/* FIX 2 — apply maximized width to video-block instead */
+.window.maximized .window-content .video-block {
+  width: max(560px, 70vw);
+}
+
+/* Video block */
 .video-block {
   margin-bottom: 24px;
+}
+
+/* FIX 3 — center the entire block (title + video) */
+.video-block {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: min(560px, 100%);
 }
 
 .video-block:last-child {
@@ -330,17 +340,6 @@ body {
   font-weight: bold;
   margin: 0 0 8px 0;
   color: #000;
-}
-
-/* Centered margins for all videos in windows */
-.window-content .video-wrap {
-  /* max-width: min(560px, 100%); */
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.window.maximized .window-content .video-wrap {
-  width: max(560px, 70vw);
 }
 
 .video-wrap iframe {
@@ -429,7 +428,7 @@ body {
   font-size: 12px;
 }
 
-/* Ensure windows and titlebars are above desktop icons */
+/* Disable selection */
 .desktop,
 .window {
   -webkit-user-select: none;
@@ -437,7 +436,7 @@ body {
   user-select: none;
 }
 
-/* Respect reduced motion */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
@@ -465,11 +464,3 @@ body {
     padding: 0 6px;
   }
 }
-
-.video-block {
-  width: 100%;
-  max-width: max(560px, 70vw);
-  margin-left: auto;
-  margin-right: auto;
-}
-
