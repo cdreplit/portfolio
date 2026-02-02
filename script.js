@@ -169,6 +169,14 @@ function closeWindow(id) {
 
   const idx = windowOpenOrder.indexOf(id);
   if (idx !== -1) windowOpenOrder.splice(idx, 1);
+
+  // Stop any YouTube videos inside the window
+  const iframes = win.querySelectorAll("iframe");
+  iframes.forEach(frame => {
+    const src = frame.src;
+    frame.src = src; // resetting the src stops playback
+  });
+
 }
 
 function toggleMinimize(id) {
