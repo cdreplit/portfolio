@@ -173,11 +173,12 @@ function closeWindow(id) {
   // Stop any YouTube videos inside the window
   const iframes = win.querySelectorAll("iframe");
   iframes.forEach(frame => {
-    const src = frame.src;
-    frame.src = src; // resetting the src stops playback
+    const oldSrc = frame.src;
+    frame.src = "";
+    frame.src = oldSrc;
   });
-
 }
+
 
 function toggleMinimize(id) {
   const win = document.getElementById(id);
