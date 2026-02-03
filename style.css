@@ -292,7 +292,7 @@ body {
   flex: 1;
   min-height: 0;
   padding: 10px;
-  background: #fff;
+  background: var(--ui-bg); /* classic Windows 95 grey */
   margin: 2px;
   border: 1px solid #808080;
   overflow-x: hidden;
