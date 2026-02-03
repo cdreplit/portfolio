@@ -10,8 +10,9 @@
   --startmenu-z: 999;
   --icon-size: 64px;
   --font: "MS Sans Serif", Tahoma, sans-serif;
-  --win-default-w: 400px;
-  --win-default-h: 500px;
+  --win-default-w: 700px;
+  --win-default-h: 600px;
+
 }
 
 /* Global reset and box sizing */
@@ -304,7 +305,7 @@ body {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   flex-shrink: 0;
 }
 
@@ -315,8 +316,10 @@ body {
 
 /* FIX 2 — apply maximized width to video-block instead */
 .window.maximized .window-content .video-block {
-  width: max(560px, 70vw);
+  width: 90vw;   /* fills most of the screen */
+  max-width: 1200px;
 }
+
 
 /* Video block */
 .video-block {
@@ -325,10 +328,12 @@ body {
 
 /* FIX 3 — center the entire block (title + video) */
 .video-block {
+  max-width: 900px;   /* bigger video */
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  max-width: min(560px, 100%);
 }
+
 
 .video-block:last-child {
   margin-bottom: 0;
