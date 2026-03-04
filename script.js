@@ -75,6 +75,23 @@ document.addEventListener("DOMContentLoaded", () => {
   makeDraggable("art-window");
   makeDraggable("programms-window");
   makeDraggable("contact-window");
+
+  // VIDEOS WINDOW: table-of-contents navigation
+  const videoNavButtons = document.querySelectorAll(
+    "#videos-window .videos-nav-item[data-target]"
+  );
+  const videosMain = document.querySelector("#videos-window .videos-main");
+
+  videoNavButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.getAttribute("data-target");
+      if (!targetId || !videosMain) return;
+      const target = videosMain.querySelector("#" + targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
 });
 
 function openApp(id, name) {
