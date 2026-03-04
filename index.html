@@ -135,26 +135,29 @@
 
     <div class="window-content">
 
-      <article class="video-block">
-        <h3 class="video-title">Placeholder Video Title 1</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" allowfullscreen></iframe>
-        </div>
-      </article>
+      <div class="videos-layout">
+        <aside class="videos-nav" aria-label="Videos table of contents">
+          <div class="videos-nav-title">Contents</div>
+          <button type="button" class="videos-nav-item" data-target="video-me-zoo">Test 1</button>
+          <button type="button" class="videos-nav-item" data-target="video-gangnam">Test 2</button>
+        </aside>
 
-      <article class="video-block">
-        <h3 class="video-title">Placeholder Video Title 2</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw?rel=0" allowfullscreen></iframe>
-        </div>
-      </article>
+        <section class="videos-main" aria-label="Videos list">
+          <article id="video-me-zoo" class="video-block">
+            <h3 class="video-title">Me at the zoo</h3>
+            <div class="video-wrap">
+              <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw?rel=0" allowfullscreen></iframe>
+            </div>
+          </article>
 
-      <article class="video-block">
-        <h3 class="video-title">Placeholder Video Title 3</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/9bZkp7q19f0?rel=0" allowfullscreen></iframe>
-        </div>
-      </article>
+          <article id="video-gangnam" class="video-block">
+            <h3 class="video-title">Gangnam Style</h3>
+            <div class="video-wrap">
+              <iframe src="https://www.youtube.com/embed/9bZkp7q19f0?rel=0" allowfullscreen></iframe>
+            </div>
+          </article>
+        </section>
+      </div>
 
     </div>
   </section>
