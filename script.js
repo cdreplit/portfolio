@@ -92,6 +92,23 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // MUSIC WINDOW: table-of-contents navigation
+  const musicNavButtons = document.querySelectorAll(
+    "#music-window .music-nav-item[data-target]"
+  );
+  const musicMain = document.querySelector("#music-window .music-main");
+
+  musicNavButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.getAttribute("data-target");
+      if (!targetId || !musicMain) return;
+      const target = musicMain.querySelector("#" + targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
 });
 
 function openApp(id, name) {
