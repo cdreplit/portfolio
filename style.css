@@ -203,6 +203,12 @@ body {
   overflow: hidden;
 }
 
+/* Videos window: 4:3 default ratio */
+#videos-window {
+  width: 640px;
+  height: 480px;
+}
+
 .window.maximized {
   width: 100vw !important;
   height: calc(100vh - var(--taskbar-height)) !important;
@@ -298,6 +304,61 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+/* Videos window: Explorer-style two-pane layout */
+#videos-window .window-content {
+  padding: 6px;
+  overflow: hidden;
+}
+
+.videos-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 4px;
+  height: 100%;
+}
+
+.videos-nav {
+  background: #ffffff;
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+}
+
+.videos-nav-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.videos-nav-item {
+  display: block;
+  width: 100%;
+  padding: 4px 4px 4px 18px;
+  text-align: left;
+  font-size: 11px;
+  background: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+}
+
+.videos-nav-item:hover,
+.videos-nav-item:focus-visible {
+  background: var(--accent);
+  color: #ffffff;
+  outline: none;
+}
+
+.videos-main {
+  background: #ffffff;
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  padding: 8px;
+  overflow-y: auto;
 }
 
 /* Video container */
