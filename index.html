@@ -95,29 +95,40 @@
 
     <div class="window-content">
 
-      <!-- Clair de Lune -->
-      <article class="video-block">
-        <h3 class="video-title">Clair de Lune</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/bDPY1yX6jxE?rel=0" allowfullscreen></iframe>
-        </div>
-      </article>
+      <div class="music-layout">
+        <aside class="music-nav" aria-label="Music table of contents">
+          <div class="music-nav-title">Contents</div>
+          <button type="button" class="music-nav-item" data-target="music-drums">Drums</button>
+          <button type="button" class="music-nav-item" data-target="music-piano">Piano</button>
+          <button type="button" class="music-nav-item" data-target="music-compisitions">Compisitions</button>
+        </aside>
 
-      <!-- DPS Camping Trip -->
-      <article class="video-block">
-        <h3 class="video-title">2024 DePaul Scholar Camping Trip</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/BMy2D7jX63I" allowfullscreen></iframe>
-        </div>
-      </article>
+        <section class="music-main" aria-label="Music videos list">
+          <!-- Piano - Clair de Lune -->
+          <article id="music-piano" class="video-block">
+            <h3 class="video-title">Clair de Lune</h3>
+            <div class="video-wrap">
+              <iframe src="https://www.youtube.com/embed/bDPY1yX6jxE?rel=0" allowfullscreen></iframe>
+            </div>
+          </article>
 
-      <!-- Placeholder Music Video 2 -->
-      <article class="video-block">
-        <h3 class="video-title">Placeholder Music Video 2</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw?rel=0" allowfullscreen></iframe>
-        </div>
-      </article>
+          <!-- Drums - DPS Camping Trip -->
+          <article id="music-drums" class="video-block">
+            <h3 class="video-title">2024 DePaul Scholar Camping Trip</h3>
+            <div class="video-wrap">
+              <iframe src="https://www.youtube.com/embed/BMy2D7jX63I" allowfullscreen></iframe>
+            </div>
+          </article>
+
+          <!-- Compisitions - Placeholder Music Video 2 -->
+          <article id="music-compisitions" class="video-block">
+            <h3 class="video-title">Placeholder Music Video 2</h3>
+            <div class="video-wrap">
+              <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw?rel=0" allowfullscreen></iframe>
+            </div>
+          </article>
+        </section>
+      </div>
 
     </div>
   </section>
