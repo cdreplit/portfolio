@@ -332,7 +332,10 @@ body {
   grid-template-columns: 1fr 1.2fr 1fr;
   align-items: end;
   gap: 12px;
-  padding: 8px 8px 26px 8px;
+  padding: 8px 8px 56px 8px;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .about-photo {
@@ -375,6 +378,7 @@ body {
 
 .about-text {
   padding: 8px 12px 12px 12px;
+  margin-top: 14px;
   color: #000;
   font-size: 14px;
   line-height: 1.45;
@@ -388,9 +392,15 @@ body {
   margin-bottom: 0;
 }
 
-.window.maximized #about-window .about-text {
+#about-window.window.maximized .about-text {
   font-size: 16px;
   line-height: 1.55;
+}
+
+/* About window (maximized): keep photos from getting huge */
+#about-window.window.maximized .about-photos {
+  max-width: 980px;
+  padding-bottom: 64px;
 }
 
 /* Videos window: Explorer-style two-pane layout */
