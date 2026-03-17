@@ -320,7 +320,10 @@ body {
 .about-portfolio {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  padding: 12px;
+  background: #ffffff;
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
 }
 
 .about-photos {
@@ -329,10 +332,7 @@ body {
   grid-template-columns: 1fr 1.2fr 1fr;
   align-items: end;
   gap: 12px;
-  padding: 12px;
-  background: #ffffff;
-  border: 2px solid;
-  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  padding: 8px 8px 26px 8px;
 }
 
 .about-photo {
@@ -355,6 +355,10 @@ body {
   object-position: center;
 }
 
+.about-photo--left .about-photo-frame img {
+  object-position: 50% 15%;
+}
+
 .about-photo--left {
   transform: rotate(-25deg) translateY(16px);
   transform-origin: bottom center;
@@ -370,12 +374,9 @@ body {
 }
 
 .about-text {
-  padding: 12px;
-  background: #ffffff;
-  border: 2px solid;
-  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  padding: 8px 12px 12px 12px;
   color: #000;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.45;
 }
 
@@ -385,6 +386,11 @@ body {
 
 .about-text p:last-child {
   margin-bottom: 0;
+}
+
+.window.maximized #about-window .about-text {
+  font-size: 16px;
+  line-height: 1.55;
 }
 
 /* Videos window: Explorer-style two-pane layout */
@@ -452,7 +458,8 @@ body {
 .window.maximized .videos-nav,
 .window.maximized .music-nav {
   font-size: 16px;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .window.maximized .videos-nav-title,
