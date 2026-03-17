@@ -109,6 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // AUTO-OPEN ABOUT ME ON LOAD
+  openApp("about-window", "About Me");
 });
 
 function openApp(id, name) {
