@@ -367,6 +367,32 @@ body {
   overflow-y: auto;
 }
 
+/* Maximized: enlarge sidebar text + distribute items evenly */
+.window.maximized .videos-layout,
+.window.maximized .music-layout {
+  grid-template-columns: 280px minmax(0, 1fr);
+}
+
+.window.maximized .videos-nav,
+.window.maximized .music-nav {
+  font-size: 14px;
+}
+
+.window.maximized .videos-nav-title,
+.window.maximized .music-nav-title {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.window.maximized .videos-nav-item,
+.window.maximized .music-nav-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 10px 8px 10px 22px;
+  font-size: 14px;
+}
+
 /* Music window: Explorer-style two-pane layout */
 #music-window .window-content {
   padding: 6px;
