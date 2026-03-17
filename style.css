@@ -312,6 +312,81 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+/* About window: portfolio layout */
+#about-window .window-content {
+  background: var(--ui-bg);
+}
+
+.about-portfolio {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.about-photos {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  align-items: end;
+  gap: 12px;
+  padding: 12px;
+  background: #ffffff;
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+}
+
+.about-photo {
+  margin: 0;
+}
+
+.about-photo-frame {
+  background: #ffffff;
+  padding: 6px;
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.about-photo-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.about-photo--left {
+  transform: rotate(-25deg) translateY(16px);
+  transform-origin: bottom center;
+}
+
+.about-photo--center {
+  transform: translateY(0);
+}
+
+.about-photo--right {
+  transform: rotate(25deg) translateY(16px);
+  transform-origin: bottom center;
+}
+
+.about-text {
+  padding: 12px;
+  background: #ffffff;
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  color: #000;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.about-text p {
+  margin: 0 0 10px 0;
+}
+
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
 /* Videos window: Explorer-style two-pane layout */
 #videos-window .window-content {
   padding: 6px;
