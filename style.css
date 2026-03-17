@@ -332,20 +332,21 @@ body {
   padding: 4px;
   display: flex;
   flex-direction: column;
-  font-size: 11px;
+  font-size: 16px;
 }
 
 .videos-nav-title {
   font-weight: bold;
-  margin-bottom: 4px;
+  font-size: 17px;
+  margin-bottom: 10px;
 }
 
 .videos-nav-item {
   display: block;
   width: 100%;
-  padding: 4px 4px 4px 18px;
+  padding: 12px 10px 12px 26px;
   text-align: left;
-  font-size: 11px;
+  font-size: 16px;
   background: transparent;
   border: none;
   color: #000;
@@ -375,13 +376,13 @@ body {
 
 .window.maximized .videos-nav,
 .window.maximized .music-nav {
-  font-size: 14px;
+  font-size: 22px;
 }
 
 .window.maximized .videos-nav-title,
 .window.maximized .music-nav-title {
-  font-size: 15px;
-  margin-bottom: 8px;
+  font-size: 24px;
+  margin-bottom: 14px;
 }
 
 .window.maximized .videos-nav-item,
@@ -389,8 +390,8 @@ body {
   flex: 1;
   display: flex;
   align-items: center;
-  padding: 10px 8px 10px 22px;
-  font-size: 14px;
+  padding: 18px 14px 18px 32px;
+  font-size: 22px;
 }
 
 /* Music window: Explorer-style two-pane layout */
@@ -413,20 +414,21 @@ body {
   padding: 4px;
   display: flex;
   flex-direction: column;
-  font-size: 11px;
+  font-size: 16px;
 }
 
 .music-nav-title {
   font-weight: bold;
-  margin-bottom: 4px;
+  font-size: 17px;
+  margin-bottom: 10px;
 }
 
 .music-nav-item {
   display: block;
   width: 100%;
-  padding: 4px 4px 4px 18px;
+  padding: 12px 10px 12px 26px;
   text-align: left;
-  font-size: 11px;
+  font-size: 16px;
   background: transparent;
   border: none;
   color: #000;
