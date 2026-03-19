@@ -384,6 +384,13 @@ body {
   line-height: 1.45;
 }
 
+.about-header {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #000;
+}
+
 .about-text p {
   margin: 0 0 10px 0;
 }
@@ -436,12 +443,21 @@ body {
 #about-window.window.maximized .about-text {
   font-size: 16px;
   line-height: 1.55;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 14px;
+  padding-right: 14px;
 }
 
 /* About window (maximized): keep photos from getting huge */
 #about-window.window.maximized .about-photos {
   max-width: 980px;
   padding-bottom: 64px;
+}
+
+#about-window.window.maximized .about-header {
+  font-size: 22px;
 }
 
 /* Videos window: Explorer-style two-pane layout */
