@@ -23,21 +23,29 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24'
-          
 
-      - name: Install dependencies and Build
+      # We use "npm install" which creates a lockfile if missing
+      # The "|| true" ensures that if there is no package.json, the script doesn't crash
+      - name: Install and Build
         run: |
-          npm install --no-package-lock
-          npm run build
-          
+          if [ -f package.json ]; then
+            npm install
+            if grep -q "build" package.json; then
+              npm run build
+            fi
+          else
+            echo "No package.json found, skipping build step."
+          fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Change '.' to your build folder (e.g., 'dist' or 'build') if applicable
-          path: './dist' 
+          # This uploads the whole folder. 
+          # If your build creates a 'dist' folder, change '.' to './dist'
+          path: '.' 
 
       - name: Deploy to GitHub Pages
         id: deployment
