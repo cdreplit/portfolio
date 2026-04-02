@@ -27,9 +27,9 @@ jobs:
 
       - name: Install dependencies and Build
         run: |
-          npm ci
-          npm run build # Ensure this matches the build script in your package.json
-
+          npm install --no-package-lock
+          npm run build
+          
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
