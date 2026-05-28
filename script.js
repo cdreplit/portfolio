@@ -231,6 +231,7 @@ function setupYouTubePlayer(wrap, posterBtn) {
     }
     iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1&playsinline=1`;
     wrap.classList.add("is-playing");
+    posterBtn.setAttribute("hidden", "");
   });
 }
 
@@ -261,6 +262,7 @@ function setupVimeoPlayer(wrap, posterBtn) {
     }
     iframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=1&title=0&byline=0&portrait=0&quality=1080p`;
     wrap.classList.add("is-playing");
+    posterBtn.setAttribute("hidden", "");
   });
 }
 
@@ -284,6 +286,7 @@ function setupHtml5Player(wrap, posterBtn) {
 
   posterBtn.addEventListener("click", () => {
     wrap.classList.add("is-playing");
+    posterBtn.setAttribute("hidden", "");
     video.play().catch(() => {});
   });
 }
@@ -395,6 +398,9 @@ function closeWindow(id) {
     }
 
     wrap.classList.remove("is-playing");
+
+    const poster = wrap.querySelector(".video-poster");
+    if (poster) poster.removeAttribute("hidden");
   });
 }
 
