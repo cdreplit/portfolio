@@ -110,9 +110,61 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  initVideoPosters();
+
   // AUTO-OPEN ABOUT ME ON LOAD
   openApp("about-window", "About Me");
 });
+
+function initVideoPosters() {
+  document.querySelectorAll(".video-wrap").forEach((wrap) => {
+    if (wrap.dataset.posterInit) return;
+    wrap.dataset.posterInit = "1";
+
+    const iframe = wrap.querySelector("iframe");
+    if (!iframe) return;
+
+    const embedSrc = iframe.getAttribute("src");
+    if (!embedSrc) return;
+
+    const match = embedSrc.match(/embed\/([^?&]+)/);
+    if (!match) return;
+
+    const videoId = match[1];
+    iframe.dataset.src = embedSrc;
+    iframe.removeAttribute("src");
+
+    const poster = document.createElement("button");
+    poster.type = "button";
+    poster.className = "video-poster";
+    poster.setAttribute("aria-label", "Play video");
+
+    const thumb = document.createElement("img");
+    thumb.src = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+    thumb.alt = "";
+    thumb.decoding = "async";
+    thumb.onerror = () => {
+      thumb.src = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+    };
+
+    const playIcon = document.createElement("span");
+    playIcon.className = "video-play-icon";
+    playIcon.setAttribute("aria-hidden", "true");
+    playIcon.textContent = "▶";
+
+    poster.append(thumb, playIcon);
+    wrap.insertBefore(poster, iframe);
+
+    const play = () => {
+      const base = iframe.dataset.src;
+      const sep = base.includes("?") ? "&" : "?";
+      iframe.src = `${base}${sep}autoplay=1`;
+      wrap.classList.add("is-playing");
+    };
+
+    poster.addEventListener("click", play);
+  });
+}
 
 function openApp(id, name) {
   const win = document.getElementById(id);
@@ -208,11 +260,13 @@ function closeWindow(id) {
   if (idx !== -1) windowOpenOrder.splice(idx, 1);
 
   // Stop any YouTube videos inside the window
-  const iframes = win.querySelectorAll("iframe");
-  iframes.forEach(frame => {
-    const oldSrc = frame.src;
+  win.querySelectorAll(".video-wrap").forEach((wrap) => {
+    const frame = wrap.querySelector("iframe");
+    if (!frame) return;
+
     frame.src = "";
-    frame.src = oldSrc;
+    frame.removeAttribute("src");
+    wrap.classList.remove("is-playing");
   });
 }
 
