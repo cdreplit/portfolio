@@ -708,9 +708,20 @@ body {
   object-fit: contain;
 }
 
-/* Sharp thumbnail until play — iframe hidden until .is-playing */
-.video-wrap:not(.is-playing) iframe {
+/* Hide embed until play; hide poster once playing */
+.video-wrap:not(.is-playing) iframe,
+.video-wrap:not(.is-playing) video {
   visibility: hidden;
+}
+
+.video-wrap.is-playing .video-poster {
+  display: none;
+}
+
+.video-wrap.is-playing iframe,
+.video-wrap.is-playing video {
+  visibility: visible;
+  z-index: 2;
 }
 
 .video-poster {
