@@ -164,7 +164,7 @@ function createVideoPosterButton() {
   const thumb = document.createElement("img");
   thumb.alt = "";
   thumb.decoding = "async";
-  thumb.loading = "lazy";
+  thumb.loading = "eager";
 
   const playIcon = document.createElement("span");
   playIcon.className = "video-play-icon";
@@ -178,24 +178,34 @@ function createVideoPosterButton() {
 function setPosterImage(img, url, fallbackUrls = []) {
   const urls = [url, ...fallbackUrls];
   let index = 0;
-  img.onerror = () => {
+
+  const tryNext = () => {
+    if (index >= urls.length) return;
+    img.removeAttribute("srcset");
+    img.removeAttribute("sizes");
+    img.src = urls[index];
     index += 1;
-    if (index < urls.length) {
-      img.removeAttribute("srcset");
-      img.removeAttribute("sizes");
-      img.src = urls[index];
+  };
+
+  img.onload = () => {
+    // YouTube sometimes returns a tiny grey placeholder instead of 404
+    if (img.naturalWidth <= 120 && index < urls.length) {
+      tryNext();
     }
   };
-  img.src = urls[0];
+
+  img.onerror = tryNext;
+
+  index = 0;
+  tryNext();
 }
 
 function setYouTubePoster(img, videoId) {
   const base = `https://i.ytimg.com/vi/${videoId}`;
-  img.srcset = `${base}/maxresdefault.jpg 1280w, ${base}/sddefault.jpg 640w, ${base}/hqdefault.jpg 480w`;
-  img.sizes = "(min-width: 1200px) 900px, (min-width: 800px) 640px, 100vw";
   setPosterImage(img, `${base}/maxresdefault.jpg`, [
     `${base}/sddefault.jpg`,
     `${base}/hqdefault.jpg`,
+    `${base}/mqdefault.jpg`,
   ]);
 }
 
