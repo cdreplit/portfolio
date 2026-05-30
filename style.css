@@ -204,10 +204,14 @@ body {
 }
 
 /* Videos / Music: larger default so embeds stream sharper */
-#videos-window,
-#music-window {
+#videos-window {
   width: 900px;
   height: 680px;
+}
+
+#music-window {
+  width: 980px;
+  height: 760px;
 }
 
 .window.maximized {
@@ -603,6 +607,7 @@ body {
   width: 100%;
   max-width: 100%;
   margin: 0 auto 24px;
+  align-items: start;
 }
 
 .music-shorts-row .video-block {
@@ -619,8 +624,22 @@ body {
   margin-right: auto;
 }
 
+/* Horizontal video in shorts row (e.g. Charlie Brown — 16:9 upload) */
+.video-wrap--short[data-fit="landscape"] {
+  aspect-ratio: 16 / 9;
+}
+
+.video-wrap--short[data-fit="landscape"] > iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  transform: none;
+}
+
 .window.maximized .music-shorts-row {
-  max-width: min(92vw, 1100px);
+  max-width: min(calc(100vw - 280px), 1200px);
 }
 
 .window.maximized .window-content .music-shorts-row .video-block {
@@ -727,7 +746,7 @@ body {
   outline-offset: 1px;
 }
 
-.video-wrap iframe,
+.video-wrap:not(.video-wrap--short) iframe,
 .video-wrap video {
   position: absolute;
   inset: 0;
@@ -741,18 +760,33 @@ body {
   object-fit: contain;
 }
 
-/* Crop 16:9 YouTube embed to fill vertical short frame */
-.video-wrap.video-wrap--short iframe {
-  width: 316%;
-  height: 100%;
-  left: 50%;
+/* Shorts: tall frame, 16:9 iframe scaled to height and center-cropped */
+.video-wrap--short .video-short-embed {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 2;
+  background: #000;
+}
+
+/* Portrait shorts only: center-crop 16:9 iframe into 9:16 frame */
+.video-wrap--short[data-fit="portrait"] .video-short-embed iframe,
+.video-wrap--short:not([data-fit]) .video-short-embed iframe {
+  position: absolute;
   top: 0;
-  inset: auto;
+  left: 50%;
+  height: 100%;
+  width: auto;
+  aspect-ratio: 16 / 9;
+  max-width: none;
+  border: 0;
+  background: #000;
   transform: translateX(-50%);
 }
 
 /* Hide embed until play; hide poster once playing */
 .video-wrap:not(.is-playing) iframe,
+.video-wrap:not(.is-playing) .video-short-embed,
 .video-wrap:not(.is-playing) video {
   visibility: hidden;
 }
@@ -762,6 +796,7 @@ body {
 }
 
 .video-wrap.is-playing iframe,
+.video-wrap.is-playing .video-short-embed,
 .video-wrap.is-playing video {
   visibility: visible;
   z-index: 2;
