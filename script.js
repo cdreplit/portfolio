@@ -229,6 +229,8 @@ function setupYouTubePlayer(wrap, posterBtn) {
 
   posterBtn.addEventListener("click", () => {
     let iframe = wrap.querySelector("iframe");
+    const isShort = wrap.classList.contains("video-wrap--short");
+
     if (!iframe) {
       iframe = document.createElement("iframe");
       iframe.setAttribute("allowfullscreen", "");
@@ -237,8 +239,21 @@ function setupYouTubePlayer(wrap, posterBtn) {
         "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       );
       iframe.title = "YouTube video player";
-      wrap.appendChild(iframe);
+
+      const needsCropShell =
+        isShort &&
+        wrap.dataset.fit !== "landscape";
+
+      if (needsCropShell) {
+        const shell = document.createElement("div");
+        shell.className = "video-short-embed";
+        shell.appendChild(iframe);
+        wrap.appendChild(shell);
+      } else {
+        wrap.appendChild(iframe);
+      }
     }
+
     iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1&playsinline=1`;
     wrap.classList.add("is-playing");
     posterBtn.setAttribute("hidden", "");
@@ -400,6 +415,9 @@ function closeWindow(id) {
       frame.src = "";
       frame.remove();
     }
+
+    const shell = wrap.querySelector(".video-short-embed");
+    if (shell) shell.remove();
 
     const video = wrap.querySelector("video");
     if (video) {
