@@ -595,6 +595,43 @@ body {
   overflow-y: auto;
 }
 
+/* Music window: side-by-side vertical shorts */
+.music-shorts-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto 24px;
+}
+
+.music-shorts-row .video-block {
+  max-width: none;
+  width: auto;
+  margin: 0;
+}
+
+.video-wrap--short {
+  aspect-ratio: 9 / 16;
+  max-height: min(62vh, 520px);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.window.maximized .music-shorts-row {
+  max-width: min(90vw, 880px);
+}
+
+.window.maximized .window-content .music-shorts-row .video-block {
+  width: auto;
+  max-width: none;
+}
+
+.window.maximized .video-wrap--short {
+  max-height: min(72vh, 640px);
+}
+
 /* Video container */
 .video-wrap {
   position: relative;
