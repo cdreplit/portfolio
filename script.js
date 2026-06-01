@@ -128,6 +128,8 @@ function initVideoPlayers() {
       setupHtml5Player(wrap, posterBtn);
     } else if (provider === "vimeo") {
       setupVimeoPlayer(wrap, posterBtn);
+    } else if (provider === "instagram") {
+      setupInstagramPlayer(wrap, posterBtn);
     } else {
       setupYouTubePlayer(wrap, posterBtn);
     }
@@ -286,6 +288,37 @@ function setupVimeoPlayer(wrap, posterBtn) {
       wrap.appendChild(iframe);
     }
     iframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=1&title=0&byline=0&portrait=0&quality=1080p`;
+    wrap.classList.add("is-playing");
+    posterBtn.setAttribute("hidden", "");
+  });
+}
+
+function setupInstagramPlayer(wrap, posterBtn) {
+  const postId = wrap.dataset.postId;
+  if (!postId) return;
+
+  const thumb = posterBtn.querySelector("img");
+  const poster = wrap.dataset.poster;
+  if (poster) {
+    setPosterImage(thumb, poster);
+  }
+
+  wrap.appendChild(posterBtn);
+
+  posterBtn.addEventListener("click", () => {
+    let iframe = wrap.querySelector("iframe");
+    if (!iframe) {
+      iframe = document.createElement("iframe");
+      iframe.setAttribute("allowfullscreen", "");
+      iframe.setAttribute("scrolling", "no");
+      iframe.setAttribute(
+        "allow",
+        "autoplay; clipboard-write; encrypted-media; picture-in-picture"
+      );
+      iframe.title = "Instagram video";
+      wrap.appendChild(iframe);
+    }
+    iframe.src = `https://www.instagram.com/p/${postId}/embed`;
     wrap.classList.add("is-playing");
     posterBtn.setAttribute("hidden", "");
   });
