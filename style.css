@@ -981,32 +981,54 @@ body {
     padding: 0 6px;
   }
 
-  /* ── Contact window ─────────────────────────────── */
-.contact-intro {
-  font-size: 13px;
-  margin: 0 0 16px;
-  line-height: 1.5;
+/* ── Contact window ─────────────────────────── */
+#contact-window {
+  width: 700px;
+  height: 540px;
 }
 
-.contact-socials {
+.contact-content {
   display: flex;
+  flex-direction: row;
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+/* Left sidebar: socials */
+.contact-sidebar {
+  width: 180px;
+  flex-shrink: 0;
+  background: var(--ui-bg);
+  border-right: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
+}
+
+.contact-sidebar-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #000;
+  border-bottom: 1px solid #808080;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 .contact-social-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #000;
+  gap: 10px;
+  padding: 6px 8px;
   text-decoration: none;
+  color: #000;
   background: var(--ui-bg);
   border: 2px solid;
   border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .contact-social-btn:active {
@@ -1014,55 +1036,107 @@ body {
 }
 
 .contact-social-btn img {
-  width: 16px;
-  height: 16px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
   image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+/* Right panel: email composer */
+.contact-email-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  gap: 0;
+  min-width: 0;
+}
+
+.contact-email-titlebar {
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+
+.contact-email-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  border: 2px solid;
+  border-color: var(--ui-dark) var(--ui-light) var(--ui-light) var(--ui-dark);
+  margin-bottom: 2px;
+  flex-shrink: 0;
+}
+
+.contact-email-label {
+  font-size: 11px;
+  font-weight: bold;
+  color: #000;
+  min-width: 36px;
+}
+
+.contact-email-readonly {
+  flex: 1;
+  background: #fff;
+  border: 2px solid;
+  border-color: var(--ui-dark) var(--ui-light) var(--ui-light) var(--ui-dark);
+  padding: 2px 4px;
+  font-size: 11px;
+  font-family: var(--font);
+  color: #000;
+}
+
+.contact-email-field input {
+  flex: 1;
+  background: #fff;
+  border: 2px solid;
+  border-color: var(--ui-dark) var(--ui-light) var(--ui-light) var(--ui-dark);
+  padding: 2px 4px;
+  font-size: 11px;
+  font-family: var(--font);
+  outline: none;
 }
 
 .contact-divider {
   border: none;
   border-top: 1px solid #808080;
   border-bottom: 1px solid var(--ui-light);
-  margin: 0 0 16px;
+  margin: 6px 0;
+  flex-shrink: 0;
 }
 
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.contact-field {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.contact-field label {
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.contact-field input,
-.contact-field textarea {
+#contact-message {
+  flex: 1;
+  resize: none;
+  background: #fff;
+  border: 2px solid;
+  border-color: var(--ui-dark) var(--ui-light) var(--ui-light) var(--ui-dark);
   font-size: 12px;
   font-family: var(--font);
-  padding: 3px 5px;
-  border: 2px solid;
-  border-color: #808080 var(--ui-light) var(--ui-light) #808080;
-  background: #fff;
+  padding: 6px;
   outline: none;
-  resize: vertical;
+  min-height: 120px;
 }
 
 .contact-submit-row {
   display: flex;
   justify-content: flex-end;
+  gap: 6px;
+  padding-top: 8px;
+  flex-shrink: 0;
 }
 
-.contact-submit-btn {
-  padding: 4px 20px;
+.contact-submit-btn,
+.contact-clear-btn {
+  padding: 4px 16px;
   font-size: 12px;
   font-weight: bold;
   font-family: var(--font);
@@ -1072,7 +1146,44 @@ body {
   cursor: pointer;
 }
 
-.contact-submit-btn:active {
+.contact-submit-btn:active,
+.contact-clear-btn:active {
   border-color: var(--ui-dark) var(--ui-light) var(--ui-light) var(--ui-dark);
+}
+
+/* Maximized: scale up proportionally */
+#contact-window.maximized .contact-sidebar {
+  width: 220px;
+}
+
+#contact-window.maximized .contact-social-btn img {
+  width: 48px;
+  height: 48px;
+}
+
+#contact-window.maximized .contact-social-btn {
+  font-size: 14px;
+  padding: 10px 12px;
+}
+
+#contact-window.maximized .contact-email-titlebar {
+  font-size: 13px;
+  padding: 6px 10px;
+}
+
+#contact-window.maximized .contact-email-label,
+#contact-window.maximized .contact-email-field input,
+#contact-window.maximized .contact-email-readonly {
+  font-size: 13px;
+}
+
+#contact-window.maximized #contact-message {
+  font-size: 14px;
+}
+
+#contact-window.maximized .contact-submit-btn,
+#contact-window.maximized .contact-clear-btn {
+  font-size: 14px;
+  padding: 6px 22px;
 }
 }
