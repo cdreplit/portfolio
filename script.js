@@ -540,4 +540,11 @@ function makeDraggable(windowId) {
     );
     win.style.zIndex = 1001;
   };
+
+  document.getElementById('contact-clear')?.addEventListener('click', () => {
+  document.getElementById('contact-from').value = '';
+  document.getElementById('contact-subject').value = '';
+  document.getElementById('contact-message').value = '';
+});
+  
 }
