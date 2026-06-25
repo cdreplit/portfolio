@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
   makeDraggable("music-window");
   makeDraggable("videos-window");
   makeDraggable("art-window");
-  makeDraggable("programms-window");
+  makeDraggable("programs-window");
   makeDraggable("contact-window");
 
   // VIDEOS WINDOW: table-of-contents navigation
@@ -108,6 +108,13 @@ document.addEventListener("DOMContentLoaded", () => {
         target.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
+  });
+
+  // CONTACT CLEAR BUTTON
+  document.getElementById("contact-clear")?.addEventListener("click", () => {
+    document.getElementById("contact-from").value = "";
+    document.getElementById("contact-subject").value = "";
+    document.getElementById("contact-message").value = "";
   });
 
   initVideoPlayers();
@@ -190,7 +197,6 @@ function setPosterImage(img, url, fallbackUrls = []) {
   };
 
   img.onload = () => {
-    // YouTube sometimes returns a tiny grey placeholder instead of 404
     if (img.naturalWidth <= 120 && index < urls.length) {
       tryNext();
     }
@@ -352,12 +358,10 @@ function setupHtml5Player(wrap, posterBtn) {
 function openApp(id, name) {
   const win = document.getElementById(id);
 
-  // Determine if window was hidden
   const wasHidden =
     win.style.display === "none" ||
     getComputedStyle(win).display === "none";
 
-  // Cascade settings
   const BASE_LEFT = 150;
   const BASE_TOP = 100;
   const STEP = 20;
@@ -387,7 +391,6 @@ function openApp(id, name) {
   const taskbar = document.getElementById("taskbar-apps");
 
   if (!document.getElementById("task-" + id)) {
-    // Find desktop icon src
     const findIconSrc = (appName) => {
       const icons = document.querySelectorAll(".desktop .icon");
       for (const ic of icons) {
@@ -421,7 +424,6 @@ function openApp(id, name) {
     taskbar.appendChild(btn);
   }
 
-  // Bring window to front
   document.querySelectorAll(".window").forEach(
     (w) => (w.style.zIndex = 100)
   );
@@ -465,7 +467,6 @@ function closeWindow(id) {
   });
 }
 
-
 function toggleMinimize(id) {
   const win = document.getElementById(id);
   const nowHidden =
@@ -504,6 +505,7 @@ function maximizeWindow(id) {
 
 function makeDraggable(windowId) {
   const win = document.getElementById(windowId);
+  if (!win) return;
   const titleBar = win.querySelector(".window-titlebar");
 
   let pos1 = 0,
@@ -540,11 +542,4 @@ function makeDraggable(windowId) {
     );
     win.style.zIndex = 1001;
   };
-
-  document.getElementById('contact-clear')?.addEventListener('click', () => {
-  document.getElementById('contact-from').value = '';
-  document.getElementById('contact-subject').value = '';
-  document.getElementById('contact-message').value = '';
-});
-  
 }
