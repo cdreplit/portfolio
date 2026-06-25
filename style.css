@@ -980,4 +980,99 @@ body {
     min-width: 80px;
     padding: 0 6px;
   }
+
+  /* ── Contact window ─────────────────────────────── */
+.contact-intro {
+  font-size: 13px;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.contact-socials {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.contact-social-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+  background: var(--ui-bg);
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+}
+
+.contact-social-btn:active {
+  border-color: var(--ui-dark) var(--ui-light) var(--ui-light) var(--ui-dark);
+}
+
+.contact-social-btn img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.contact-divider {
+  border: none;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid var(--ui-light);
+  margin: 0 0 16px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contact-field label {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.contact-field input,
+.contact-field textarea {
+  font-size: 12px;
+  font-family: var(--font);
+  padding: 3px 5px;
+  border: 2px solid;
+  border-color: #808080 var(--ui-light) var(--ui-light) #808080;
+  background: #fff;
+  outline: none;
+  resize: vertical;
+}
+
+.contact-submit-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contact-submit-btn {
+  padding: 4px 20px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: var(--font);
+  background: var(--ui-bg);
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+  cursor: pointer;
+}
+
+.contact-submit-btn:active {
+  border-color: var(--ui-dark) var(--ui-light) var(--ui-light) var(--ui-dark);
+}
 }
