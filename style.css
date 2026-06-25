@@ -12,7 +12,6 @@
   --font: "MS Sans Serif", Tahoma, sans-serif;
   --win-default-w: 700px;
   --win-default-h: 600px;
-
 }
 
 /* Global reset and box sizing */
@@ -303,7 +302,7 @@ body {
   flex: 1;
   min-height: 0;
   padding: 10px;
-  background: var(--ui-bg); /* classic Windows 95 grey */
+  background: var(--ui-bg);
   margin: 2px;
   border: 1px solid #808080;
   overflow-x: hidden;
@@ -449,7 +448,6 @@ body {
   padding-right: 14px;
 }
 
-/* About window (maximized): keep photos from getting huge */
 #about-window.window.maximized .about-photos {
   max-width: 980px;
   padding-bottom: 64px;
@@ -624,7 +622,7 @@ body {
   margin-right: auto;
 }
 
-/* Horizontal video in shorts row (e.g. Charlie Brown — 16:9 upload) */
+/* Horizontal video in shorts row */
 .video-wrap--short[data-fit="landscape"] {
   aspect-ratio: 16 / 9;
 }
@@ -674,37 +672,32 @@ body {
   background: #000;
 }
 
-/* FIX 1 — remove centering from video-wrap */
 .window-content .video-wrap {
   width: 100%;
 }
 
-/* FIX 2 — apply maximized width to video-block instead */
 .window.maximized .window-content .video-block {
-  width: 90vw;   /* fills most of the screen */
+  width: 90vw;
   max-width: 1200px;
 }
-
 
 /* Video block */
 .video-block {
   margin-bottom: 24px;
 }
 
-/* FIX 3 — center the entire block (title + video) */
 .video-block {
-  max-width: 900px;   /* bigger video */
+  max-width: 900px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 
-
 .video-block:last-child {
   margin-bottom: 0;
 }
 
-/* Win95-style video info panel (grey background, header + description) */
+/* Win95-style video info panel */
 .video-info {
   background: var(--ui-bg);
   padding: 10px 12px;
@@ -777,7 +770,6 @@ body {
   object-fit: contain;
 }
 
-/* Shorts: tall frame, 16:9 iframe scaled to height and center-cropped */
 .video-wrap--short .video-short-embed {
   position: absolute;
   inset: 0;
@@ -786,7 +778,6 @@ body {
   background: #000;
 }
 
-/* Portrait shorts only: center-crop 16:9 iframe into 9:16 frame */
 .video-wrap--short[data-fit="portrait"] .video-short-embed iframe,
 .video-wrap--short:not([data-fit]) .video-short-embed iframe {
   position: absolute;
@@ -801,7 +792,6 @@ body {
   transform: translateX(-50%);
 }
 
-/* Hide embed until play; hide poster once playing */
 .video-wrap:not(.is-playing) iframe,
 .video-wrap:not(.is-playing) .video-short-embed,
 .video-wrap:not(.is-playing) video {
@@ -980,6 +970,7 @@ body {
     min-width: 80px;
     padding: 0 6px;
   }
+}
 
 /* ── Contact window ─────────────────────────── */
 #contact-window {
@@ -1185,5 +1176,4 @@ body {
 #contact-window.maximized .contact-clear-btn {
   font-size: 14px;
   padding: 6px 22px;
-}
 }
