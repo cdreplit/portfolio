@@ -129,14 +129,17 @@ function initVideoPlayers() {
     wrap.dataset.playerInit = "1";
 
     const provider = getVideoProvider(wrap);
+    if (provider === "instagram") {
+      setupInstagramPlayer(wrap);
+      return;
+    }
+
     const posterBtn = createVideoPosterButton();
 
     if (provider === "html5") {
       setupHtml5Player(wrap, posterBtn);
     } else if (provider === "vimeo") {
       setupVimeoPlayer(wrap, posterBtn);
-    } else if (provider === "instagram") {
-      setupInstagramPlayer(wrap, posterBtn);
     } else {
       setupYouTubePlayer(wrap, posterBtn);
     }
@@ -299,35 +302,21 @@ function setupVimeoPlayer(wrap, posterBtn) {
   });
 }
 
-function setupInstagramPlayer(wrap, posterBtn) {
+function setupInstagramPlayer(wrap) {
   const postId = wrap.dataset.postId;
   if (!postId) return;
 
-  const thumb = posterBtn.querySelector("img");
-  const poster = wrap.dataset.poster;
-  if (poster) {
-    setPosterImage(thumb, poster);
-  }
-
-  wrap.appendChild(posterBtn);
-
-  posterBtn.addEventListener("click", () => {
-    let iframe = wrap.querySelector("iframe");
-    if (!iframe) {
-      iframe = document.createElement("iframe");
-      iframe.setAttribute("allowfullscreen", "");
-      iframe.setAttribute("scrolling", "no");
-      iframe.setAttribute(
-        "allow",
-        "autoplay; clipboard-write; encrypted-media; picture-in-picture"
-      );
-      iframe.title = "Instagram video";
-      wrap.appendChild(iframe);
-    }
-    iframe.src = `https://www.instagram.com/p/${postId}/embed`;
-    wrap.classList.add("is-playing");
-    posterBtn.setAttribute("hidden", "");
-  });
+  const iframe = document.createElement("iframe");
+  iframe.src = `https://www.instagram.com/p/${postId}/embed`;
+  iframe.setAttribute("allowfullscreen", "");
+  iframe.setAttribute("scrolling", "no");
+  iframe.setAttribute(
+    "allow",
+    "autoplay; clipboard-write; encrypted-media; picture-in-picture"
+  );
+  iframe.title = `Instagram video ${postId}`;
+  iframe.loading = "lazy";
+  wrap.appendChild(iframe);
 }
 
 function setupHtml5Player(wrap, posterBtn) {
@@ -387,6 +376,8 @@ function openApp(id, name) {
   }
 
   win.style.display = "flex";
+
+  if (id === "videos-window") initVideoPlayers();
 
   const taskbar = document.getElementById("taskbar-apps");
 
@@ -464,6 +455,10 @@ function closeWindow(id) {
 
     const poster = wrap.querySelector(".video-poster");
     if (poster) poster.removeAttribute("hidden");
+
+    if (wrap.dataset.provider === "instagram") {
+      delete wrap.dataset.playerInit;
+    }
   });
 }
 
