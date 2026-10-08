@@ -637,11 +637,21 @@ body {
 }
 
 /* Instagram vertical video */
-.video-wrap--instagram {
-  aspect-ratio: 9 / 16;
-  max-width: min(100%, 420px);
-  margin-left: auto;
+.instagram-video-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 660px;
   margin-right: auto;
+}
+
+.video-wrap--instagram {
+  height: 760px;
+  aspect-ratio: auto;
+  max-width: none;
+  margin: 0;
+  background: transparent;
 }
 
 .video-wrap--instagram > iframe {
@@ -651,6 +661,7 @@ body {
   height: 100%;
   border: 0;
   transform: none;
+  overflow: hidden;
 }
 
 .window.maximized .music-shorts-row {
@@ -792,7 +803,7 @@ body {
   transform: translateX(-50%);
 }
 
-.video-wrap:not(.is-playing) iframe,
+.video-wrap:not(.is-playing):not(.video-wrap--instagram) iframe,
 .video-wrap:not(.is-playing) .video-short-embed,
 .video-wrap:not(.is-playing) video {
   visibility: hidden;
@@ -953,6 +964,11 @@ body {
 
 /* Small viewport tweaks */
 @media (max-width: 480px) {
+  .instagram-video-row {
+    grid-template-columns: 1fr;
+    max-width: min(100%, 326px);
+  }
+
   .desktop {
     padding: 8px;
   }
