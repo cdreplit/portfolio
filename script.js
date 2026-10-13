@@ -68,6 +68,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // DESKTOP ICONS: open on double-click (mouse), tap (touch), or Enter/Space (keyboard)
+  const isTouchDevice = window.matchMedia(
+    "(hover: none), (pointer: coarse)"
+  ).matches;
+
+  document.querySelectorAll(".desktop .icon[data-app]").forEach((icon) => {
+    const id = icon.dataset.app;
+    const name =
+      icon.querySelector("span")?.textContent.trim() ||
+      icon.getAttribute("aria-label")?.replace(/^Open\s+/i, "") ||
+      id;
+
+    const activate = (e) => {
+      e.preventDefault();
+      openApp(id, name);
+    };
+
+    if (isTouchDevice) {
+      icon.addEventListener("click", activate);
+    } else {
+      icon.addEventListener("dblclick", activate);
+    }
+
+    icon.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") activate(e);
+    });
+  });
+
   // INITIALIZE DRAGGING
   makeDraggable("about-window");
   makeDraggable("music-window");
@@ -110,11 +138,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // CONTACT CLEAR BUTTON
+  // CONTACT: Clear button
   document.getElementById("contact-clear")?.addEventListener("click", () => {
     document.getElementById("contact-from").value = "";
     document.getElementById("contact-subject").value = "";
     document.getElementById("contact-message").value = "";
+  });
+
+  // CONTACT: Send button opens the visitor's email app, pre-filled
+  document.getElementById("contact-submit")?.addEventListener("click", () => {
+    const to = "chase@getdunn.com";
+    const from = (document.getElementById("contact-from")?.value || "").trim();
+    const subject = (
+      document.getElementById("contact-subject")?.value || ""
+    ).trim();
+    const message = (
+      document.getElementById("contact-message")?.value || ""
+    ).trim();
+
+    if (!message) {
+      document.getElementById("contact-message")?.focus();
+      return;
+    }
+
+    const body = from ? `${message}\n\n— ${from}` : message;
+    const subjectPart = subject ? `subject=${encodeURIComponent(subject)}&` : "";
+    const bodyPart = `body=${encodeURIComponent(body)}`;
+
+    window.location.href = `mailto:${to}?${subjectPart}${bodyPart}`;
   });
 
   initVideoPlayers();

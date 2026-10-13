@@ -3,38 +3,50 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Windows 95 Desktop</title>
+  <title>Chase Dunn — Filmmaker &amp; Multimedia Creator</title>
+  <meta name="description" content="Chase Dunn is a filmmaker and multimedia creator in San Francisco. Explore his videos, music, and creative work." />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Chase Dunn — Filmmaker &amp; Multimedia Creator" />
+  <meta property="og:description" content="Videos, music, and creative work by Chase Dunn." />
+  <meta property="og:image" content="https://cdreplit.github.io/portfolio/assets/og-image.png" />
+  <meta property="og:url" content="https://cdreplit.github.io/portfolio/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chase Dunn — Filmmaker &amp; Multimedia Creator" />
+  <meta name="twitter:description" content="Videos, music, and creative work by Chase Dunn." />
+  <meta name="twitter:image" content="https://cdreplit.github.io/portfolio/assets/og-image.png" />
   <link rel="stylesheet" href="style.css?v=20260601">
 </head>
 <body>
 
   <main class="desktop" role="main" aria-label="Desktop icons">
-    <div class="icon" role="button" tabindex="0" data-app="about-window" aria-label="Open About Me" ondblclick="openApp('about-window','About Me')">
+    <div class="icon" role="button" tabindex="0" data-app="about-window" aria-label="Open About Me">
       <img src="assets/IconNews.png" alt="About Me">
       <span>About Me</span>
     </div>
 
-    <div class="icon" role="button" tabindex="0" data-app="music-window" aria-label="Open Music" ondblclick="openApp('music-window','Music')">
+    <div class="icon" role="button" tabindex="0" data-app="music-window" aria-label="Open Music">
       <img src="assets/MusicDisc.png" alt="Music" class="music-img">
       <span>Music</span>
     </div>
 
-    <div class="icon" role="button" tabindex="0" data-app="videos-window" aria-label="Open Videos" ondblclick="openApp('videos-window','Videos')">
+    <div class="icon" role="button" tabindex="0" data-app="videos-window" aria-label="Open Videos">
       <img src="assets/camera.png" alt="Videos">
       <span>Videos</span>
     </div>
 
-    <div class="icon" role="button" tabindex="0" data-app="art-window" aria-label="Open Art" ondblclick="openApp('art-window','Art')">
+    <div class="icon" role="button" tabindex="0" data-app="art-window" aria-label="Open Art">
       <img src="assets/IconPaint.png" alt="Art">
       <span>Art</span>
     </div>
 
-    <div class="icon" role="button" tabindex="0" data-app="programs-window" aria-label="Open Programs" ondblclick="openApp('programs-window','Programs')">
+    <div class="icon" role="button" tabindex="0" data-app="programs-window" aria-label="Open Programs">
       <img src="assets/IconComputer.png" alt="Programs">
       <span>Programs</span>
     </div>
 
-    <div class="icon" role="button" tabindex="0" data-app="contact-window" aria-label="Open Contact" ondblclick="openApp('contact-window','Contact')">
+    <div class="icon" role="button" tabindex="0" data-app="contact-window" aria-label="Open Contact">
       <img src="assets/interneticon.png" alt="Contact">
       <span>Contact</span>
     </div>
@@ -83,23 +95,24 @@
       <div class="about-portfolio">
         <div class="about-photos" aria-label="About Me photos">
           <figure class="about-photo about-photo--left">
-            <div class="about-photo-frame">
-              <img src="assets/blockclub.png" alt="Block Club">
-            </div>
+            <a class="about-photo-frame" href="assets/fullres/blockclub.png" target="_blank" rel="noopener noreferrer" title="View full resolution">
+              <img src="assets/blockclub.jpg" alt="Block Club">
+            </a>
           </figure>
 
           <figure class="about-photo about-photo--center">
-            <div class="about-photo-frame">
+            <a class="about-photo-frame" href="assets/fullres/drumlinewin.JPG" target="_blank" rel="noopener noreferrer" title="View full resolution">
               <img src="assets/drumlinewin.JPG" alt="Drumline win">
-            </div>
+            </a>
           </figure>
 
           <figure class="about-photo about-photo--right">
-            <div class="about-photo-frame">
+            <a class="about-photo-frame" href="assets/fullres/simonkim.jpg" target="_blank" rel="noopener noreferrer" title="View full resolution">
               <img src="assets/simonkim.jpg" alt="Simon Kim">
-            </div>
+            </a>
           </figure>
         </div>
+        <p class="about-photos-hint">Click a photo to view it full-size</p>
 
         <div class="about-text" aria-label="About Me text">
           <div class="about-header">About Me</div>
@@ -149,7 +162,7 @@
           <div class="music-nav-title">Contents</div>
           <button type="button" class="music-nav-item" data-target="music-drums">Drums</button>
           <button type="button" class="music-nav-item" data-target="music-piano">Piano</button>
-          <button type="button" class="music-nav-item" data-target="music-compisitions">Compisitions</button>
+          <button type="button" class="music-nav-item" data-target="music-compositions">Compositions</button>
         </aside>
 
         <section class="music-main" aria-label="Music videos list">
@@ -189,8 +202,8 @@
             <div class="video-wrap" data-provider="youtube" data-video-id="uc4ial7JLPA"></div>
           </article>
 
-          <!-- Compisitions - Placeholder Music Video 2 -->
-          <article id="music-compisitions" class="video-block">
+          <!-- Compositions - Placeholder Music Video 2 -->
+          <article id="music-compositions" class="video-block">
             <div class="video-info">
               <h3 class="video-title">Placeholder Music Video 2</h3>
               <p class="video-subtitle">Original composition</p>
@@ -408,7 +421,7 @@
 
       <div class="contact-email-field">
         <span class="contact-email-label">To:</span>
-        <div class="contact-email-readonly">chase@chasedunnfilms.com</div>
+        <div class="contact-email-readonly">chase@getdunn.com</div>
       </div>
       <div class="contact-email-field">
         <span class="contact-email-label">From:</span>
