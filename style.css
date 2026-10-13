@@ -628,7 +628,9 @@ body {
   margin: 0;
 }
 
-.video-wrap--short {
+/* Vertical 9:16 frame. Two classes give it higher specificity than the
+   generic .video-wrap rule (which sets 16/9) so the crop actually engages. */
+.video-wrap.video-wrap--short {
   aspect-ratio: 9 / 16;
   width: 100%;
   overflow: hidden;
