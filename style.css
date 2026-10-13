@@ -611,8 +611,8 @@ body {
   overflow-y: auto;
 }
 
-/* Music window: side-by-side vertical shorts */
-.music-shorts-row {
+/* Side-by-side vertical (9:16) videos, used in Music and Videos windows */
+.shorts-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -622,7 +622,12 @@ body {
   align-items: start;
 }
 
-.music-shorts-row .video-block {
+/* Keep vertical videos in the Videos window at a comfortable size */
+.videos-main .shorts-row {
+  max-width: 640px;
+}
+
+.shorts-row .video-block {
   max-width: none;
   width: auto;
   margin: 0;
@@ -680,11 +685,11 @@ body {
   overflow: hidden;
 }
 
-.window.maximized .music-shorts-row {
+.window.maximized .shorts-row {
   max-width: min(calc(100vw - 280px), 1200px);
 }
 
-.window.maximized .window-content .music-shorts-row .video-block {
+.window.maximized .window-content .shorts-row .video-block {
   width: auto;
   max-width: none;
 }
@@ -798,6 +803,23 @@ body {
   overflow: hidden;
   z-index: 2;
   background: #000;
+}
+
+/* Placeholder shown for a vertical video whose YouTube ID isn't set yet */
+.video-wrap.is-placeholder::after {
+  content: "Video coming soon";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  text-align: center;
+  font-size: 13px;
+  color: #c0c0c0;
+  background: #000;
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
 }
 
 .video-wrap--short[data-fit="portrait"] .video-short-embed iframe,

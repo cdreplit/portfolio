@@ -283,7 +283,10 @@ async function fetchVimeoPoster(videoId) {
 
 function setupYouTubePlayer(wrap, posterBtn) {
   const videoId = getVideoId(wrap, "youtube");
-  if (!videoId) return;
+  if (!videoId) {
+    wrap.classList.add("is-placeholder");
+    return;
+  }
 
   const thumb = posterBtn.querySelector("img");
   setYouTubePoster(thumb, videoId);
