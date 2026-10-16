@@ -195,15 +195,17 @@ function initVideoPlayers() {
       setupYouTubePlayer(wrap, posterBtn);
     }
 
-    // Close button: stops the video and restores the poster, so the cropped
-    // (oversized) iframe stops capturing scroll gestures.
-    const closeBtn = createVideoCloseButton();
-    closeBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      stopVideoPlayer(wrap);
-      wrap.querySelector(".video-poster")?.focus();
-    });
-    wrap.appendChild(closeBtn);
+    // Vertical videos get a close button so the player can be stopped and
+    // the page scrolled again. Horizontal videos use YouTube's own controls.
+    if (wrap.classList.contains("video-wrap--short")) {
+      const closeBtn = createVideoCloseButton();
+      closeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        stopVideoPlayer(wrap);
+        wrap.querySelector(".video-poster")?.focus();
+      });
+      wrap.appendChild(closeBtn);
+    }
   });
 }
 
@@ -314,7 +316,6 @@ function setupYouTubePlayer(wrap, posterBtn) {
 
   posterBtn.addEventListener("click", () => {
     let iframe = wrap.querySelector("iframe");
-    const isShort = wrap.classList.contains("video-wrap--short");
 
     if (!iframe) {
       iframe = document.createElement("iframe");
@@ -324,19 +325,7 @@ function setupYouTubePlayer(wrap, posterBtn) {
         "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       );
       iframe.title = "YouTube video player";
-
-      const needsCropShell =
-        isShort &&
-        wrap.dataset.fit !== "landscape";
-
-      if (needsCropShell) {
-        const shell = document.createElement("div");
-        shell.className = "video-short-embed";
-        shell.appendChild(iframe);
-        wrap.appendChild(shell);
-      } else {
-        wrap.appendChild(iframe);
-      }
+      wrap.appendChild(iframe);
     }
 
     iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0&autoplay=1&playsinline=1`;
@@ -502,9 +491,6 @@ function stopVideoPlayer(wrap) {
     frame.src = "";
     frame.remove();
   }
-
-  const shell = wrap.querySelector(".video-short-embed");
-  if (shell) shell.remove();
 
   const video = wrap.querySelector("video");
   if (video) {
