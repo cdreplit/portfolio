@@ -194,6 +194,16 @@ function initVideoPlayers() {
     } else {
       setupYouTubePlayer(wrap, posterBtn);
     }
+
+    // Close button: stops the video and restores the poster, so the cropped
+    // (oversized) iframe stops capturing scroll gestures.
+    const closeBtn = createVideoCloseButton();
+    closeBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      stopVideoPlayer(wrap);
+      wrap.querySelector(".video-poster")?.focus();
+    });
+    wrap.appendChild(closeBtn);
   });
 }
 
@@ -236,6 +246,16 @@ function createVideoPosterButton() {
 
   poster.append(thumb, playIcon);
   return poster;
+}
+
+function createVideoCloseButton() {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "video-close";
+  btn.setAttribute("aria-label", "Stop video and close player");
+  btn.title = "Close video";
+  btn.textContent = "\u2715"; // ✕
+  return btn;
 }
 
 function setPosterImage(img, url, fallbackUrls = []) {
@@ -475,6 +495,33 @@ function openApp(id, name) {
   win.style.zIndex = 1001;
 }
 
+// Stops a single video player and restores its poster image.
+function stopVideoPlayer(wrap) {
+  const frame = wrap.querySelector("iframe");
+  if (frame) {
+    frame.src = "";
+    frame.remove();
+  }
+
+  const shell = wrap.querySelector(".video-short-embed");
+  if (shell) shell.remove();
+
+  const video = wrap.querySelector("video");
+  if (video) {
+    video.pause();
+    video.currentTime = 0;
+  }
+
+  wrap.classList.remove("is-playing");
+
+  const poster = wrap.querySelector(".video-poster");
+  if (poster) poster.removeAttribute("hidden");
+
+  if (wrap.dataset.provider === "instagram") {
+    delete wrap.dataset.playerInit;
+  }
+}
+
 function closeWindow(id) {
   const win = document.getElementById(id);
 
@@ -489,31 +536,7 @@ function closeWindow(id) {
   const idx = windowOpenOrder.indexOf(id);
   if (idx !== -1) windowOpenOrder.splice(idx, 1);
 
-  win.querySelectorAll(".video-wrap").forEach((wrap) => {
-    const frame = wrap.querySelector("iframe");
-    if (frame) {
-      frame.src = "";
-      frame.remove();
-    }
-
-    const shell = wrap.querySelector(".video-short-embed");
-    if (shell) shell.remove();
-
-    const video = wrap.querySelector("video");
-    if (video) {
-      video.pause();
-      video.currentTime = 0;
-    }
-
-    wrap.classList.remove("is-playing");
-
-    const poster = wrap.querySelector(".video-poster");
-    if (poster) poster.removeAttribute("hidden");
-
-    if (wrap.dataset.provider === "instagram") {
-      delete wrap.dataset.playerInit;
-    }
-  });
+  win.querySelectorAll(".video-wrap").forEach(stopVideoPlayer);
 }
 
 function toggleMinimize(id) {
