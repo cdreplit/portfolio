@@ -310,6 +310,26 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+/* "Coming soon" placeholder for empty windows/sections */
+.coming-soon-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coming-soon {
+  width: 100%;
+  margin: 0;
+  padding: 24px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  color: #404040;
+  background: #ffffff;
+  border: 2px solid;
+  border-color: var(--ui-light) var(--ui-dark) var(--ui-dark) var(--ui-light);
+}
+
 /* About window: portfolio layout */
 #about-window .window-content {
   background: var(--ui-bg);
